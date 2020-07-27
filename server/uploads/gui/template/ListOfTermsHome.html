@@ -7,19 +7,10 @@
       <meta name='viewport' content='width=device-width, initial-scale=1' />
       <meta name="_csrf" content="b40c2453-5c92-4fb8-8a48-9329d11c12e3"/>
       <meta name="_csrf_header" content="X-CSRF-TOKEN"/>
-      <!--this location is for testing in local machine-->
-      <!--link href="/css/interface.css" rel="stylesheet" type="text/css" />
-      <link href="/css/oxford.css" rel="stylesheet" type="text/css" />
-      <link href="/css/responsive.css" rel="stylesheet" type="text/css" /-->
-      
-       <!--this location is for original for production-->
-      <link href="../static/css/interface.css" rel="stylesheet" type="text/css" />
+       <link href="../static/css/interface.css" rel="stylesheet" type="text/css" />
       <link href="../static/css/oxford.css" rel="stylesheet" type="text/css" />
-      <link href="../static/css/responsive.css" rel="stylesheet" type="text/css"/>
-      
-      
-      
-      
+      <link href="../static/css/responsive.css" rel="stylesheet" type="text/css" />
+
       <style>
 * {
   box-sizing: border-box;
@@ -94,8 +85,10 @@ input[type=submit] {
             </div>
             <div class="nav responsive_container main_nav">
                <ul class="menu">
-                  <li><a  href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li>
-                  <li><a  href="http://www.cvt.ugent.be/genterm.htm">GENTERM</a></li>
+                  <li><a  href="http://localhost:8080/status?view=status">status</a></li>
+                  <li><a  href="http://localhost:8080/describe">browser</a></li>
+                  <li><a  href="http://localhost:8080/status?view=sparql">sparql</a></li>
+                  <li><a  href="http://localhost:8080/status?view=search">terms</a></li>
                </ul>
             </div>
          </div>
@@ -116,27 +109,19 @@ input[type=submit] {
                <div id="main_column" class="responsive_row">
                   <div class="middle_wrap wordlist-page">
                      <div class="responsive_row">
-                        <h4>Language Selection:</h4>
-                        <div class="langauge selection box">
-                           <table style="width:60%">
-                              <tbody>
-                                 <tr>
-                                    <td><a href="browser_en_A_B_1.html">English</a></td>
-                                    <td><a href="browser_nl_1_1.html">Dutch</a></td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </div>
+
+			     <h2>No terminology to publish. Please upload your terminology first!!</h2>
                         
-                         <h4>Search terms</h4>
+                         <!--h4>Search terms</h4-->
                         <!--Make sure the form has the autocomplete function switched off:-->
-                        <form autocomplete="off" id="form_id"> 
+                        <!--form autocomplete="off" id="form_id"> 
                             <div class="autocomplete" style="width:300px;"> 
                                 <input id="myInput" type="text" placeholder="Search.."> 
                             </div> 
                             <input id="submit" type="submit"> 
-                        </form> 
-                        <script type="text/javascript" src="../files/browser/js/tbx2rdf_diseases_nl.js"></script>
+                        </form--> 
+                         <!--script type="text/javascript" src="../files/browser/js/tbx2rdf_atc_en.js"></script-->
+                          <!--script type="text/javascript" src="../files/browser/js/tbx2rdf_atc_en.js"></script-->
                          
         
                         
@@ -207,12 +192,6 @@ input[type=submit] {
       <div class="responsive_row flush-below top">
          <div class="responsive_container responsive_display_on_smartphone">
             <div class="menu_button"></div>
-         </div>
-         <div class="nav responsive_container main_nav">
-            <ul class="menu">
-               <li><a  href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li>
-               <li><a  href="http://www.cvt.ugent.be/genterm.htm">GENTERM</a></li>
-            </ul>
          </div>
       </div>
    </body>

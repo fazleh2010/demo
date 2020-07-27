@@ -14,6 +14,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const local_sparql_endpoint = "http://localhost:8890/sparql";
 const htmlDir = "/tmp/server/uploads/gui/";
+const templateDir = "/tmp/server/uploads/gui/template/";
 const inputDir = "/tmp/server/uploads/gui/browser/";
 const jarDir = "/tmp/server/uploads/gui/browser/target/";
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -72,7 +73,7 @@ const execOptions = {cwd: "/tmp"}; //, stdout: process.stderr, stderr: process.s
             console.log("result:",result);
 	      if (result.code != 0) {
 	         console.log("!!!!!!!!!!!!!!!!!:");
-		 res.sendFile(htmlDir+'ListOfTerms.html');
+		 res.sendFile(templateDir+'ListOfTermsHome.html');
                  throw Error("exit code != 0");
 		      return;
                    }
