@@ -1,0 +1,10 @@
+CREATE DATABASE IF NOT EXISTS `tal`;
+
+USE `tal`;
+
+CREATE TABLE testtable (
+     id MEDIUMINT NOT NULL AUTO_INCREMENT,
+     name CHAR(30) NOT NULL,
+     PRIMARY KEY (id)
+);
+

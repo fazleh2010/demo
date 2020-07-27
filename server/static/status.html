@@ -1,0 +1,44 @@
+<div id="content" class="content">
+    <h2><i class="fas fa-tasks"></i> <span class="task-title tpl_service_name">{{service_name}}</span> <span class="task-progress" id="pipeline-progress-container"><span id="pipeline-progress-current">?</span>/<span id="pipeline-progress-total">?</span></span></h2>
+    <div id="container-status">
+        <span>
+        <i id="heartbeat" class="fas fa-heartbeat"></i>
+        Container status: <span class="container-status-text">unknown</span></span>
+    </div>
+    <div>
+        <ul id="task_status">
+            <li class="task-complete">
+                <span class="fa-stack">
+                    <i class="fas fa-list-ul"></i>
+                    <i class="fas fa-check-square fa-badge"></i>
+                </span>
+                task 1 <span class="task-meta">OK <i class="fas fa-stopwatch"></i> 430.3s</span></li>
+            <li class="task-success">
+                <span class="fa-stack">
+                    <i class="fas fa-list-ul"></i>
+                    <i class="fas fa-badge fa-exclamation-circle"></i> 
+                </span>
+                success example</li>
+            <li class="task-active">
+                <span class="fa-stack">
+                    <i class="fas fa-tasks"></i>
+                    <i class="fas fa-spinner fa-badge fa-pulse"></i>
+                </span>
+                task 2 <span class="task-meta"><i class="fas fa-cog fa-spin"></i></span></li>
+            <li> 
+                <span class="fa-stack">
+                    <i class="fas fa-tasks"></i>
+                    <i class="far fa-square fa-badge fa-invert"></i>
+                </span>
+                task 3</li>
+            <li class="task-failed">
+                <span class="fa-stack">
+                    <i class="fas fa-tasks"></i>
+                    <i class="fas fa-badge fa-exclamation-circle"></i> 
+                </span>
+                failure example</li>
+        </ul>
+    </div>
+    <div class="spacer"></div>
+    <div><pre id="log-messages">log output will appear here</pre></div>
+</div>

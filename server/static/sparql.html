@@ -1,0 +1,30 @@
+<div id="sparql" class="content">
+    <h2 style="margin-left: 5%">SPARQL query</h2>
+    <form id="sparql_query" method="get">
+        <button type="submit" id="sparql_submit" class="btn btn-submit">Query</button>
+        <textarea id="query" name="query" rows=8 cols=80>
+PREFIX cc:    <http://creativecommons.org/ns#> 
+PREFIX void:  <http://rdfs.org/ns/void#> 
+PREFIX skos:  <http://www.w3.org/2004/02/skos/core#> 
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX tbx:   <http://tbx2rdf.lider-project.eu/tbx#> 
+PREFIX decomp: <http://www.w3.org/ns/lemon/decomp#> 
+PREFIX dct:   <http://purl.org/dc/terms/> 
+PREFIX rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX ontolex: <http://www.w3.org/ns/lemon/ontolex#> 
+PREFIX ldr:   <http://purl.oclc.org/NET/ldr/ns#> 
+PREFIX odrl:  <http://www.w3.org/ns/odrl/2/> 
+PREFIX dcat:  <http://www.w3.org/ns/dcat#> 
+PREFIX prov:  <http://www.w3.org/ns/prov#> 
+SELECT ?localTermUrl ?rep ?linkedTermUrl WHERE { 
+    ?s ?p ?localTermUrl .
+    ?localTermUrl ontolex:canonicalForm ?canform .
+    ?canform ontolex:writtenRep ?rep .
+    OPTIONAL {?localTermUrl ontolex:sameAs ?linkedTermUrl .}
+} LIMIT 100
+        </textarea><br />
+    </form>
+    <div id="sparql_results">
+
+    </div>
+</div>

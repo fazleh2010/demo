@@ -1,0 +1,6 @@
+#!/bin/bash
+set -xe
+cd /home/scadmin/projects/tbx2rdf_dev
+echo $1
+docker exec -it `docker ps | grep $1 | cut -d " " -f1` /bin/bash
+

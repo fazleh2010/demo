@@ -1,0 +1,58 @@
+swagger: "2.0"
+info:
+  title: tbx2rdf conversion
+  description: Converts TBX files to RDF
+  version: "0.1"
+  termsOfService: http://sc.cit-ec.uni-bielefeld.de
+  contact:
+    name: Semantic Computing Group
+    url: http://sc.cit-ec.uni-bielefeld.de
+    email: fgrimm@techfak.uni-bielefeld.de
+  license:
+    name: MIT
+    url: https://github.com/cimiano/tbx2rdf/blob/master/LICENSE.md
+host: 0.0.0.0:8001
+basePath: /
+schemes:
+- http
+- https
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /api:
+    x-swagger-router-controller: tbx2rdf
+    get:
+      description: Return the results
+      parameters:
+      - name: tbx_content
+        in: query
+        description: The textual, tbx formatted, input for the service
+        required: true
+        type: string
+      responses:
+        '200':
+          description: RDF response
+          schema:
+            $ref: '#/definitions/RDFResponse'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+
+# complex objects have schema definitions
+definitions:
+  RDFResponse:
+    required:
+    - message
+    properties:
+      message:
+        type: string
+  ErrorResponse:
+    required:
+    - message
+    properties:
+      message:
+        type: string
+

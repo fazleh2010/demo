@@ -1,0 +1,242 @@
+<html lang="en">
+	<head>
+		<title>PRÊT-À-LLOD: {{service_name}}</title>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css"/>
+		<link href="https://fonts.googleapis.com/css?family=Raleway|Roboto+Slab|Ubuntu+Mono&display=swap" rel="stylesheet" />
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="./static/status.js"></script>
+		<link rel="stylesheet" href="./static/status.css" />
+		<style>
+html, body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto Slab', serif;
+}
+h1, h2, h3, h4, h5 {
+	font-family: 'Raleway', sans-serif;
+}
+
+body {
+	height: 100%;
+	width: 100%;
+	color: white;
+	background: rgb(13,59,102);
+	background: linear-gradient(rgba(13,59,102,1) 6%, #D8DBE2 8%, #D8DBE2 92%, rgba(27,36,50,1) 95%);
+}
+.pallette {
+	color: #FC7376; /* begonia*/
+	color: #0D3B66; /* dark midnight blue */
+	color: #403F4C; /* arsenic */
+	color: #2C2B3C; /* gunmetal */
+	color: #1B2432; /* dark gunmetal */
+}
+div#header {
+	width: 100%;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	background: #0D3B66;
+	color: white;
+	display: flex;
+	justify-content: center;
+}
+div#content {
+	width: 60%;
+	margin: 7em auto 0 auto;
+	padding: 0;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background: white;
+	color: black;
+	border: 1px solid #0d3b66;
+}
+
+    @media (max-width: 1024px) {
+	    div#content {
+		    width: 90%;
+	    }
+	    footer {
+		    position: absolute !important;
+	    }
+    }
+
+    div#content h1, div#content h2 {
+	    background: #A9BCD0;
+	    color: black;
+	    margin: 0;
+	    padding: 5px 1em 5px 1em;
+	    -webkit-border-radius: 10px 10px 0 0;
+	    border-radius: 10px 10px 0 0;
+	    display: flex;
+	    justify-content: flex-start;
+	    flex-direction: row;
+    }
+    div#content h2 i.fas {
+	    margin-top: 2px;
+    }
+    div#content h2 .task-title {
+	    margin-left: 1em;
+    }
+    div#content h2 .task-progress {
+	    margin-left: auto;
+	    margin-right: 1em;
+    }
+    div#content > div {
+	    margin: 0;
+	    padding: 5px 1em 5px 1em;
+    }
+    a {
+	    color: white;
+    }
+
+    div#header h1 {
+	    display: inline-block;
+	    background-image: url('./static/logo-cut-final.png');
+	    background-origin: padding-box;
+	    padding-left: 3em;
+	    margin-top: 0.3em;
+	    margin-bottom: 0.3em;
+	    background-size: contain;
+	    background-repeat: no-repeat;
+	    background-color: transparent;
+    }
+
+    pre {
+	    padding: 5px 0.5em 5px 0.5em;
+	    border-radius: 3px;
+	    color: #efefef;
+	    text-shadow: 1px 1px 1px #647082;
+	    background: #394352;
+	    font-family: 'Ubuntu Mono', sans-serif;
+    }
+
+    footer {
+	    position: fixed;
+	    bottom: 0;
+	    margin: 0;
+	    padding: 0.3em 0;
+	    width: 100%;
+	    text-align: center;
+	    font-style: italic;
+	    font-size: 0.8em;
+	    background: #1b2432;
+    }
+
+    ul#task_status {
+	    list-style-type: none;
+	    margin: 0;
+	    padding: 0.5em;
+    }
+    ul#task_status li {
+	    margin: 0;
+	    padding: 0.3em 0em 0.3em 0em;
+	    border-bottom: 1px dashed #2c3b3c;
+	    display: flex;
+	    justify-content: flex-start;
+	    flex-direction: row;
+    }
+    ul#task_status li .task-meta {
+	    font-size: 0.9em;
+	    margin-left: auto;
+	    margin-right: 1em;
+	    margin-top: 0.25em;
+    }
+    li.task-complete {
+	    color: #4d596b !important;
+	    border-bottom: 1px dashed darkgrey !important;
+    }
+    li.task-failed {
+    }
+    li.task-failed i.fas.fa-badge {
+	    color: red;
+    }
+    li.task-success {
+    }
+    li.task-success i.fas.fa-badge {
+	    color: green;
+    }
+    i.far.fa-badge, i.fas.fa-badge {
+	    position: absolute;
+	    right: 1em;
+	    bottom: 0.5em;
+	    background: white;
+    }
+    div.spacer {
+	    margin: 2em 0 0 0 !important;
+	    display: block;
+    }
+		</style>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var template_replacements = {
+					"service_name": "Terme-à-LLOD"
+				};
+				for (let k in template_replacements) {
+					var v = template_replacements[k];
+					if (!k || !v) continue;
+					$(".tpl_" + k).text(v);
+				}
+			});
+
+// TODO dynamically load and refresh
+var task_status = {
+};
+
+function refresh_view(task_status) {
+}
+
+refresh_view(task_status);
+		</script>
+
+	</head>
+	<body>
+		<div id="header">
+			<h1>Prêt-à-LLOD</h1>
+		</div>
+		<div id="content">
+			<h2><i class="fas fa-tasks"></i> <span class="task-title tpl_service_name">{{service_name}}</span> <span class="task-progress">2/3</span></h2>
+			<div>
+				<ul id="task_status">
+					<li class="task-complete">
+						<span class="fa-stack">
+							<i class="fas fa-list-ul"></i>
+							<i class="fas fa-check-square fa-badge"></i>
+						</span>
+						task 1 <span class="task-meta">OK <i class="fas fa-stopwatch"></i> 430.3s</span></li>
+					<li class="task-success">
+						<span class="fa-stack">
+							<i class="fas fa-list-ul"></i>
+							<i class="fas fa-badge fa-exclamation-circle"></i> 
+						</span>
+						success example</li>
+					<li class="task-active">
+						<span class="fa-stack">
+							<i class="fas fa-tasks"></i>
+							<i class="fas fa-spinner fa-badge fa-pulse"></i>
+						</span>
+						task 2 <span class="task-meta"><i class="fas fa-cog fa-spin"></i></span></li>
+					<li> 
+						<span class="fa-stack">
+							<i class="fas fa-tasks"></i>
+							<i class="far fa-square fa-badge fa-invert"></i>
+						</span>
+						task 3</li>
+					<li class="task-failed">
+						<span class="fa-stack">
+							<i class="fas fa-tasks"></i>
+							<i class="fas fa-badge fa-exclamation-circle"></i> 
+						</span>
+						failure example</li>
+				</ul>
+			</div>
+			<div class="spacer"></div>
+			<div><pre>pre
+			123
+			456
+			</pre></div>
+		</div>
+		<footer>&copy; 2019 - <a href="http://www.pret-a-llod.eu/">PRÊT-À-LLOD - <span class="tpl_service_name">{{service_name}}</span></a></footer>
+	</body>
+</html>

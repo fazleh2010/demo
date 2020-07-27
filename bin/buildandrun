@@ -1,0 +1,3 @@
+#!/bin/bash
+cd /home/scadmin/projects/tbx2rdf_dev
+./bin/rebuild && ./bin/run

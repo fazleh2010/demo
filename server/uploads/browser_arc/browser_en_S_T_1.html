@@ -1,0 +1,311 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <meta name="_csrf" content="b40c2453-5c92-4fb8-8a48-9329d11c12e3"> 
+  <meta name="_csrf_header" content="X-CSRF-TOKEN"> 
+  <!--this location is for testing in local machine--> 
+  <!--link href="/css/interface.css" rel="stylesheet" type="text/css" />
+      <link href="/css/oxford.css" rel="stylesheet" type="text/css" />
+      <link href="/css/responsive.css" rel="stylesheet" type="text/css" /--> 
+  <!--this location is for original for production--> 
+  <link href="../static/css/interface.css" rel="stylesheet" type="text/css"> 
+  <link href="../static/css/oxford.css" rel="stylesheet" type="text/css"> 
+  <link href="../static/css/responsive.css" rel="stylesheet" type="text/css"> 
+  <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px Arial;  
+}
+
+/*the container must be positioned relative:*/
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+  cursor: pointer;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+      </style> 
+ </head> 
+ <body> 
+  <div id="ox-header" class=""> 
+   <div class="responsive_row flush-below top"> 
+    <div class="responsive_container responsive_display_on_smartphone"> 
+     <div class="menu_button"></div> 
+    </div> 
+    <div class="nav responsive_container main_nav"> 
+     <ul class="menu"> 
+      <li><a href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li> 
+      <li><a href="http://www.cvt.ugent.be/genterm.htm">GENTERM</a></li> 
+     </ul> 
+    </div> 
+   </div> 
+   <div class="responsive_row"> 
+    <div id="ad_leftslot_container" class="ad_leftslot_container responsive_entry_left"> 
+     <div class="ac_leftslot sticky"> 
+      <div id="ad_leftslot_a" class="am-default "> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="responsive_entry_center"> 
+     <div class="responsive_display_on_hd" id="leaderboardHD"> 
+      <div class=""> 
+       <div id="ad_topslot_b" class="am-default "> 
+       </div> 
+      </div> 
+     </div> 
+     <div id="main_column" class="responsive_row"> 
+      <div class="middle_wrap wordlist-page"> 
+       <div class="responsive_row"> 
+        <h4>Language Selection:</h4> 
+        <div class="langauge selection box"> 
+         <table style="width:60%"> 
+          <tbody> 
+           <tr> 
+            <td><a href="browser_en_A_B_1.html">English</a></td> 
+            <td><a href="browser_nl_1_1.html">Dutch</a></td> 
+           </tr> 
+          </tbody> 
+         </table> 
+        </div> 
+        <h4>Search terms</h4> 
+        <!--Make sure the form has the autocomplete function switched off:--> 
+        <form autocomplete="off" id="form_id"> 
+         <div class="autocomplete" style="width:300px;"> 
+          <input id="myInput" type="text" placeholder="Search.."> 
+         </div> 
+         <input id="submit" type="submit"> 
+        </form> 
+        <script type="text/javascript" src="../files/browser/js/tbx2rdf_atc_en.js"></script> 
+        <!--div class="mainsearch">
+                           <form id="search-form" method="get" action="browser_hu_10_1.html">
+                              <div class="dictionarySelector">
+                                 <div id="select_div">
+                                    <div>English</div>
+                                 </div>
+                              </div>
+                              <div class="searchfield">
+                                 <input type="text" id="q" name="q"
+                                    class="searchfield_input"/>
+                                 <a id="keyboard_icon" class="oup_icons responsive_hide_on_smartphone responsive_hide_on_tablet"></a>
+                                 <div id="keyboard_letters"></div>
+                              </div>
+                              <div class="inputSuggestions"></div>
+                              <label id="search-btn" class="oup_icons">
+                              <input type="submit" value="" />
+                              </label>
+                           </form>
+                        </div>
+                     </div--> 
+        <div class="side-selector clear_fix"> 
+         <div class="side-selector__left"> 
+          <!-- the topics --> 
+          <div id="entries-selector" class=""> 
+           <ul class="hide_phone"> 
+            <li class="currentpage"> <span>S_T</span> <li><a href="browser_en_A_B_1.html">A_B</a></li>  <li><a href="browser_en_C_D_1.html">C_D</a></li>  <li><a href="browser_en_E_F_1.html">E_F</a></li>  <li><a href="browser_en_G_H_1.html">G_H</a></li>  <li><a href="browser_en_I_J_1.html">I_J</a></li>  <li><a href="browser_en_K_L_1.html">K_L</a></li>  <li><a href="browser_en_M_N_1.html">M_N</a></li>  <li><a href="browser_en_O_P_1.html">O_P</a></li>  <li><a href="browser_en_Q_R_1.html">Q_R</a></li>  <li><a href="browser_en_U_V_1.html">U_V</a></li>  <li><a href="browser_en_W_X_1.html">W_X</a></li>  <li><a href="browser_en_Y_Z_1.html">Y_Z</a></li> </li> 
+           </ul> 
+           <div class="wl-select hide_all display_phone"> 
+           </div> 
+          </div> 
+          <!-- entries-selector --> 
+         </div> 
+         <div class="side-selector__right"> 
+          <!-- the items of the selected topic --> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner"> 
+             <li class="activepageUpper"> </li>  
+             <li><a href="browser_en_S_T_2.html">2</a></li>  
+             <li><a href="browser_en_S_T_3.html">3</a></li>  
+             <li><a href="browser_en_S_T_4.html">4</a></li> 
+            </ul> 
+           </div> 
+          </div> 
+          <div id="entrylist1"> 
+           <ul class="result-list1 wordlist-oxford3000 list-plain">  
+            <li><a href="browser_en_S_T_1_term_0.html" title="sabalis_serrulatae_fructus definition">sabalis serrulatae fructus</a></li>  
+            <li><a href="browser_en_S_T_1_term_1.html" title="saccharated_iron_oxide definition">saccharated iron oxide</a></li>  
+            <li><a href="browser_en_S_T_1_term_2.html" title="saccharomyces_boulardii definition">saccharomyces boulardii</a></li>  
+            <li><a href="browser_en_S_T_1_term_3.html" title="sachet definition">sachet</a></li>  
+            <li><a href="browser_en_S_T_1_term_4.html" title="safety_and_efficacy definition">safety and efficacy</a></li>  
+            <li><a href="browser_en_S_T_1_term_5.html" title="salbutamol definition">salbutamol</a></li>  
+            <li><a href="browser_en_S_T_1_term_6.html" title="salbutamol_and_other_drugs_for_obstr_airway_diseases definition">salbutamol and other drugs for obstr airway diseases</a></li>  
+            <li><a href="browser_en_S_T_1_term_7.html" title="salicylamide,_combinations_excl._psycholeptics definition">salicylamide, combinations excl. psycholeptics</a></li>  
+            <li><a href="browser_en_S_T_1_term_8.html" title="salmeterol definition">salmeterol</a></li>  
+            <li><a href="browser_en_S_T_1_term_9.html" title="salmeterol_and_budesonide definition">salmeterol and budesonide</a></li>  
+            <li><a href="browser_en_S_T_1_term_10.html" title="salmeterol_and_other_drugs_for_obstr_airway_diseases definition">salmeterol and other drugs for obstr airway diseases</a></li>  
+            <li><a href="browser_en_S_T_1_term_11.html" title="sapropterin definition">sapropterin</a></li>  
+            <li><a href="browser_en_S_T_1_term_12.html" title="saquinavir definition">saquinavir</a></li>  
+            <li><a href="browser_en_S_T_1_term_13.html" title="sarilumab definition">sarilumab</a></li>  
+            <li><a href="browser_en_S_T_1_term_14.html" title="saxagliptin definition">saxagliptin</a></li>  
+            <li><a href="browser_en_S_T_1_term_15.html" title="scopolamine definition">scopolamine</a></li>  
+            <li><a href="browser_en_S_T_1_term_16.html" title="seasonal_allergic_rhinitis definition">seasonal allergic rhinitis</a></li>  
+            <li><a href="browser_en_S_T_1_term_17.html" title="secobarbital definition">secobarbital</a></li>  
+            <li><a href="browser_en_S_T_1_term_18.html" title="section definition">section</a></li>  
+            <li><a href="browser_en_S_T_1_term_19.html" title="secukinumab definition">secukinumab</a></li>  
+            <li><a href="browser_en_S_T_1_term_20.html" title="seizure definition">seizure</a></li>  
+            <li><a href="browser_en_S_T_1_term_21.html" title="selective_immunosuppressants definition">selective immunosuppressants</a></li>  
+            <li><a href="browser_en_S_T_1_term_22.html" title="selegiline definition">selegiline</a></li>  
+            <li><a href="browser_en_S_T_1_term_23.html" title="selenium_compounds definition">selenium compounds</a></li>  
+            <li><a href="browser_en_S_T_1_term_24.html" title="selexipag definition">selexipag</a></li>  
+            <li><a href="browser_en_S_T_1_term_25.html" title="senna_glycosides definition">senna glycosides</a></li>  
+            <li><a href="browser_en_S_T_1_term_26.html" title="senna_glycosides,_combinations definition">senna glycosides, combinations</a></li>  
+            <li><a href="browser_en_S_T_1_term_27.html" title="serious_adverse_events definition">serious adverse events</a></li>  
+            <li><a href="browser_en_S_T_1_term_28.html" title="serious_adverse_reaction definition">serious adverse reaction</a></li>  
+            <li><a href="browser_en_S_T_1_term_29.html" title="sertaconazole definition">sertaconazole</a></li>  
+            <li><a href="browser_en_S_T_1_term_30.html" title="sertindole definition">sertindole</a></li>  
+            <li><a href="browser_en_S_T_1_term_31.html" title="sertraline definition">sertraline</a></li>  
+            <li><a href="browser_en_S_T_1_term_32.html" title="sevelamer definition">sevelamer</a></li>  
+            <li><a href="browser_en_S_T_1_term_33.html" title="severe_swelling_of_skin_or_mucous_membranes definition">severe swelling of skin or mucous membranes</a></li>  
+            <li><a href="browser_en_S_T_1_term_34.html" title="sevoflurane definition">sevoflurane</a></li>  
+            <li><a href="browser_en_S_T_1_term_35.html" title="shelf_life definition">shelf life</a></li>  
+            <li><a href="browser_en_S_T_1_term_36.html" title="short_of_breath definition">short of breath</a></li>  
+            <li><a href="browser_en_S_T_1_term_37.html" title="sibutramine definition">sibutramine</a></li>  
+            <li><a href="browser_en_S_T_1_term_38.html" title="sildenafil definition">sildenafil</a></li>  
+            <li><a href="browser_en_S_T_1_term_39.html" title="silicones definition">silicones</a></li>  
+            <li><a href="browser_en_S_T_1_term_40.html" title="silodosin definition">silodosin</a></li>  
+            <li><a href="browser_en_S_T_1_term_41.html" title="silver_compounds definition">silver compounds</a></li>  
+            <li><a href="browser_en_S_T_1_term_42.html" title="silver_sulfadiazine definition">silver sulfadiazine</a></li>  
+            <li><a href="browser_en_S_T_1_term_43.html" title="silver_sulfadiazine,_combinations definition">silver sulfadiazine, combinations</a></li>  
+            <li><a href="browser_en_S_T_1_term_44.html" title="silymarin definition">silymarin</a></li>  
+            <li><a href="browser_en_S_T_1_term_45.html" title="simeprevir definition">simeprevir</a></li>  
+            <li><a href="browser_en_S_T_1_term_46.html" title="simvastatin definition">simvastatin</a></li>  
+            <li><a href="browser_en_S_T_1_term_47.html" title="simvastatin_and_ezetimibe definition">simvastatin and ezetimibe</a></li>  
+            <li><a href="browser_en_S_T_1_term_48.html" title="sinecatechins definition">sinecatechins</a></li>  
+            <li><a href="browser_en_S_T_1_term_49.html" title="single_dose definition">single dose</a></li>  
+            <li><a href="browser_en_S_T_1_term_50.html" title="single_oral_dose definition">single oral dose</a></li>  
+            <li><a href="browser_en_S_T_1_term_51.html" title="sirolimus definition">sirolimus</a></li>  
+            <li><a href="browser_en_S_T_1_term_52.html" title="sitagliptin definition">sitagliptin</a></li>  
+            <li><a href="browser_en_S_T_1_term_53.html" title="sitaxentan definition">sitaxentan</a></li>  
+            <li><a href="browser_en_S_T_1_term_54.html" title="skeletal_related_event definition">skeletal related event</a></li>  
+            <li><a href="browser_en_S_T_1_term_55.html" title="skin_and_subcutaneous_tissue_disorders definition">skin and subcutaneous tissue disorders</a></li>  
+            <li><a href="browser_en_S_T_1_term_56.html" title="skin_disorder definition">skin disorder</a></li>  
+            <li><a href="browser_en_S_T_1_term_57.html" title="skin_rash definition">skin rash</a></li>  
+            <li><a href="browser_en_S_T_1_term_58.html" title="sleep_disorder definition">sleep disorder</a></li>  
+            <li><a href="browser_en_S_T_1_term_59.html" title="sleepy definition">sleepy</a></li>  
+            <li><a href="browser_en_S_T_1_term_60.html" title="social_circumstances definition">social circumstances</a></li>  
+            <li><a href="browser_en_S_T_1_term_61.html" title="sodium_apolate definition">sodium apolate</a></li>  
+            <li><a href="browser_en_S_T_1_term_62.html" title="sodium_bicarbonate definition">sodium bicarbonate</a></li>  
+            <li><a href="browser_en_S_T_1_term_63.html" title="sodium_borate definition">sodium borate</a></li>  
+            <li><a href="browser_en_S_T_1_term_64.html" title="sodium_cellulose_phosphate definition">sodium cellulose phosphate</a></li>  
+            <li><a href="browser_en_S_T_1_term_65.html" title="sodium_chloride definition">sodium chloride</a></li>  
+            <li><a href="browser_en_S_T_1_term_66.html" title="sodium_fluoride definition">sodium fluoride</a></li>  
+            <li><a href="browser_en_S_T_1_term_67.html" title="sodium_fluoride,_combinations definition">sodium fluoride, combinations</a></li>  
+            <li><a href="browser_en_S_T_1_term_68.html" title="sodium_folinate definition">sodium folinate</a></li>  
+            <li><a href="browser_en_S_T_1_term_69.html" title="sodium_glycerophosphate definition">sodium glycerophosphate</a></li>  
+            <li><a href="browser_en_S_T_1_term_70.html" title="sodium_hydroxide definition">sodium hydroxide</a></li>  
+            <li><a href="browser_en_S_T_1_term_71.html" title="sodium_hypochlorite definition">sodium hypochlorite</a></li>  
+            <li><a href="browser_en_S_T_1_term_72.html" title="sodium_iopodate definition">sodium iopodate</a></li>  
+            <li><a href="browser_en_S_T_1_term_73.html" title="sodium_levofolinate definition">sodium levofolinate</a></li>  
+            <li><a href="browser_en_S_T_1_term_74.html" title="sodium_monofluorophosphate definition">sodium monofluorophosphate</a></li>  
+            <li><a href="browser_en_S_T_1_term_75.html" title="sodium_oxybate definition">sodium oxybate</a></li>  
+            <li><a href="browser_en_S_T_1_term_76.html" title="sodium_perborate definition">sodium perborate</a></li>  
+            <li><a href="browser_en_S_T_1_term_77.html" title="sodium_phosphate definition">sodium phosphate</a></li>  
+            <li><a href="browser_en_S_T_1_term_78.html" title="sodium_picosulfate definition">sodium picosulfate</a></li>  
+            <li><a href="browser_en_S_T_1_term_79.html" title="sodium_picosulfate,_combinations definition">sodium picosulfate, combinations</a></li>  
+            <li><a href="browser_en_S_T_1_term_80.html" title="sodium_propionate definition">sodium propionate</a></li>  
+            <li><a href="browser_en_S_T_1_term_81.html" title="sodium_selenite definition">sodium selenite</a></li>  
+            <li><a href="browser_en_S_T_1_term_82.html" title="sofosbuvir definition">sofosbuvir</a></li>  
+            <li><a href="browser_en_S_T_1_term_83.html" title="sofosbuvir_and_ledipasvir definition">sofosbuvir and ledipasvir</a></li>  
+            <li><a href="browser_en_S_T_1_term_84.html" title="solifenacin definition">solifenacin</a></li>  
+            <li><a href="browser_en_S_T_1_term_85.html" title="solution_for_infusion definition">solution for infusion</a></li>  
+            <li><a href="browser_en_S_T_1_term_86.html" title="solution_for_injection definition">solution for injection</a></li>  
+            <li><a href="browser_en_S_T_1_term_87.html" title="solvent definition">solvent</a></li>  
+            <li><a href="browser_en_S_T_1_term_88.html" title="somatorelin definition">somatorelin</a></li>  
+            <li><a href="browser_en_S_T_1_term_89.html" title="somatostatin definition">somatostatin</a></li>  
+            <li><a href="browser_en_S_T_1_term_90.html" title="somatropin definition">somatropin</a></li>  
+            <li><a href="browser_en_S_T_1_term_91.html" title="sorafenib definition">sorafenib</a></li>  
+            <li><a href="browser_en_S_T_1_term_92.html" title="sorbitol definition">sorbitol</a></li>  
+            <li><a href="browser_en_S_T_1_term_93.html" title="sore_throat definition">sore throat</a></li>  
+            <li><a href="browser_en_S_T_1_term_94.html" title="sotalol definition">sotalol</a></li>  
+            <li><a href="browser_en_S_T_1_term_95.html" title="spaglumic_acid definition">spaglumic acid</a></li>  
+            <li><a href="browser_en_S_T_1_term_96.html" title="sparteine definition">sparteine</a></li>  
+            <li><a href="browser_en_S_T_1_term_97.html" title="special_population definition">special population</a></li>  
+            <li><a href="browser_en_S_T_1_term_98.html" title="special_precaution_for_disposal definition">special precaution for disposal</a></li>  
+            <li><a href="browser_en_S_T_1_term_99.html" title="special_precautions definition">special precautions</a></li> 
+           </ul> 
+          </div> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner_down"> 
+             <li class="activepageLower"> </li>  
+             <li><a href="browser_en_S_T_2.html">2</a></li>  
+             <li><a href="browser_en_S_T_3.html">3</a></li>  
+             <li><a href="browser_en_S_T_4.html">4</a></li> 
+            </ul> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <div id="ox-footer" class=""> 
+    <div class="responsive_row flush-below top"> 
+     <div class="responsive_container responsive_display_on_smartphone"> 
+      <div class="menu_button"></div> 
+     </div> 
+     <div class="nav responsive_container main_nav"> 
+      <ul class="menu"> 
+       <li><a href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li> 
+       <li><a href="http://www.cvt.ugent.be/genterm.htm">GENTERM</a></li> 
+      </ul> 
+     </div> 
+    </div>    
+   </div>
+  </div>
+ </body>
+</html>

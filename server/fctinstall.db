@@ -1,0 +1,16 @@
+status();
+
+vad_install ('/virtuoso_data/fct_dav.vad', 0);
+
+checkpoint;
+status();
+
+RDF_OBJ_FT_RULE_ADD (null, null, 'All');
+VT_INC_INDEX_DB_DBA_RDF_OBJ ();
+
+urilbl_ac_init_db();
+
+s_rank();
+
+checkpoint;
+status();

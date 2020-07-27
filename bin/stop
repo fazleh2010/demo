@@ -1,0 +1,2 @@
+#!/bin/bash
+docker stop `docker ps -q --filter ancestor=tbx2rdf_test`

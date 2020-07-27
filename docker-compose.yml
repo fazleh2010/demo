@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+	tbx2rdf_atc:
+		build: .
+		ports:
+			- "8081:8080"
+		networks:
+			- infrastructure
+		volumes:
+			- ./server/uploads/:/tmp/server/uploads/
+			- ./data/:/virtuoso_data/
+		env_file:
+			- ./environments/staging.env
+networks:
+    infrastructure:
+        driver: bridge
+

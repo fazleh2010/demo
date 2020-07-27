@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+
+curl -d "endpoint=https://webtentacle1.techfak.uni-bielefeld.de/tbx2rdftest/sparql" -H "Content-Type: application/x-www-form-urlencoded" -X POST "https://webtentacle1.techfak.uni-bielefeld.de/tbx2rdftest/link"

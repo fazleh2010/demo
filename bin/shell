@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /home/scadmin/projects/tbx2rdf_dev
+docker run --network "infrastructure_infrastructure" -p 8003:8003 -p 8080:8080 -v /home/scadmin/projects/tbx2rdf/server/:/tmp/server/ -v /home/scadmin/projects/tbx2rdf/virtuoso_data/:/virtuoso_data/ --env-file ./environments/staging.env -it tbx2rdf_test /bin/bash
+

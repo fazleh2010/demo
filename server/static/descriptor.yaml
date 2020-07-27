@@ -1,0 +1,108 @@
+swagger: "2.0"
+info:
+  title: Term-à-LLOD
+  description: Convert tbx to rdf and expose a SPARQL endpoint.
+  version: "0.1"
+  termsOfService: https://sc.cit-ec.uni-bielefeld.de
+  contact:
+    name: Frank Grimm
+    url: http://sc.cit-ec.uni-bielefeld.de
+    email: fgrimm@techfak.uni-bielefeld.de
+  license:
+    name: MIT
+    url: https://github.com/cimiano/tbx2rdf/blob/master/LICENSE.md
+host: tbx2rdf_test:8080
+basePath: /
+schemes:
+- http
+- https
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /initialize:
+    x-swagger-router-controller: terme_a_llod
+    get:
+      description: Return the results of a terminology conversion
+      parameters:
+      - name: method
+        default: tbx2rdf
+        in: query
+        description: defines the conversion to apply to the input data
+        required: true
+        type: string
+      - name: graphname
+        default: http://tbx2rdf/data/
+        in: query
+        description: defines the RDF prefix for converted entities
+        required: true
+        type: string
+      - name: i
+        in: upload
+        description: Textual source data for the service
+        required: true
+        type: string
+      - name: upload
+        in: query
+        description: the TBX data file to convert
+        required: true
+        type: string
+        format: binary
+      - name: mappings
+        in: query
+        description: tbx2rdf mappings file, if missing a default is used
+        required: false
+        type: string
+        format: binary
+      responses:
+        '200':
+          description: Conversion result
+          schema:
+            $ref: '#/definitions/ConversionResponse'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /sparql.json:
+    x-swagger-router-controller: terme_a_llod
+    post:
+      description: performs a SPARQL query
+      parameters:
+      - name: query
+        in: query
+        description: specifies the SPARQL to query against the local triple store
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Query result
+          schema:
+            $ref: '#/definitions/QueryResponse'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+
+# complex objects have schema definitions
+definitions:
+  QueryResponse:
+    properties:
+      results:
+        type: object
+  ConversionResponse:
+    required:
+    - message
+    - rdfuri
+    properties:
+      message:
+        type: string
+      rdfuri:
+        type: string
+  ErrorResponse:
+    required:
+    - message
+    properties:
+      message:
+        type: string
+
