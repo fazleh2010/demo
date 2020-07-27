@@ -13,9 +13,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const local_sparql_endpoint = "http://localhost:8890/sparql";
-const htmlDir = "/tmp/server/uploads/browser/";
-const inputDir = "/tmp/server/uploads/browser/browser/";
-const jarDir = "/tmp/server/uploads/browser/browser/target/";
+const htmlDir = "/tmp/server/uploads/gui/";
+const inputDir = "/tmp/server/uploads/gui/browser/";
+const jarDir = "/tmp/server/uploads/gui/browser/target/";
 app.use(bodyParser.urlencoded({ extended: true }));
 
 

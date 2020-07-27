@@ -1,0 +1,3 @@
+Young,_E.C. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Young%2C+E.C.-NL
+Zonnepanelen_GD = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Zonnepanelen+GD-NL
+Yacobi,_B.G._Yacobi,_B.G. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Yacobi%2C+B.G.+Yacobi%2C+B.G.-NL

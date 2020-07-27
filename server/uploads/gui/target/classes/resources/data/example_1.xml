@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+  
+<termEntry id="IATE-84">
+    <descripGrp>
+        <descrip type="subjectField">1011</descrip>
+    </descripGrp>
+    <langSet xml:lang="en">
+        <tig>
+            <term>competence of the Member States</term>
+            <termNote type="termType">fullForm</termNote>
+            <descrip type="reliabilityCode">3</descrip>
+        </tig>
+    </langSet>
+    <langSet xml:lang="de">
+        <tig>
+            <term>Zuständigkeit der Mitgliedstaaten</term>
+            <termNote type="termType">fullForm</termNote>
+            <descrip type="reliabilityCode">3</descrip>
+        </tig>
+    </langSet>
+    <langSet xml:lang="el">
+        <tig>
+            <term>αρμοδιότητα των κρατών μελών</term>
+            <termNote type="termType">fullForm</termNote>
+            <descrip type="reliabilityCode">3</descrip>
+        </tig>
+    </langSet>
+    .............
+</termEntry>
+
+
+<termEntry id="IATE-113">
+    <descripGrp>
+        <descrip type="subjectField">1011</descrip>
+    </descripGrp>
+    <langSet xml:lang="ro">
+        <tig>
+            <term>a doua Conventie Lome</term>
+            <termNote type="termType">fullForm</termNote>
+            <descrip type="reliabilityCode">3</descrip>
+        </tig>
+    </langSet>
+</termEntry>
+
+
+<termEntry id="IATE-171">
+    <descripGrp>
+        <descrip type="subjectField">1011</descrip>
+    </descripGrp>
+    <langSet xml:lang="ro">
+        <tig>
+            <term>decădere</term>
+            <termNote type="termType">fullForm</termNote>
+            <descrip type="reliabilityCode">3</descrip>
+        </tig>
+    </langSet>
+</termEntry>
+    
+

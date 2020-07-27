@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html
+   xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name='viewport' content='width=device-width, initial-scale=1' />
+      <meta name="_csrf" content="b40c2453-5c92-4fb8-8a48-9329d11c12e3"/>
+      <meta name="_csrf_header" content="X-CSRF-TOKEN"/>
+      <!--this location is for testing in local machine-->
+     
+        <!--this location is for original for production-->
+      <link href="../static/css/interface.css" rel="stylesheet" type="text/css" />
+      <link href="../static/css/oxford.css" rel="stylesheet" type="text/css" />
+      <link href="../static/css/responsive.css" rel="stylesheet" type="text/css" />
+      
+      
+      
+      <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px Arial;  
+}
+
+/*the container must be positioned relative:*/
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+  cursor: pointer;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+      </style>
+      
+      
+   </head>
+   <body >
+      <div id="ox-header" class="">
+         <div class="responsive_row flush-below top">
+            <div class="responsive_container responsive_display_on_smartphone">
+               <div class="menu_button"></div>
+            </div>
+            <div class="nav responsive_container main_nav">
+               <ul class="menu">
+                  <li><a  href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li>
+                  <li><a  href="https://iate.europa.eu/home">IATE</a></li>
+               </ul>
+            </div>
+         </div>
+         <div class="responsive_row">
+            <div id="ad_leftslot_container" class="ad_leftslot_container responsive_entry_left">
+               <div class="ac_leftslot sticky">
+                  <div id='ad_leftslot_a' class='am-default '>
+                  </div>
+               </div>
+            </div>
+            <div class="responsive_entry_center">
+               <div class="responsive_display_on_hd" id="leaderboardHD">
+                  <div class="">
+                     <div id='ad_topslot_b' class='am-default '>
+                        <script type='text/javascript'>googletag.cmd.push(function () {
+                           googletag.display('ad_topslot_b');
+                           });
+                        </script>
+                     </div>
+                  </div>
+               </div>
+               <div id="main_column" class="responsive_row">
+                  <div class="middle_wrap wordlist-page">
+                     <div class="responsive_row">
+                        <h4>Language Selection:</h4>
+                        <div class="langauge selection box">
+                           <table style="width:60%">
+                              <tbody>
+                                 <tr>
+                                    <td><a href="browser_bg_1_1.html">Bulgarian</a></td>
+                                    <td><a href="browser_cs_1_1.html">Czech</a></td>
+                                    <td><a href="browser_da_1_1.html">Danish</a></td>
+                                    <td><a href="browser_de_1_1.html">German</a></td>
+                                    <td><a href="browser_el_1_1.html">Greek</a></td>
+                                    <td><a href="browser_en_A_B_1.html">English</a></td>
+                                    <td><a href="browser_es_1_1.html">Spanish</a></td>
+                                    <td><a href="browser_et_1_1.html">Estonian</a></td>
+                                 </tr>
+                                  <tr>
+                                    <td><a href="browser_fi_1_1.html">Finnish</a></td>
+                                    <td><a href="browser_fr_1_1.html">French</a></td>
+                                    <td><a href="browser_ga_1_1.html">Irish</a></td>
+                                    <td><a href="browser_hr_1_1.html">Croatian</a></td>
+                                    <td><a href="browser_hu_1_1.html">Hungarian</a></td>
+                                    <td><a href="browser_it_1_1.html">Italian</a></td>
+                                    <td><a href="browser_lt_1_1.html">Lithuanian</a></td>
+                                    <td><a href="browser_lv_1_1.html">Latvian</a></td>
+                                 </tr>
+                                 <tr>
+                                    <td><a href="browser_mt_1_1.html">Maltese</a></td>
+                                    <td><a href="browser_nl_1_1.html">Dutch</a></td>
+                                    <td><a href="browser_ro_1_1.html">Romanian</a></td>
+                                    <td><a href="browser_sk_1_1.html">Slovak</a></td>
+                                    <td><a href="browser_sl_1_1.html">Slovenian</a></td>
+                                    <td><a href="browser_sv_1_1.html">Swedish</a></td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        
+                         <h4>Search terms</h4>
+                        <!--Make sure the form has the autocomplete function switched off:-->
+                        <form autocomplete="off" id="form_id"> 
+                            <div class="autocomplete" style="width:300px;"> 
+                                <input id="myInput" type="text" placeholder="Search.."> 
+                            </div> 
+                            <input id="submit" type="submit"> 
+                        </form> 
+                        <script type="text/javascript" src="../files/browser/js/tbx2rdf_iate_fi.js"></script>
+                        <!--script type="text/javascript" src="js/tbx2rdf_iate_fi.js"></script-->
+                         
+        
+                        
+                       <!--div class="mainsearch">
+                           <form id="search-form" method="get" action="browser_hu_10_1.html">
+                              <div class="dictionarySelector">
+                                 <div id="select_div">
+                                    <div>English</div>
+                                 </div>
+                              </div>
+                              <div class="searchfield">
+                                 <input type="text" id="q" name="q"
+                                    class="searchfield_input"/>
+                                 <a id="keyboard_icon" class="oup_icons responsive_hide_on_smartphone responsive_hide_on_tablet"></a>
+                                 <div id="keyboard_letters"></div>
+                              </div>
+                              <div class="inputSuggestions"></div>
+                              <label id="search-btn" class="oup_icons">
+                              <input type="submit" value="" />
+                              </label>
+                           </form>
+                        </div>
+                     </div-->
+                      
+                     <div class="side-selector clear_fix">
+                        <div class="side-selector__left">
+                           <!-- the topics -->
+                           <div id="entries-selector" class="">
+                              <ul class='hide_phone'>
+                                 <li class="currentpage">
+                                 </li>
+                              </ul>
+                              <div class='wl-select hide_all display_phone'>
+                              </div>
+                           </div>
+                           <!-- entries-selector -->
+                        </div>
+                        <div class="side-selector__right">
+                           <!-- the items of the selected topic -->
+                           <div id="paging" class="wl-nav nav-top hideoverflow">
+                              <div class="outer">
+                                 <ul class="paging_links inner">
+                                    <li class="activepageUpper">
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div id="entrylist1">
+                              <ul class="result-list1 wordlist-oxford3000 list-plain">
+                              </ul>
+                           </div>
+                           <div id="paging" class="wl-nav nav-top hideoverflow">
+                              <div class="outer">
+                                 <ul class="paging_links inner_down">
+                                    <li class="activepageLower">
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="ox-footer" class="">
+      <div class="responsive_row flush-below top">
+         <div class="responsive_container responsive_display_on_smartphone">
+            <div class="menu_button"></div>
+         </div>
+         <div class="nav responsive_container main_nav">
+            <ul class="menu">
+               <li><a  href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li>
+               <li><a  href="https://iate.europa.eu/home">IATE</a></li>
+            </ul>
+         </div>
+      </div>
+   </body>
+</html>
