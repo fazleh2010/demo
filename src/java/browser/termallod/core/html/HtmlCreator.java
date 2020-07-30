@@ -47,7 +47,6 @@ public class HtmlCreator {
         for (String langCode : languages) {
             RetrieveAlphabetInfo retrieveAlphabetInfo = new RetrieveAlphabetInfo(INPUT_PATH, langCode);
             langSortedTerms.put(langCode, retrieveAlphabetInfo);
-             break;
         }
 
         createHtmlForEachLanguage(langSortedTerms,categoryName);
@@ -93,7 +92,7 @@ public class HtmlCreator {
             String htmlFileName = outputFileName.getName();
             Document listOfTermHtmlPage = htmlPage.createAllElements(templateHtml,terms, pageContentGenerator, htmlFileName, currentPageNumber);
             htmlReaderWriter.writeHtml(listOfTermHtmlPage, outputFileName);
-            //System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+htmlFileName);
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+listOfTermHtmlPage.body().toString());
             //page indexes..number of pages of same alphabet..
             break;
         }

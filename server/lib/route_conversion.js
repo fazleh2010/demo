@@ -32,7 +32,7 @@ module.exports = exports = function(app) {
         const cmdExec = "java";
         // const cmdArgs = ["-Xms512M", "-Xmx90G", "-jar", "/tmp/target/tbx2rdf-0.1.jar", curFilepath, "--lenient=true", "--output=" + conversionTarget];
         //const cmdArgs = ["-Xms512M", "-Xmx20G", "-jar", "/tmp/target/tbx2rdf-0.3.jar", curFilepath, "--lenient=true", "--big=true", "--output=" + conversionTarget];
-        const cmdArgs = ["-Xms512M", "-Xmx20G", "-jar", "/tmp/target/tbx2rdf-0.3.jar", curFilepath, "--lenient=true", "--big=false", "--output=" + conversionTarget];
+        const cmdArgs = ["-Xms512M", "-Xmx20G", "-jar", "/tmp/target/tbx2rdf-0.4.jar","conversion" ,curFilepath, "--lenient=true", "--big=false", "--output=" + conversionTarget];
         if ('datanamespace' in data && data['datanamespace']) {
             cmdArgs.push("--datanamespace=" + data['datanamespace']);
         }

@@ -1,5 +1,6 @@
 package tbx2rdf;
 
+import browser.termallod.app.HtmlMain;
 import tbx2rdf.types.TBX_Terminology;
 import com.hp.hpl.jena.rdf.model.Model;
 import java.io.BufferedReader;
@@ -8,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.xml.parsers.ParserConfigurationException;
@@ -89,7 +91,24 @@ public class Main {
             System.err.println("If no MAPPING_FILE is provided, then mappings.default will be used.");
             return false;
         }
-        input_file = args[0];                                           //First argument, input file
+        
+        String type = args[0];                                           
+        if(type.contains("html")){
+            HtmlMain HtmlMain=new HtmlMain();
+            try {
+                return HtmlMain.html(args);
+            } catch (Exception ex) {
+                java.util.logging.Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
+            }
+        }
+        
+        
+        //First argument, input file
+
+        
+        input_file = args[1];   
+        System.out.println("!!!!!!!!!!!!!!!!!!!conversion!!!!!!!!!!!!!!!!!!!!!!!");//First argument, input file
         File file = new File(input_file);
         if (!file.exists())
         {
@@ -102,7 +121,7 @@ public class Main {
             output_file += ".rdf";
         }
         String arg, key, value;
-        for (int i = 1; i < args.length; i++) {
+        for (int i = 2; i < args.length; i++) {
             arg = args[i];
             Pattern p = Pattern.compile("^--(output|mappings|datanamespace|big|lenient)=(.*?)$");
             Matcher matcher;

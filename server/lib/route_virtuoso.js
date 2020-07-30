@@ -13,12 +13,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const local_sparql_endpoint = "http://localhost:8890/sparql";
-const htmlDir = "/tmp/server/uploads/gui/";
-const templateDir = "/tmp/server/uploads/gui/template/";
-const inputDir = "/tmp/server/uploads/gui/browser/";
-const jarDir = "/tmp/server/uploads/gui/browser/target/";
-const listOfTerms="listOfTerms";
-const termDetail="termDetail";
+const htmlDir = "/tmp/server/uploads/browser/";
+const templateDir = "/tmp/server/static/";
+const inputDir = "/tmp/";
+const listOfTerms="ListOfTerms";
+const termDetail="TermPage";
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -60,7 +59,7 @@ app.get("/termDetail", async (req, res, next) => {
 var page=req.query.page;
 console.log(req.query.page);
 const cmdExec = "java";
-const cmdArgs = ["-Xms512M", "-Xmx20G", "-jar",jarDir+ "tbx2rdf-0.3.6.jar", local_sparql_endpoint, htmlDir,termlistResult,inputDir,termDetail];
+const cmdArgs = ["-Xms512M", "-Xmx20G", "-jar", "/tmp/target/tbx2rdf-0.3.jar", local_sparql_endpoint, htmlDir,termlistResult,inputDir,termDetail];
 const execOptions = {cwd: "/tmp"}; //, stdout: process.stderr, stderr: process.stderr};
 
         try {
@@ -102,23 +101,22 @@ const termlistResult = termlist(sparql_utils.sparql_result(await sparql_utils.pe
 //console.log(termlistResult);
 
 const cmdExec = "java";
-const cmdArgs = ["-Xms512M", "-Xmx20G", "-jar",jarDir+ "tbx2rdf-0.3.6.jar", local_sparql_endpoint, htmlDir,termlistResult,inputDir,listOfTerms];
+const cmdArgs = ["-Xms512M", "-Xmx20G", "-jar","/tmp/target/tbx2rdf-0.4.jar","html" ,local_sparql_endpoint, htmlDir,termlistResult,inputDir,listOfTerms,templateDir];
 const execOptions = {cwd: "/tmp"}; //, stdout: process.stderr, stderr: process.stderr};
 
         try {
             result = await streamExec("tbx2rdf", cmdExec, cmdArgs, execOptions);
             console.log("result:",result);
+		console.log("template:",htmlDir+"template/");
 	      if (result.code != 0) {
-	         console.log("!!!!!!!!!!!!!!!!!:");
 		 res.sendFile(templateDir+'ListOfTermsHome.html');
                  throw Error("exit code != 0");
 		      return;
                    }
 		else
-			{
-
-			  res.sendFile(htmlDir+'browser_en_A_B_1.html');
-			 }	
+		   {
+	            res.sendFile(htmlDir+'browser_en_A_B_1.html');
+		   }	
 
             if (result.stdcache.stdout) { data.stdout = result.stdcache.stdout; }
             if (result.stdcache.stderr) { data.stderr = result.stdcache.stderr; }

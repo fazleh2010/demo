@@ -1,6 +1,0 @@
-Johansson,_T.B. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Johansson%2C+T.B.-NL
-InterConnect = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/InterConnect-NL
-JVC_JVC = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/JVC+JVC-NL
-IATE = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/IATE-NL
-John,_V. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/John%2C+V.-NL
-Johnson,_G. = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Johnson%2C+G.-NL
