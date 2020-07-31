@@ -82,9 +82,9 @@ public final class HtmlTermDetail {
         String posTr = "", numberTr = "", genderTr = "", definitionTr = "", hypernymTr = "", hyponymTr = "", variantTr = "", synonymTr = "", writtenFormTr = "",termUrlTr="";
 
         String langValueStr = languageMapper.get(this.termDetail.getLanguage());
-        //languageTr = getTr(getProperty("Language"), getValueNew(langValueStr));
-        //writtenFormTr = getTr(getProperty("written form:"), getValueNew(term));
-        //termUrlTr=getTr(getProperty("Url:"), getValueNew(url));
+        languageTr = getTr(getProperty("Language"), getValueNew(langValueStr));
+        writtenFormTr = getTr(getProperty("written form:"), getValueNew(term));
+        termUrlTr=getTr(getProperty("Url:"), getValueNew(url));
         
         if (this.termDetail.getReliabilityCode() != null) {
             reliabilityCodeTr = getTr(getProperty("Reliability Code:"), getValueNew(this.termDetail.getReliabilityCode()));

@@ -8,14 +8,9 @@ package browser.termallod.core.html;
 import browser.termallod.process.RetrieveAlphabetInfo;
 import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.PageContentGenerator;
-import browser.termallod.core.html.HtmlReaderWriter;
-import browser.termallod.core.html.HtmlParameter;
-import browser.termallod.core.termbase.TermLinker;
-import browser.termallod.utils.FileRelatedUtils;
 import browser.termallod.utils.Partition;
 import browser.termallod.core.termbase.TermDetail;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeMap;
@@ -57,7 +52,6 @@ public class HtmlCreator {
             HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
             Document templateHtml = htmlReaderWriter.getInputDocument();
             HtmlTermDetail htmlTermDetail = new HtmlTermDetail(termDetail,templateHtml);
-            //File outputFileName = new File(OUTPUT_PATH + termDetail.getTermUrl()+".html");
             File outputFileName = new File(OUTPUT_PATH + categoryName+".html");
             Document termPage = htmlTermDetail.getOutputHtml();
             htmlReaderWriter.writeHtml(termPage, outputFileName);
@@ -92,23 +86,11 @@ public class HtmlCreator {
             String htmlFileName = outputFileName.getName();
             Document listOfTermHtmlPage = htmlPage.createAllElements(templateHtml,terms, pageContentGenerator, htmlFileName, currentPageNumber);
             htmlReaderWriter.writeHtml(listOfTermHtmlPage, outputFileName);
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+listOfTermHtmlPage.body().toString());
             //page indexes..number of pages of same alphabet..
             break;
         }
 
     }
-
-    /*private List<TermDetailNew> getTermDetails(String category, String language, List<String> terms) {
-        List<TermDetailNew> termDetails = new ArrayList<TermDetailNew>();
-        String browserName = FileRelatedUtils.getBrowser(category);
-        for (String term : terms) {
-            System.out.println(term);
-            TermDetailNew termDetail = new TermDetailNew(browserName, language, term);
-            termDetails.add(termDetail);
-        }
-        return termDetails;
-    }*/
 
     private File getTemplate(String categoryName,String extension) throws Exception {
         return new File(TEMPLATE_LOCATION + categoryName + extension);

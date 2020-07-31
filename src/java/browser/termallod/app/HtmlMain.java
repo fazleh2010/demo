@@ -92,7 +92,7 @@ public class HtmlMain implements SparqlEndpoint {
             System.out.println("htmltype: " + htmltype);
         } else {
             htmltype = "TermPage";
-            htmltype = "ListOfTerms";
+            //htmltype = "ListOfTerms";
         }
         if (args.length > 6) {
             TEMPLATE_PATH = args[6];
@@ -123,8 +123,19 @@ public class HtmlMain implements SparqlEndpoint {
 
         if (htmltype.contains("ListOfTerms")) {
             htmlCreator.createListOfTermHtmlPage(INPUT_PATH, alphabetFiles.getLangTerms().keySet(), htmltype);
-
         }
+        else if (htmltype.contains("TermPage")) {
+            System.out.println("Term page.....");
+            Map<String, String> termLinks = new HashMap<String, String>();
+            termLinks.put("atc", "link1");
+            termLinks.put("disease", "link2");
+            TermDetail termDetail = new TermDetail("term_term_term = http:// = en", termLinks);
+            htmlCreator.createHtmlTermPage(termDetail, htmltype);
+        }
+
+        
+       
+        
 
         /*else if(htmltype.contains("TermPage"))
             htmlCreator.createHtmlTermPage(termDetail,htmltype);*/

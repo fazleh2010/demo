@@ -9,7 +9,6 @@
 1216 = Criminal law
 1221 = Justice
 1226 = Organisation of the legal system
-1231 = International law
 1236 = Rights and freedoms
 16 = ECONOMICS
 1606 = Economics policy
@@ -59,7 +58,6 @@
 3611 = Humanities
 40 = POLITICS
 4006 = Political  Parties
-4011 = Business Classification
 4026 = Electoral procedure and voting
 4031 = Parliament
 44 = EMPLOYMENT AND WORKING CONDITIONS

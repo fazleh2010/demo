@@ -55,35 +55,31 @@ res.sendFile(htmlDir+page);
 
 });
 
-app.get("/termDetail", async (req, res, next) => {
+app.get("/termPage", async (req, res, next) => {
 var page=req.query.page;
-console.log(req.query.page);
+console.log("termpage"+req.query.page);
+const termlistResult ="";
 const cmdExec = "java";
-const cmdArgs = ["-Xms512M", "-Xmx20G", "-jar", "/tmp/target/tbx2rdf-0.3.jar", local_sparql_endpoint, htmlDir,termlistResult,inputDir,termDetail];
+const cmdArgs = ["-Xms512M", "-Xmx20G", "-jar","/tmp/target/tbx2rdf-0.4.jar","html" ,local_sparql_endpoint, htmlDir,termlistResult,inputDir,termDetail,templateDir];
 const execOptions = {cwd: "/tmp"}; //, stdout: process.stderr, stderr: process.stderr};
-
         try {
             result = await streamExec("tbx2rdf", cmdExec, cmdArgs, execOptions);
-            console.log("result:",result);
               if (result.code != 0) {
-                 console.log("!!!!!!!!!!!!!!!!!:");
-                 res.sendFile(templateDir+'ListOfTermsHome.html');
+                 res.sendFile(templateDir+TermPage+'.html');
                  throw Error("exit code != 0");
                       return;
                    }
                 else
-                        {
-
-                          res.sendFile(htmlDir+termDetail+listOfTerms+'.html');
-                         }
-
+                   {
+                   res.sendFile(htmlDir+termDetail+'.html');
+                   }
             if (result.stdcache.stdout) { data.stdout = result.stdcache.stdout; }
             if (result.stdcache.stderr) { data.stderr = result.stdcache.stderr; }
             } catch (errconv) {
              console.log("java -jar does not work!!"+errconv);
+             res.sendFile(templateDir+TermPage+'.html');
             return;
             }
-
 
 });
 
@@ -92,14 +88,7 @@ const execOptions = {cwd: "/tmp"}; //, stdout: process.stderr, stderr: process.s
 app.get("/describe", async (req, res, next) => {
 
 var result = null;
-//const htmlDir = "/tmp/server/uploads/browser/";
-//const inputDir = "/tmp/server/uploads/browser/browser/";
-//const jarDir = "/tmp/server/uploads/browser/browser/target/";
-termDetail
-//termporay coce for recent demo
 const termlistResult = termlist(sparql_utils.sparql_result(await sparql_utils.performSPARQL(term_query)));
-//console.log(termlistResult);
-
 const cmdExec = "java";
 const cmdArgs = ["-Xms512M", "-Xmx20G", "-jar","/tmp/target/tbx2rdf-0.4.jar","html" ,local_sparql_endpoint, htmlDir,termlistResult,inputDir,listOfTerms,templateDir];
 const execOptions = {cwd: "/tmp"}; //, stdout: process.stderr, stderr: process.stderr};
