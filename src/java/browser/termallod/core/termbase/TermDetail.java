@@ -5,6 +5,7 @@
  */
 package browser.termallod.core.termbase;
 
+import browser.termallod.app.JsonParser;
 import browser.termallod.utils.StringMatcherUtil2;
 import java.util.HashMap;
 import java.util.Map;
@@ -47,6 +48,14 @@ public class TermDetail {
             this.setTermAndLanguage(object);
         }
     }
+    
+    public TermDetail(JsonParser jsonParser) {
+            this.termUrl = jsonParser.getUrl();
+            this.termDecrpt = jsonParser.getTerm().trim();
+            this.termOrg =StringMatcherUtil2.encripted(this.termDecrpt).trim();
+            this.language = this.setLanguage(this.termUrl);
+    }
+
 
     public TermDetail() {
 
@@ -185,12 +194,13 @@ public class TermDetail {
     }
 
     private String makeTermUrl(String subject) {
+        System.out.println(subject);
         boolean isSubjectFound = subject.toString().indexOf(HASH_SYMBOLE) != -1 ? true : false;
         if (isSubjectFound) {
             String[] info = subject.toString().split(HASH_SYMBOLE);
             return info[0];
         }
-        return null;
+        return subject;
     }
 
     private void setTermAndLanguage(String object) {
@@ -220,6 +230,13 @@ public class TermDetail {
 
     public Map<String, String> getTermLinks() {
         return termLinks;
+    }
+
+    public void setTerm(String textContent) {
+    }
+
+    public void setUrl(String textContent) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

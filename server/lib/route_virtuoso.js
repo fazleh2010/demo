@@ -5,6 +5,9 @@ const streamExec    = require("./streamexec");
 const server_utils  = require("./server_utils");
 const sparql_utils  = require("./sparql_utils");
 const route_linking = require("./route_linking");
+const route_termbrowser = require("./route_termbrowser");
+
+
 const fs = require("fs");
 const fsp = require("fs").promises;
 const multer  = require('multer')
@@ -55,12 +58,32 @@ res.sendFile(htmlDir+page);
 
 });
 
+
+
+
+
 app.get("/termPage", async (req, res, next) => {
-var page=req.query.page;
-console.log("termpage"+req.query.page);
+     var page=req.query.page;
+     console.log("termpage"+req.query.page);
+     var url=req.query.page;
+     var termString="hole";
+     var en="en";
+     
+     console.log("url"+url);
+
+     var obj = { term:termString, iri:url, lang:en};
+     var myJSON = JSON.stringify(obj);
+	
+//var myJSON={"iri":"http://tbx2rdf.lider-project.eu/data/YourNameSpace/hole-EN","lang":"en"};
+//var obj = { term:"hole", iri:"http://tbx2rdf.lider-project.eu/data/YourNameSpace/hole-EN",lang:"en"};
+//var myJSON = JSON.stringify(obj);
+
+console.log("url"+url);
+console.log("myJSON:"+myJSON);  
+
 const termlistResult ="";
 const cmdExec = "java";
-const cmdArgs = ["-Xms512M", "-Xmx20G", "-jar","/tmp/target/tbx2rdf-0.4.jar","html" ,local_sparql_endpoint, htmlDir,termlistResult,inputDir,termDetail,templateDir];
+const cmdArgs = ["-Xms512M", "-Xmx20G", "-jar","/tmp/target/tbx2rdf-0.4.jar","html" ,local_sparql_endpoint, htmlDir,termlistResult,inputDir,termDetail,templateDir,myJSON];
 const execOptions = {cwd: "/tmp"}; //, stdout: process.stderr, stderr: process.stderr};
         try {
             result = await streamExec("tbx2rdf", cmdExec, cmdArgs, execOptions);
@@ -81,6 +104,40 @@ const execOptions = {cwd: "/tmp"}; //, stdout: process.stderr, stderr: process.s
             return;
             }
 
+
+
+/*const term_details_sparql=`PREFIX ontolex: <http://www.w3.org/ns/lemon/ontolex#>
+PREFIX rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+PREFIX cc:    <http://creativecommons.org/ns#> 
+PREFIX void:  <http://rdfs.org/ns/void#> 
+PREFIX skos:  <http://www.w3.org/2004/02/skos/core#> 
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX tbx:   <http://tbx2rdf.lider-project.eu/tbx#> 
+PREFIX decomp: <http://www.w3.org/ns/lemon/decomp#> 
+PREFIX dct:   <http://purl.org/dc/terms/> 
+PREFIX rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX ontolex: <http://www.w3.org/ns/lemon/ontolex#> 
+PREFIX ldr:   <http://purl.oclc.org/NET/ldr/ns#> 
+PREFIX odrl:  <http://www.w3.org/ns/odrl/2/> 
+PREFIX dcat:  <http://www.w3.org/ns/dcat#> 
+PREFIX prov:  <http://www.w3.org/ns/prov#> 
+
+SELECT ?entity ?rep ?lang from <http://tbx2rdf.lider-project.eu/> WHERE { 
+?entity ontolex:canonicalForm ?canform .
+?canform ontolex:writtenRep ?rep .
+?lang rdf:type ontolex:Lexicon .
+?lang ontolex:entry ?entity .
+FILTER regex(str(?rep), "hole") .
+} LIMIT 100`;
+
+
+    const lookup_result = {};
+    const term_details = await sparql_utils.performSPARQL(term_details_sparql);
+    lookup_result.term_details = sparql_utils.sparql_result(term_details);
+    console.log("termpage:"+term_details);
+    console.log("termpage:"+lookup_result.term_details);
+*/
 });
 
 
@@ -156,6 +213,24 @@ function normalize_for_linking(term) {
     return term.toLowerCase().replace(/[\W]/gi, ' ').replace(/\s+/g,' ')
 }
 
+async function countLanguageTerms() {
+    const languageCounts = {};
+    const langSparqlQuery="SELECT DISTINCT ?language, COUNT(?entry) AS ?entrycount WHERE { ?language rdf:type ontolex:Lexicon .  ?language ontolex:entry ?entry }";
+    const tmp = sparql_utils.sparql_result(await sparql_utils.performSPARQL(langSparqlQuery));
+
+    for (let i = 0; i < tmp.length; i++) {
+        const row = tmp[i];
+        let lang = row.language.value.toLowerCase();
+        if (lang.indexOf("/") > -1) {
+            lang = lang.split("/");
+            lang = lang[lang.length -1];
+        }
+        languageCounts[lang] = parseInt(row.entrycount.value);
+    }
+
+
+    return languageCounts;
+}
 
 
 

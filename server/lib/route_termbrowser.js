@@ -102,6 +102,10 @@ async function lookupTerm(obj) {
         obj.iri = obj.iri.replace(/ /g, '+');
     }
 
+console.log("obj:"+obj);
+
+console.log("obj.iri:"+obj.iri);  
+
     const lookup_result = {};
     const term_details_sparql=`PREFIX cc:    <http://creativecommons.org/ns#> 
 PREFIX void:  <http://rdfs.org/ns/void#> 
@@ -153,6 +157,10 @@ SELECT * from <http://tbx2rdf.lider-project.eu/> WHERE {
 
     lookup_result.linked_terms = sparql_utils.sparql_result(await sparql_utils.performSPARQL(linked_terms_sparql));
 
+    console.log("lookup_result.term_details:"+lookup_result.term_details);
+    console.log("lookup_result.linked_terms:"+lookup_result.linked_terms);
+
+
     return lookup_result;
 }
 
@@ -167,7 +175,8 @@ app.get("/terms", async (req, res, next) => {
     }
 
     if (req.query.lookup) {
-        resultobj.lookup = await lookupTerm(req.query.lookup);
+         console.log("result:"+req.query.lookup);  
+	 resultobj.lookup = await lookupTerm(req.query.lookup);
         //console.log("resultobj.lookup:",resultobj.lookup);
 
     }

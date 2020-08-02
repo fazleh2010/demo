@@ -29,6 +29,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.w3c.dom.NamedNodeMap;
 
 /**
  *
@@ -38,21 +39,25 @@ import java.util.logging.Logger;
  */
 public class CurlSparqlQuery {
 
-    private Termbase termbase = null;
-
-    public CurlSparqlQuery(String endpoint, String query, String termBaseName) throws Exception {
-        String resultSparql = executeSparqlQuery(endpoint, query);
-        this.termbase = new Termbase(termBaseName, parseResult(resultSparql));
+    public CurlSparqlQuery() {
     }
 
-    public CurlSparqlQuery(String endpoint, String query) throws Exception {
+    public Termbase findListOfTerms(String endpoint, String query, String termBaseName) throws Exception {
         String resultSparql = executeSparqlQuery(endpoint, query);
-        //System.out.println(resultSparql);
+        Termbase termbase = new Termbase(termBaseName, parseResult(resultSparql));
+        return termbase;
     }
 
-    private String executeSparqlQuery(String endpoint, String query)   {
-        String result = null,resultUnicode=null, command =null;
-        Process process=null;
+    public TermDetail findTermDetail(String endpoint, String query) throws Exception {
+        String resultSparql = executeSparqlQuery(endpoint, query);
+        System.out.println("results:"+resultSparql);
+        TermDetail termDetail = this.parseResultsforTermDetail(resultSparql);
+        return termDetail;
+    }
+
+    private String executeSparqlQuery(String endpoint, String query) {
+        String result = null, resultUnicode = null, command = null;
+        Process process = null;
         try {
             resultUnicode = FileUrlUtils.stringToUrlUnicode(query);
             command = "curl " + endpoint + "?query=" + resultUnicode;
@@ -60,21 +65,20 @@ public class CurlSparqlQuery {
             //System.out.print(command);
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(CurlSparqlQuery.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("error in unicode in sparql query!"+ex.getMessage());
+            System.out.println("error in unicode in sparql query!" + ex.getMessage());
             ex.printStackTrace();
         } catch (IOException ex) {
             Logger.getLogger(CurlSparqlQuery.class.getName()).log(Level.SEVERE, null, ex);
-             System.out.println("error in sending sparql query!"+ex.getMessage());
-             ex.printStackTrace();
+            System.out.println("error in sending sparql query!" + ex.getMessage());
+            ex.printStackTrace();
         }
-       
+
         /*try {
             process = Runtime.getRuntime().exec(command);
         } catch (IOException ex) {
-            Logger.getLogger(CurlSparqlQuery.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(findListOfTerms.class.getName()).log(Level.SEVERE, null, ex);
              System.out.println("error in sending sparql query!"+ex.getMessage());
         }*/
-        
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             StringBuilder builder = new StringBuilder();
@@ -90,7 +94,7 @@ public class CurlSparqlQuery {
 
         } catch (IOException ex) {
             Logger.getLogger(CurlSparqlQuery.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("error in reading sparql query!"+ex.getMessage());
+            System.out.println("error in reading sparql query!" + ex.getMessage());
             ex.printStackTrace();
         }
         return result;
@@ -99,26 +103,26 @@ public class CurlSparqlQuery {
     public Map<String, TermDetail> parseResult(String xmlStr) {
         Document doc = convertStringToXMLDocument(xmlStr);
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder=null;
-        Map<String, TermDetail> terms=new HashMap<String, TermDetail>();
+        DocumentBuilder builder = null;
+        Map<String, TermDetail> terms = new HashMap<String, TermDetail>();
         try {
             builder = factory.newDocumentBuilder();
-            terms=this.parseResult(builder, xmlStr);
+            terms = this.parseResult(builder, xmlStr);
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(CurlSparqlQuery.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("error in parsing sparql in XML!"+ex.getMessage());
+            System.out.println("error in parsing sparql in XML!" + ex.getMessage());
             ex.printStackTrace();
         } catch (IOException ex) {
             Logger.getLogger(CurlSparqlQuery.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("error in parsing sparql in XML!"+ex.getMessage());
+            System.out.println("error in parsing sparql in XML!" + ex.getMessage());
             ex.printStackTrace();
         } catch (DOMException ex) {
             Logger.getLogger(CurlSparqlQuery.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("error in parsing sparql in XML!"+ex.getMessage());
+            System.out.println("error in parsing sparql in XML!" + ex.getMessage());
             ex.printStackTrace();
         } catch (Exception ex) {
             Logger.getLogger(CurlSparqlQuery.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("error in parsing sparql in XML!"+ex.getMessage());
+            System.out.println("error in parsing sparql in XML!" + ex.getMessage());
             ex.printStackTrace();
         }
         return terms;
@@ -143,7 +147,6 @@ public class CurlSparqlQuery {
                 xmlStr)));
         NodeList results = document.getElementsByTagName("results");
 
-       
         for (int i = 0; i < results.getLength(); i++) {
             NodeList childList = results.item(i).getChildNodes();
 
@@ -173,8 +176,48 @@ public class CurlSparqlQuery {
         return allkeysValues;
     }
 
-    public Termbase getTermbase() {
-        return termbase;
+    private TermDetail parseResultsforTermDetail(String xmlStr) {
+        Document doc = convertStringToXMLDocument(xmlStr);
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = null;
+        try {
+            builder = factory.newDocumentBuilder();
+            Document document = builder.parse(new InputSource(new StringReader(xmlStr)));
+            NodeList results = document.getElementsByTagName("results");
+
+            for (int i = 0; i < results.getLength(); i++) {
+                NodeList childList = results.item(i).getChildNodes();
+                for (int j = 0; j < childList.getLength(); j++) {
+                    Node childNode = childList.item(j);
+                    if ("result".equals(childNode.getNodeName())) {
+                        String string = childNode.getTextContent().trim();
+                        return this.parseResultForTermDetail(string);
+                    }
+
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(CurlSparqlQuery.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("error in parsing sparql in XML!" + ex.getMessage());
+            ex.printStackTrace();
+        }
+        return new TermDetail();
+    }
+
+    private TermDetail parseResultForTermDetail(String string) {
+        String[] infos = string.split("\n");
+        List<String> wordList = Arrays.asList(infos);
+        Integer index = 0, termIndex = 1, urlIndex = 2;
+        String term = null, url = null;
+        for (String textContent : wordList) {
+            if (index == termIndex) {
+                term = textContent.trim();
+            } else if (index == urlIndex) {
+                url = textContent.trim();
+            }
+            index++;
+        }
+        return new TermDetail(url, null, term, true);
     }
 
 }
