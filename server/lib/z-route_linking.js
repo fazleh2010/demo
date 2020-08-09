@@ -174,11 +174,11 @@ async function dolinking(req, res, next) {
         } else {
               
 		let local_languages = sparql_utils.sparql_result(await sparql_utils.performSPARQL("SELECT ?language, COUNT(?entry) AS ?entrycount WHERE { ?language rdf:type ontolex:Lexicon .  ?language ontolex:entry ?entry } GROUP BY ?language"));
-               console.log("local_languages!!!!!!:",local_languages);
+             //console.log("local_languages:",local_languages);
 
 		let remote_languages = sparql_utils.sparql_result(await sparql_utils.performSPARQL("SELECT ?language, COUNT(?entry) AS ?entrycount WHERE { ?language rdf:type ontolex:Lexicon .  ?language ontolex:entry ?entry } GROUP BY ?language", remote_sparql_endpoint));
 
-	       //console.log("remote_languages!!!!!!:",remote_languages);
+		//console.log("remote_languages:",remote_languages);
             linking_results.languages = {
                 "local": local_languages,
                 "remote": remote_languages
@@ -211,10 +211,7 @@ SELECT ?entity ?rep ?lang from <http://tbx2rdf.lider-project.eu/> WHERE {
     ?lang ontolex:entry ?entity .
 }`;
 
-            var localLangJson = JSON.stringify(local_languages);
-            console.log("remote_languages!!!!!!:",localLangJson);
 
-            
             const local_terms = termlist(sparql_utils.sparql_result(await sparql_utils.performSPARQL(term_query)));
             const remote_terms = termlist(sparql_utils.sparql_result(await sparql_utils.performSPARQL(term_query,remote_sparql_endpoint)));
 
@@ -236,34 +233,7 @@ SELECT ?entity ?rep ?lang from <http://tbx2rdf.lider-project.eu/> WHERE {
 
 
             res.redirect("/status.json");
-            //await perform_matching(local_terms, remote_terms);
-
-const cmdExec = "java";
-const cmdArgs = ["-Xms512M", "-Xmx20G", "-jar","/tmp/target/tbx2rdf-0.4.jar","link" ,inputDir,localLangJson,remote_sparql_endpoint];
-const execOptions = {cwd: "/tmp"}; //, stdout: process.stderr, stderr: process.stderr};
-
-        try {
-            result = await streamExec("tbx2rdf", cmdExec, cmdArgs, execOptions);
-            console.log("result:",result);
-              if (result.code != 0) {
-                 throw Error("exit code != 0");
-                      return;
-                   }
-                else
-                   {
-                    console.log("linking works fine:",result);
-                   }
-
-            if (result.stdcache.stdout) { data.stdout = result.stdcache.stdout; }
-            if (result.stdcache.stderr) { data.stderr = result.stdcache.stderr; }
-            } catch (errconv) {
-             console.log("java -jar does not work!!"+errconv);
-            
-            }
-
-
-
-
+            await perform_matching(local_terms, remote_terms);
 
             mstatus.update("linking", {
                 "status": "complete"

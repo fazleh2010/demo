@@ -5,7 +5,7 @@
  */
 package browser.termallod.core.termbase;
 
-import browser.termallod.app.JsonParser;
+import browser.termallod.utils.JsonParser;
 import browser.termallod.utils.StringMatcherUtil2;
 import java.util.HashMap;
 import java.util.Map;

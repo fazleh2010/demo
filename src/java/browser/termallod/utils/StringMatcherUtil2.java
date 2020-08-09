@@ -51,6 +51,8 @@ public class StringMatcherUtil2 {
     public static String getLanguage(String subject) {
         String language = null;
         int index = subject.lastIndexOf('/');
+        if(index<1)
+            return null;
         String lastString = subject.substring(index + 1);
 
         boolean isSubjectFound = lastString.indexOf("-") != -1 ? true : false;
@@ -58,7 +60,12 @@ public class StringMatcherUtil2 {
             String[] info = lastString.split("-");
             language = info[info.length - 1].toLowerCase();
         }
-        return language;
+        else if(lastString.indexOf("#") != -1)
+            return null;
+        else
+           language = lastString;
+            
+        return language.toLowerCase();
     }
 
 }

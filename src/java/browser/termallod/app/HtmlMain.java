@@ -8,6 +8,7 @@ package browser.termallod.app;
 import browser.termallod.process.CreateAlphabetFiles;
 import browser.termallod.core.html.HtmlCreator;
 import browser.termallod.api.LanguageManager;
+import browser.termallod.process.Matching;
 import browser.termallod.constants.Parameter;
 import browser.termallod.utils.FileRelatedUtils;
 import browser.termallod.core.sparql.CurlSparqlQuery;
@@ -15,12 +16,7 @@ import browser.termallod.constants.SparqlEndpoint;
 import browser.termallod.constants.SparqlQuery;
 import browser.termallod.core.termbase.TermDetail;
 import browser.termallod.core.termbase.Termbase;
-import browser.termallod.process.RetrieveAlphabetInfo;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
@@ -48,7 +44,12 @@ public class HtmlMain implements SparqlEndpoint {
         //String myTermTableName = "myTerminology";
         /*String myTermSparqlEndpoint = null, list = null;
         String htmltype = null,url=null,term=null;*/
-        Parameter parameter = new Parameter(args,"TermPage");
+        /*
+         private static String ListOfTerms = "ListOfTerms";
+         private static String TermPage = "TermPage";
+         private static String matchTerms = "matchTerms";
+        */
+        Parameter parameter = new Parameter(args,"matchTerms");
         String myTermSparqlEndpoint = parameter.getMyTermSparqlEndpoint();
 
         //use it when internal  test
@@ -124,9 +125,10 @@ public class HtmlMain implements SparqlEndpoint {
             FileRelatedUtils.writeFile(alphabetFiles.getLangTerms(), parameter.getINPUT_PATH());
             System.out.println("creating html");
 
-            htmlCreator.createListOfTermHtmlPage(parameter.getINPUT_PATH(), alphabetFiles.getLangTerms().keySet(), parameter.getHtmltype());
+            htmlCreator.createListOfTermHtmlPage(parameter.getINPUT_PATH(), alphabetFiles.getLangTerms().keySet(), parameter.getHtmltype(),true);
         } else if (parameter.getHtmltype().contains(TermPage)) {
             System.out.println("create Html pages!!!!!!!!!11" );
+            
             //String url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/hole-EN";
             //String term="hole";
             String sparql = SparqlQuery.getTermDetailSpqlByTerm(parameter.getTermDetail());
@@ -136,7 +138,12 @@ public class HtmlMain implements SparqlEndpoint {
         }
         else if (parameter.getHtmltype().contains(parameter.getMatchTerms())) {
             System.out.println(parameter.getMatchTerms());
-            Set<String> languages=new HashSet<String>();
+            String jsonLangStr = "[{\"language\":{\"type\":\"uri\",\"value\":\"http://tbx2rdf.lider-project.eu/data/YourNameSpace/NL\"},\"entrycount\":{\"type\":\"typed-literal\",\"datatype\":\"http://www.w3.org/2001/XMLSchema#integer\",\"value\":\"186\"}},{\"language\":{\"type\":\"uri\",\"value\":\"http://tbx2rdf.lider-project.eu/data/YourNameSpace/EN\"},\"entrycount\":{\"type\":\"typed-literal\",\"datatype\":\"http://www.w3.org/2001/XMLSchema#integer\",\"value\":\"19\"}}]";
+            Matching mattchTerminologies=new Matching(parameter.getINPUT_PATH(), parameter.getOtherTermSparqlEndpoint(), jsonLangStr,parameter.getOtherTermTableName());
+             mattchTerminologies.toString();
+             System.out.println(mattchTerminologies);
+            
+            /*Set<String> languages=new HashSet<String>();
             languages.add("en");
             languages.add("nl");
             TreeMap<String, TreeMap<String, List<String>>> langSortedTerms = new TreeMap<String, TreeMap<String, List<String>>>();
@@ -144,21 +151,21 @@ public class HtmlMain implements SparqlEndpoint {
                 RetrieveAlphabetInfo retrieveAlphabetInfo = new RetrieveAlphabetInfo(parameter.getINPUT_PATH(), langCode);
                 langSortedTerms.put(langCode,  retrieveAlphabetInfo.getLangSortedTerms());
             }
-            /*for(String langCode:langSortedTerms.keySet()){
+            for(String langCode:langSortedTerms.keySet()){
                 TreeMap<String, List<String>> pairTerms=langSortedTerms.get(langCode);
                 for(String pair:pairTerms.keySet()){
                     List<String> terms=pairTerms.get(pair);
                     System.out.println(pair);
                      System.out.println(terms);
                 }
-            }*/
+            }
               //Link terminology
             System.out.println("Adding my other terminology!!" + parameter.getOtherTermTableName());
             Termbase otherTerminology = curlSparqlQuery.findListOfTerms(parameter.getOtherTermSparqlEndpoint(), query_writtenRep,  parameter.getOtherTermTableName());
             for (String key:otherTerminology.getTerms().keySet()){
                  TermDetail termDetail=otherTerminology.getTerms().get(key);
                  System.out.println(termDetail.toString());
-            }
+            }*/
         }
 
         System.out.println("Processing iate finished!!!");
@@ -174,7 +181,10 @@ public class HtmlMain implements SparqlEndpoint {
         } catch (IOException ex) {
             Logger.getLogger(HtmlMain.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+
 
     }
-
+    
+    
 }

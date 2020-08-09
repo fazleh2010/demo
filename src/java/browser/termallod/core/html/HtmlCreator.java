@@ -30,7 +30,7 @@ public class HtmlCreator {
         this.OUTPUT_PATH = OUTPUT_PATH;
     }
 
-    public void createListOfTermHtmlPage(String INPUT_PATH,Set<String> languages,String categoryName) throws Exception {
+    public void createListOfTermHtmlPage(String INPUT_PATH,Set<String> languages,String categoryName,Boolean pairFlag) throws Exception {
         TreeMap<String, RetrieveAlphabetInfo> langSortedTerms = new TreeMap<String, RetrieveAlphabetInfo>();
         /*String langCode = null;
         if (languages.contains("en")) {
@@ -40,7 +40,7 @@ public class HtmlCreator {
         }*/
 
         for (String langCode : languages) {
-            RetrieveAlphabetInfo retrieveAlphabetInfo = new RetrieveAlphabetInfo(INPUT_PATH, langCode);
+            RetrieveAlphabetInfo retrieveAlphabetInfo = new RetrieveAlphabetInfo(INPUT_PATH, langCode,pairFlag);
             langSortedTerms.put(langCode, retrieveAlphabetInfo);
         }
 

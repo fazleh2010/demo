@@ -367,7 +367,9 @@ public class FileRelatedUtils {
                 line = reader.readLine();
                 if(line!=null){
                 String[] info = line.split("=");
-                hash.put(info[0], info[1]);
+                String key=StringMatcherUtil2.encripted(info[0].toLowerCase().trim());
+                String value=info[1].toLowerCase().trim();
+                hash.put(key, value);
                 }
                  
             }

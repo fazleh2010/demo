@@ -6,12 +6,11 @@
 package browser.termallod.constants;
 
 import browser.termallod.api.LanguageManager;
-import browser.termallod.app.JsonParser;
-import static browser.termallod.constants.SparqlEndpoint.TermPage;
 import static browser.termallod.constants.SparqlEndpoint.endpoint_intaglio;
 import static browser.termallod.constants.SparqlEndpoint.endpoint_solar;
 import browser.termallod.core.LanguageAlphabetPro;
 import browser.termallod.core.termbase.TermDetail;
+import browser.termallod.utils.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
@@ -40,9 +39,34 @@ public class Parameter {
     private static String TermPage = "TermPage";
     private static String matchTerms = "matchTerms";
     private String termPageJson = "{\"term\":\"hole\","
-                                   + "\"iri\":\"http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/hole-EN\",\"lang\":\"en\"}";
+            + "\"iri\":\"http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/hole-EN\",\"lang\":\"en\"}";
 
-    public Parameter(String args[],String htmlType) {
+    private String localLangJson = "[{\"language\":{\"type\":\"uri\",\"value\":\"http://tbx2rdf.lider-project.eu/data/YourNameSpace/NL\"},\"entrycount\":{\"type\":\"typed-literal\",\"datatype\":\"http://www.w3.org/2001/XMLSchema#integer\",\"value\":\"186\"}},{\"language\":{\"type\":\"uri\",\"value\":\"http://tbx2rdf.lider-project.eu/data/YourNameSpace/EN\"},\"entrycount\":{\"type\":\"typed-literal\",\"datatype\":\"http://www.w3.org/2001/XMLSchema#integer\",\"value\":\"19\"}}]";
+
+    public Parameter(String args[]) {
+        if (args.length > 1) {
+            BASE_PATH = args[1] + BASE_PATH;
+        } else {
+            System.err.println("no parameter for BASE_PATH");
+        }
+        if (args.length > 2) {
+            localLangJson = args[2];
+        } else {
+            System.err.println("no parameter for " + localLangJson);
+        }
+        if (args.length > 3) {
+            otherTermSparqlEndpoint = args[3];
+            System.out.println("otherTermSparqlEndpoint: " + otherTermSparqlEndpoint);
+        } else {
+            System.err.println("otherTermSparqlEndpoint " + otherTermSparqlEndpoint);
+        }
+    }
+
+    public Parameter(String args[], String htmlType) {
+
+        if (args[0].contains("link")) {
+            this.setParameter(args);
+        }
 
         if (args.length > 1) {
             myTermSparqlEndpoint = args[1];
@@ -85,14 +109,13 @@ public class Parameter {
             TEMPLATE_PATH = BASE_PATH + "template/";
         }
         if (args.length > 7) {
-            
-            if(htmltype.contains(TermPage)){
-               termPageJson = args[7]; 
-               System.out.println("termPageJson: " + termPageJson);
-            }
-            else if(htmltype.contains(matchTerms)) {
-                 otherTermSparqlEndpoint = args[7];
-                  System.out.println("otherTermSparqlEndpoint: " + otherTermSparqlEndpoint);
+
+            if (htmltype.contains(TermPage)) {
+                termPageJson = args[7];
+                System.out.println("termPageJson: " + termPageJson);
+            } else if (htmltype.contains(matchTerms)) {
+                otherTermSparqlEndpoint = args[7];
+                System.out.println("otherTermSparqlEndpoint: " + otherTermSparqlEndpoint);
             }
         }
 
@@ -103,13 +126,28 @@ public class Parameter {
             Logger.getLogger(Parameter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+    private void setParameter(String[] args) {
+        if (args.length > 1) {
+            BASE_PATH = args[1] + BASE_PATH;
+            System.out.println("BASE_PATH: " + BASE_PATH);
+        }
+        if (args.length > 2) {
+            localLangJson = args[2];
+            System.out.println("localLangJson: " + localLangJson);
+        }
+        if (args.length > 3) {
+            otherTermSparqlEndpoint = args[3];
+            System.out.println("otherTermSparqlEndpoint: " + otherTermSparqlEndpoint);
+        }
+    }
+
     public TermDetail getTermDetail() {
         ObjectMapper objectMapper = new ObjectMapper();
-        TermDetail termDetail =null;
+        TermDetail termDetail = null;
         try {
-            JsonParser jsonParser= objectMapper.readValue(termPageJson, JsonParser.class);
-             termDetail =new TermDetail(jsonParser);
+            JsonParser jsonParser = objectMapper.readValue(termPageJson, JsonParser.class);
+            termDetail = new TermDetail(jsonParser);
 
         } catch (IOException ex) {
             System.out.println("json parse fails!!!");
