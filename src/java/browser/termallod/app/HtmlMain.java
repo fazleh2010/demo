@@ -17,6 +17,8 @@ import browser.termallod.constants.SparqlQuery;
 import browser.termallod.core.termbase.TermDetail;
 import browser.termallod.core.termbase.Termbase;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
@@ -40,6 +42,7 @@ public class HtmlMain implements SparqlEndpoint {
     }
 
     public boolean html(String[] args) throws Exception {
+        Parameter parameter = null;
 
         //String myTermTableName = "myTerminology";
         /*String myTermSparqlEndpoint = null, list = null;
@@ -47,9 +50,19 @@ public class HtmlMain implements SparqlEndpoint {
         /*
          private static String ListOfTerms = "ListOfTerms";
          private static String TermPage = "TermPage";
-         private static String matchTerms = "matchTerms";
+         private static String MatchTerms = "MatchTerms";
         */
-        Parameter parameter = new Parameter(args,Parameter.ListOfTerms);
+        
+        //test list of terms
+        //Parameter parameter = new Parameter(args,Parameter.ListOfTerms);
+        //String myTermSparqlEndpoint = parameter.getMyTermSparqlEndpoint();
+        
+        //test termpage 
+        /*parameter = new Parameter(args,Parameter.TermPage);
+        String myTermSparqlEndpoint = parameter.getMyTermSparqlEndpoint();*/
+        
+         //test link term page
+        parameter = new Parameter(args,Parameter.TermPage);
         String myTermSparqlEndpoint = parameter.getMyTermSparqlEndpoint();
 
         //use it when internal  test
@@ -61,7 +74,7 @@ public class HtmlMain implements SparqlEndpoint {
             //System.out.println("SparqlEndpoint: " + myTermSparqlEndpoint);
         } else {
             myTermSparqlEndpoint = endpoint_solar;
-            System.err.println("no sparql endpoint in arguments");
+            System.err.println("no termDetailSparql endpoint in arguments");
         }
         if (args.length > 2) {
             OUTPUT_PATH = args[2];
@@ -111,7 +124,7 @@ public class HtmlMain implements SparqlEndpoint {
         CurlSparqlQuery curlSparqlQuery = new CurlSparqlQuery();
         HtmlCreator htmlCreator = new HtmlCreator(parameter.getTEMPLATE_PATH(), parameter.getOUTPUT_PATH());
 
-        if (parameter.getHtmltype().contains(parameter.getListOfTerms())) {
+        if (parameter.getHtmltype().contains(Parameter.ListOfTerms)) {
             Termbase myTerminology = curlSparqlQuery.findListOfTerms(parameter.getMyTermSparqlEndpoint(), query_writtenRep, myTermSparqlEndpoint);
             System.out.println("saving terms");
             if (myTerminology.getTerms().isEmpty()) {
@@ -126,26 +139,45 @@ public class HtmlMain implements SparqlEndpoint {
             System.out.println("creating html");
 
             htmlCreator.createListOfTermHtmlPage(parameter.getINPUT_PATH(), alphabetFiles.getLangTerms().keySet(), parameter.getHtmltype(),true);
-        } else if (parameter.getHtmltype().contains(TermPage)) {
-            System.out.println("create Html pages!!!!!!!!!11" );
-            
-            //String url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/hole-EN";
-            //String term="hole";
-          
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            String sparql = SparqlQuery.getTermDetailSpqlByTerm(parameter.getTermDetail());
-            System.out.println("!!!!!!!!!!!!!!!sparql!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+sparql);
-            TermDetail termDetail = curlSparqlQuery.findTermDetail(myTermSparqlEndpoint, sparql);
-            System.out.println("termDetail....." + termDetail);
+        } else if (parameter.getHtmltype().contains(Parameter.TermPage)) {
+            String termDetailSparql = SparqlQuery.getTermDetailSpqlByTerm(parameter.getTermDetail());
+            TermDetail termDetail = curlSparqlQuery.findTermDetail(myTermSparqlEndpoint, termDetailSparql);
+            String termLinkSparql = SparqlQuery.getTermLinks(termDetail.getTermUrl());
+            System.out.println(termLinkSparql);
+            curlSparqlQuery.findTermDetail(myTermSparqlEndpoint, termLinkSparql);
+            /* made up links..
+            Map<String, String> termLinks=new HashMap<String, String>();
+            termLinks.put("solar", "http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/hole-EN");
+            termDetail.setTermLinks(termLinks);*/
             htmlCreator.createHtmlTermPage(termDetail, parameter.getHtmltype());
         }
-        else if (parameter.getHtmltype().contains(parameter.getMatchTerms())) {
+        else if (parameter.getHtmltype().contains(Parameter.MatchTerms)) {
             System.out.println(parameter.getMatchTerms());
             String jsonLangStr = "[{\"language\":{\"type\":\"uri\",\"value\":\"http://tbx2rdf.lider-project.eu/data/YourNameSpace/NL\"},\"entrycount\":{\"type\":\"typed-literal\",\"datatype\":\"http://www.w3.org/2001/XMLSchema#integer\",\"value\":\"186\"}},{\"language\":{\"type\":\"uri\",\"value\":\"http://tbx2rdf.lider-project.eu/data/YourNameSpace/EN\"},\"entrycount\":{\"type\":\"typed-literal\",\"datatype\":\"http://www.w3.org/2001/XMLSchema#integer\",\"value\":\"19\"}}]";
             Matching mattchTerminologies=new Matching(parameter.getINPUT_PATH(), parameter.getOtherTermSparqlEndpoint(), jsonLangStr,parameter.getOtherTermTableName());
             mattchTerminologies.toString();
             System.out.println(mattchTerminologies);
-            
+        }
+
+        System.out.println("Processing iate finished!!!");
+        return true;
+    }
+
+    private static void cleanDirectory(String INPUT_PATH, String OUTPUT_PATH) {
+        try {
+            FileRelatedUtils.deleteDirectory(INPUT_PATH);
+            FileRelatedUtils.createDirectory(INPUT_PATH);
+            FileRelatedUtils.deleteDirectory(OUTPUT_PATH);
+            FileRelatedUtils.createDirectory(OUTPUT_PATH);
+        } catch (IOException ex) {
+            Logger.getLogger(HtmlMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
+
+    }
+    
+     
             /*Set<String> languages=new HashSet<String>();
             languages.add("en");
             languages.add("nl");
@@ -169,25 +201,11 @@ public class HtmlMain implements SparqlEndpoint {
                  TermDetail termDetail=otherTerminology.getTerms().get(key);
                  System.out.println(termDetail.toString());
             }*/
-        }
-
-        System.out.println("Processing iate finished!!!");
-        return true;
-    }
-
-    private static void cleanDirectory(String INPUT_PATH, String OUTPUT_PATH) {
-        try {
-            FileRelatedUtils.deleteDirectory(INPUT_PATH);
-            FileRelatedUtils.createDirectory(INPUT_PATH);
-            FileRelatedUtils.deleteDirectory(OUTPUT_PATH);
-            FileRelatedUtils.createDirectory(OUTPUT_PATH);
-        } catch (IOException ex) {
-            Logger.getLogger(HtmlMain.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-
-
-    }
+    
+         
+            //String url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/hole-EN";
+            //String term="hole";
+      
     
     
 }

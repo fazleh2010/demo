@@ -232,11 +232,9 @@ public class TermDetail {
         return termLinks;
     }
 
-    public void setTerm(String textContent) {
+    public void setTermLinks(Map<String, String> termLinks) {
+        this.termLinks = termLinks;
     }
 
-    public void setUrl(String textContent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

@@ -161,8 +161,8 @@ public interface SparqlEndpoint {
     public static String ontolex_prefix = "PREFIX ontolex: <http://www.w3.org/ns/lemon/ontolex#>";
     public static String ontolex_owl_sameAs = "ontolex:owl:sameAs";
 
-    public static String ListOfTermPage = "ListOfTerms";
-    public static String TermPage = "TermPage";
+    //public static String ListOfTermPage = "ListOfTerms";
+    //public static String TermPage = "TermPage";
 
     /*public static String term_query = ontoLexPrefix
             + "\n"

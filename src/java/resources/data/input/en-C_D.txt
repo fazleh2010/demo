@@ -18,3 +18,5 @@ dope = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/sol
 dope = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/dope-EN
 dope = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/dope-EN
 dope = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/dope-EN
+dope = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/dope-EN
+dope = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/dope-EN

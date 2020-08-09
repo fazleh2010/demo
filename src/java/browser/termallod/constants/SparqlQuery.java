@@ -64,7 +64,7 @@ public class SparqlQuery implements SparqlEndpoint {
                 + "SELECT * from <http://tbx2rdf.lider-project.eu/> WHERE { \n"
                 + "    ?s ontolex:entry ?entry .\n"
                 + "    ?entry ontolex:sameAs ?exactmatch .\n"
-                + "    FILTER (?entry = <http://tbx2rdf.lider-project.eu/data/YourNameSpace/hole-EN>)\n"
+                + "    FILTER (?entry = <"+url+">)\n"
                 + "} LIMIT 100";
     }
 

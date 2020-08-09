@@ -36,10 +36,11 @@ public class Parameter {
     private String otherTermSparqlEndpoint = endpoint_intaglio;
     private String matchedTermTable = "link";
     public static String ListOfTerms = "ListOfTerms";
-    private static String TermPage = "TermPage";
-    private static String matchTerms = "matchTerms";
+    public static String TermPage = "TermPage";
+    public static String MatchTerms = "matchTerms";
     private String termJson = "{\"term\":\"hole\","
-            + "\"iri\":\"http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/hole-EN\",\"lang\":\"en\"}";
+            + "\"iri\":\"http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/hole-EN\","
+            + "\"lang\":\"en\"}";
 
     private String localLangJson = "[{\"language\":{\"type\":\"uri\",\"value\":\"http://tbx2rdf.lider-project.eu/data/YourNameSpace/NL\"},\"entrycount\":{\"type\":\"typed-literal\",\"datatype\":\"http://www.w3.org/2001/XMLSchema#integer\",\"value\":\"186\"}},{\"language\":{\"type\":\"uri\",\"value\":\"http://tbx2rdf.lider-project.eu/data/YourNameSpace/EN\"},\"entrycount\":{\"type\":\"typed-literal\",\"datatype\":\"http://www.w3.org/2001/XMLSchema#integer\",\"value\":\"19\"}}]";
 
@@ -109,17 +110,14 @@ public class Parameter {
             TEMPLATE_PATH = BASE_PATH + "template/";
         }
         if (args.length > 7) {
-
             if (htmltype.contains(TermPage)) {
                 termJson = args[7];
-                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!: " );
-                System.out.println("termPageJson: " + termJson);
-                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!: " );
-            } else if (htmltype.contains(matchTerms)) {
+            } else if (htmltype.contains(MatchTerms)) {
                 otherTermSparqlEndpoint = args[7];
                 System.out.println("otherTermSparqlEndpoint: " + otherTermSparqlEndpoint);
             }
         }
+       
 
         INPUT_PATH = BASE_PATH + "input/";
         try {
@@ -219,7 +217,7 @@ public class Parameter {
     }
 
     public String getMatchTerms() {
-        return matchTerms;
+        return MatchTerms;
     }
 
     public String getOtherTermSparqlEndpoint() {

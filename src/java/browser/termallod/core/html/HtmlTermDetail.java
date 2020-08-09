@@ -59,6 +59,8 @@ public final class HtmlTermDetail {
 
         Map<String, String> matchedTerms = termDetail.getTermLinks();
         List<String> divStrS = createTermInfo(matchedTerms, term, url);
+        System.out.println(divStrS);
+
 
         if (!divStrS.isEmpty()) {
             Integer index = 0;
@@ -82,7 +84,7 @@ public final class HtmlTermDetail {
         String posTr = "", numberTr = "", genderTr = "", definitionTr = "", hypernymTr = "", hyponymTr = "", variantTr = "", synonymTr = "", writtenFormTr = "",termUrlTr="";
 
         String langValueStr = languageMapper.get(this.termDetail.getLanguage());
-        languageTr = getTr(getProperty("Language"), getValueNew(langValueStr));
+        //languageTr = getTr(getProperty("Language"), getValueNew(langValueStr));
         writtenFormTr = getTr(getProperty("written form:"), getValueNew(term));
         termUrlTr=getTr(getProperty("Url:"), getValueNew(url));
         
@@ -129,11 +131,11 @@ public final class HtmlTermDetail {
             synonymTr = getTr(getProperty("Synonym:"), getValueNew(this.termDetail.getSynonym()));
         }
 
-        String table = this.getTable(this.getTbody(writtenFormTr + languageTr + termUrlTr+ definitionTr + reliabilityCodeTr + administrativeTr + subjectFieldTr + ReferenceTr
+        String table = this.getDetailTable(this.getTbody(writtenFormTr + languageTr + termUrlTr+ definitionTr + reliabilityCodeTr + administrativeTr + subjectFieldTr + ReferenceTr
                 + posTr + numberTr + genderTr + hypernymTr + hyponymTr + variantTr + synonymTr));
         String divStr = table;
         divStrS.add(divStr);
-        if(!matchedTerms.isEmpty())
+          if(!matchedTerms.isEmpty())
            divStrS = this.generateTermLink(matchedTerms, divStrS);
 
         return divStrS;
@@ -150,7 +152,7 @@ public final class HtmlTermDetail {
             String term = matchedTerms.get(otherTerminology);
             String url = matchedTerms.get(otherTerminology);
             String thirdTr = getTr(getProperty(spanTerminologyUrl, otherTerminology), getValue(url, url, url));
-            String table = this.getTable(this.getTbody(thirdTr));
+            String table = this.getDetailTable(this.getTbody(thirdTr));
             String divStr = table;
             divStrS.add(divStr);
 
@@ -162,7 +164,8 @@ public final class HtmlTermDetail {
     private List<String> generateTermLink(Map<String, String> matchedTerms, List<String> divStrS) {
         String panelHeadingStart = "<h3>Links to other terminologies</h3>";
         String panelHeadingEnd = "</div>";
-        String tableStart="<table>";
+        String tableStart = "<table class=" + this.getWithinQuote("panel-body rdf_embedded_table") + "id="+ this.getWithinQuote("termLink")+">";
+        //String tableStart="<table>";
         String tableEnd="</table>";
         String columnNames="<tr>"
                           +"<th>Terminology</th>"
@@ -212,8 +215,8 @@ public final class HtmlTermDetail {
     }
 
     private String getProperty(String str) {
-        String tdPropStart = "<td " + ">";
-        String tdEnd = "</td>";
+        String tdPropStart = "<th " + ">";
+        String tdEnd = "</th>";
         String langProp = tdPropStart + str + "</a>" + tdEnd;
         return langProp;
     }
@@ -263,9 +266,15 @@ public final class HtmlTermDetail {
         return tbodyStart + trs + tbodyEnd;
 
     }
-
-    private String getTable(String tbody) {
-        String tableStart = "<table class=" + this.getWithinQuote("panel-body rdf_embedded_table") + ">";
+    
+     private String getDetailTable(String tbody) {
+        String tableStart = "<table class=" + this.getWithinQuote("panel-body rdf_embedded_table") + "id="+ this.getWithinQuote("termDetail")+">";
+        String tableEnd = "</table>";
+        return tableStart + tbody + tableEnd;
+    }
+     
+      private String getLinkTable(String tbody) {
+        String tableStart = "<table class=" + this.getWithinQuote("panel panel-default") + "id="+ this.getWithinQuote("termLink")+">";
         String tableEnd = "</table>";
         return tableStart + tbody + tableEnd;
     }
