@@ -133,7 +133,8 @@ public final class HtmlTermDetail {
                 + posTr + numberTr + genderTr + hypernymTr + hyponymTr + variantTr + synonymTr));
         String divStr = table;
         divStrS.add(divStr);
-        divStrS = this.generateTermLink(matchedTerms, divStrS);
+        if(!matchedTerms.isEmpty())
+           divStrS = this.generateTermLink(matchedTerms, divStrS);
 
         return divStrS;
     }

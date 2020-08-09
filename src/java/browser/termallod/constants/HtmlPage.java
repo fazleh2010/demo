@@ -21,6 +21,6 @@ public interface HtmlPage {
     public String UNDERSCORE = "_";
     public static String LOCALHOST_URL_LIST_OF_TERMS_PAGE = "";
     public static Integer INITIAL_PAGE = 1;
-    public void createTerms(Element body, List<String> terms, String alphebetPair, Integer emptyTerm,String htmlFileName)throws Exception;
+    public void createTerms(Element body, List<String> terms, String alphebetPair, Integer emptyTerm,String htmlFileName,String lang)throws Exception;
 
 }

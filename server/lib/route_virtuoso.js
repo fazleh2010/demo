@@ -63,14 +63,11 @@ res.sendFile(htmlDir+page);
 
 
 app.get("/termPage", async (req, res, next) => {
-     var page=req.query.page;
-     console.log("termpage"+req.query.page);
-     var url=req.query.page;
-     var termString="hole";
-     var en="en";
-     
-     console.log("url"+url);
+     var termString=req.query.term;
+     var url="url";
+     var en="en"; 
 
+     console.log("term:"+req.query.term);
      var obj = { term:termString, iri:url, lang:en};
      var myJSON = JSON.stringify(obj);
 	

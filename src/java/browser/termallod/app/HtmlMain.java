@@ -49,7 +49,7 @@ public class HtmlMain implements SparqlEndpoint {
          private static String TermPage = "TermPage";
          private static String matchTerms = "matchTerms";
         */
-        Parameter parameter = new Parameter(args,"matchTerms");
+        Parameter parameter = new Parameter(args,Parameter.ListOfTerms);
         String myTermSparqlEndpoint = parameter.getMyTermSparqlEndpoint();
 
         //use it when internal  test
@@ -131,7 +131,10 @@ public class HtmlMain implements SparqlEndpoint {
             
             //String url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/hole-EN";
             //String term="hole";
+          
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             String sparql = SparqlQuery.getTermDetailSpqlByTerm(parameter.getTermDetail());
+            System.out.println("!!!!!!!!!!!!!!!sparql!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+sparql);
             TermDetail termDetail = curlSparqlQuery.findTermDetail(myTermSparqlEndpoint, sparql);
             System.out.println("termDetail....." + termDetail);
             htmlCreator.createHtmlTermPage(termDetail, parameter.getHtmltype());
@@ -140,8 +143,8 @@ public class HtmlMain implements SparqlEndpoint {
             System.out.println(parameter.getMatchTerms());
             String jsonLangStr = "[{\"language\":{\"type\":\"uri\",\"value\":\"http://tbx2rdf.lider-project.eu/data/YourNameSpace/NL\"},\"entrycount\":{\"type\":\"typed-literal\",\"datatype\":\"http://www.w3.org/2001/XMLSchema#integer\",\"value\":\"186\"}},{\"language\":{\"type\":\"uri\",\"value\":\"http://tbx2rdf.lider-project.eu/data/YourNameSpace/EN\"},\"entrycount\":{\"type\":\"typed-literal\",\"datatype\":\"http://www.w3.org/2001/XMLSchema#integer\",\"value\":\"19\"}}]";
             Matching mattchTerminologies=new Matching(parameter.getINPUT_PATH(), parameter.getOtherTermSparqlEndpoint(), jsonLangStr,parameter.getOtherTermTableName());
-             mattchTerminologies.toString();
-             System.out.println(mattchTerminologies);
+            mattchTerminologies.toString();
+            System.out.println(mattchTerminologies);
             
             /*Set<String> languages=new HashSet<String>();
             languages.add("en");

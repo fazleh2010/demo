@@ -38,7 +38,7 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         //this.termPage = new HtmlTermPage(info, htmlReaderWriter, termPageTemplate);
     }
 
-    public Document createAllElements(Document templateHtml,List<String> terms, PageContentGenerator pageContentGenerator, String htmlFileName, Integer currentPageNumber) throws Exception {
+    public Document createAllElements(Document templateHtml, List<String> terms, PageContentGenerator pageContentGenerator, String htmlFileName, Integer currentPageNumber, String lang) throws Exception {
         AlphabetTermPage alphabetTermPage = info.getAlphabetTermPage();
         Element body = templateHtml.body();
         String alphebetPair = alphabetTermPage.getAlpahbetPair();
@@ -52,7 +52,7 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         }*/
 
         createAlphabet(body, alphebetPair, pageContentGenerator);
-        createTerms(body, terms, alphebetPair, emptyTerm, htmlFileName);
+        createTerms(body, terms, alphebetPair, emptyTerm, htmlFileName, lang);
 
         /*Element divCurrentPageUpper = body.getElementsByClass("activepageUpper").get(0);
         this.assignCurrentPageNumber(divCurrentPageUpper);
@@ -107,7 +107,7 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         }
     }
 
-    public void createTerms(Element body, List<String> terms, String alphebetPair, Integer emptyTerm, String htmlFileName) throws Exception {
+    public void createTerms(Element body, List<String> terms, String alphebetPair, Integer emptyTerm, String htmlFileName, String lang) throws Exception {
         Element divTerm = body.getElementsByClass("result-list1 wordlist-oxford3000 list-plain").get(0);
         Integer index = 0;
         for (String term : terms) {
@@ -118,12 +118,29 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
                 divTerm.append(liString);
             }*/
             String url = info.getAlphabetTermPage().getProps().getProperty(term);
-            String liString = getTermLi(term,url);
+            String liString = getTermLi(term, url, lang);
             divTerm.append(liString);
         }
     }
 
-    public String getTermLi(String term,String url) {
+    public String getTermLi(String term, String url, String lang) {
+
+        //System.out.println("Term Original:"+term);
+        term = StringMatcherUtil.decripted(term);
+        term = term.toLowerCase().trim();
+        // /api?paramA=valueA&paramB=valueB
+        //System.out.println("Term decripted:"+term);
+        //String searchTerm = "termPage?term="+StringMatcherUtil.encripted(term) + "&" + "url="+url+ "&" +"lang="+lang;
+        //searchTerm="term="+StringMatcherUtil.encripted(term) + "&" + "paramB="+url+"lang="+lang;
+        //String searchTerm="termPage?term="+StringMatcherUtil.encripted(term)+"&url="+url+"&lang="+lang;
+        String searchTerm="termPage?term="+StringMatcherUtil.encripted(term);
+        String title = "url=" + '"' + url + " definition" + '"';
+        String a = "<a href=" + searchTerm + " " + title + ">" + term + "</a>";
+        String li = "\n<li>" + a + "</li>\n";
+        return li;
+    }
+
+    /*public String getTermLi(String term,String url) {
         //System.out.println("Term Original:"+term);
         term=StringMatcherUtil.decripted(term);
         term=term.toLowerCase().trim();
@@ -133,12 +150,11 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         String a = "<a href=" + url + " " + title + ">" + term + "</a>";
         String li = "\n<li>" + a + "</li>\n";
         return li;
-    }
-
+    }*/
     private String getAlphebetLi(Integer pageNumber, AlphabetTermPage alphabetTermPage) {
         String url = this.createUrlLink(pageNumber, alphabetTermPage);
         //String url = LOCALHOST_URL_LIST_OF_TERMS_PAGE + alphabetFileName;
-        url="listOfTerms?page="+url;
+        url = "listOfTerms?page=" + url;
 
         if (info.getLanguage().contains("hu") && alphabetTermPage.getNumericalValueOfPair() == 1) {
             url = "browser_hu_A_1_1.html";

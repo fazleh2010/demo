@@ -35,10 +35,10 @@ public class Parameter {
     private String otherTermTableName = "otherTerminology";
     private String otherTermSparqlEndpoint = endpoint_intaglio;
     private String matchedTermTable = "link";
-    private static String ListOfTerms = "ListOfTerms";
+    public static String ListOfTerms = "ListOfTerms";
     private static String TermPage = "TermPage";
     private static String matchTerms = "matchTerms";
-    private String termPageJson = "{\"term\":\"hole\","
+    private String termJson = "{\"term\":\"hole\","
             + "\"iri\":\"http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/hole-EN\",\"lang\":\"en\"}";
 
     private String localLangJson = "[{\"language\":{\"type\":\"uri\",\"value\":\"http://tbx2rdf.lider-project.eu/data/YourNameSpace/NL\"},\"entrycount\":{\"type\":\"typed-literal\",\"datatype\":\"http://www.w3.org/2001/XMLSchema#integer\",\"value\":\"186\"}},{\"language\":{\"type\":\"uri\",\"value\":\"http://tbx2rdf.lider-project.eu/data/YourNameSpace/EN\"},\"entrycount\":{\"type\":\"typed-literal\",\"datatype\":\"http://www.w3.org/2001/XMLSchema#integer\",\"value\":\"19\"}}]";
@@ -64,10 +64,10 @@ public class Parameter {
 
     public Parameter(String args[], String htmlType) {
 
-        if (args[0].contains("link")) {
+        if (args.length > 1&& args[0].contains("link")) {
             this.setParameter(args);
         }
-
+       
         if (args.length > 1) {
             myTermSparqlEndpoint = args[1];
             //System.out.println("SparqlEndpoint: " + myTermSparqlEndpoint);
@@ -111,8 +111,10 @@ public class Parameter {
         if (args.length > 7) {
 
             if (htmltype.contains(TermPage)) {
-                termPageJson = args[7];
-                System.out.println("termPageJson: " + termPageJson);
+                termJson = args[7];
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!: " );
+                System.out.println("termPageJson: " + termJson);
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!: " );
             } else if (htmltype.contains(matchTerms)) {
                 otherTermSparqlEndpoint = args[7];
                 System.out.println("otherTermSparqlEndpoint: " + otherTermSparqlEndpoint);
@@ -146,7 +148,7 @@ public class Parameter {
         ObjectMapper objectMapper = new ObjectMapper();
         TermDetail termDetail = null;
         try {
-            JsonParser jsonParser = objectMapper.readValue(termPageJson, JsonParser.class);
+            JsonParser jsonParser = objectMapper.readValue(termJson, JsonParser.class);
             termDetail = new TermDetail(jsonParser);
 
         } catch (IOException ex) {

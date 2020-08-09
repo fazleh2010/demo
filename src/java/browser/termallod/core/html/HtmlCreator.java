@@ -84,7 +84,7 @@ public class HtmlCreator {
             HtmlListOfTerms htmlPage = new HtmlListOfTerms(info, htmlReaderWriter,templateHtml);
             File outputFileName = new File(OUTPUT_PATH + info.creatHtmlFileName(currentPageNumber, alphabetTermPage));
             String htmlFileName = outputFileName.getName();
-            Document listOfTermHtmlPage = htmlPage.createAllElements(templateHtml,terms, pageContentGenerator, htmlFileName, currentPageNumber);
+            Document listOfTermHtmlPage = htmlPage.createAllElements(templateHtml,terms, pageContentGenerator, htmlFileName, currentPageNumber,language);
             htmlReaderWriter.writeHtml(listOfTermHtmlPage, outputFileName);
             //page indexes..number of pages of same alphabet..
             break;
