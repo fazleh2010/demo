@@ -19,6 +19,7 @@ import browser.termallod.core.termbase.Termbase;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
@@ -62,7 +63,7 @@ public class HtmlMain implements SparqlEndpoint {
         String myTermSparqlEndpoint = parameter.getMyTermSparqlEndpoint();*/
         
          //test link term page
-        parameter = new Parameter(args,Parameter.TermPage);
+        parameter = new Parameter(args,Parameter.MatchTerms);
         String myTermSparqlEndpoint = parameter.getMyTermSparqlEndpoint();
 
         //use it when internal  test
@@ -152,10 +153,20 @@ public class HtmlMain implements SparqlEndpoint {
             htmlCreator.createHtmlTermPage(termDetail, parameter.getHtmltype());
         }
         else if (parameter.getHtmltype().contains(Parameter.MatchTerms)) {
-            System.out.println(parameter.getMatchTerms());
-            String jsonLangStr = "[{\"language\":{\"type\":\"uri\",\"value\":\"http://tbx2rdf.lider-project.eu/data/YourNameSpace/NL\"},\"entrycount\":{\"type\":\"typed-literal\",\"datatype\":\"http://www.w3.org/2001/XMLSchema#integer\",\"value\":\"186\"}},{\"language\":{\"type\":\"uri\",\"value\":\"http://tbx2rdf.lider-project.eu/data/YourNameSpace/EN\"},\"entrycount\":{\"type\":\"typed-literal\",\"datatype\":\"http://www.w3.org/2001/XMLSchema#integer\",\"value\":\"19\"}}]";
+            String jsonLangStr = "[{\"language\":{\"type\":\"uri\",\"value\":\"http://tbx2rdf.lider-project.eu/data/YourNameSpace/NL\"},"
+                                + "\"entrycount\":{\"type\":\"typed-literal\","
+                                + "\"datatype\":\"http://www.w3.org/2001/XMLSchema#integer\",\"value\":\"186\"}},"
+                                + "{\"language\":{\"type\":\"uri\",\"value\":\"http://tbx2rdf.lider-project.eu/data/YourNameSpace/EN\"},"
+                                + "\"entrycount\":{\"type\":\"typed-literal\",\"datatype\":\"http://www.w3.org/2001/XMLSchema#integer\",\"value\":\"19\"}}]";
             Matching mattchTerminologies=new Matching(parameter.getINPUT_PATH(), parameter.getOtherTermSparqlEndpoint(), jsonLangStr,parameter.getOtherTermTableName());
-            mattchTerminologies.toString();
+            /*for (String key : mattchTerminologies.getMatchedTermsInto().keySet()) {
+                System.out.println(key);
+                Set<TermDetail> matchedTerms = mattchTerminologies.getMatchedTermsInto().get(key);
+                for (TermDetail termDetail : matchedTerms) {
+                     System.out.println(termDetail);
+                }
+            }*/
+            
             System.out.println(mattchTerminologies);
         }
 

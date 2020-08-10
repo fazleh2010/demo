@@ -108,6 +108,7 @@ public class TermDetail {
 
     }
 
+
     public String getTermOrg() {
         return termOrg;
     }

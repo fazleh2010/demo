@@ -6,20 +6,16 @@
 package browser.termallod.process;
 
 import browser.termallod.utils.FileRelatedUtils;
-import browser.termallod.utils.NameExtraction;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
-
 /**
  *
  * @author elahi
@@ -28,7 +24,7 @@ public class RetrieveAlphabetInfo {
 
     private Map<String, File> pairFile = new TreeMap<String, File>();
     private TreeMap<String, List<String>> langSortedTerms = new TreeMap<String, List<String>>();
-    private Set<String>  allTerms = new TreeSet<String>();
+    private Map<String, String> allTerms = new TreeMap<String, String>();
 
     public RetrieveAlphabetInfo(String INPUT_PATH, String langCode, Boolean pairFlag) throws IOException, IOException, IOException, IOException, IOException {
         List<File> files = FileRelatedUtils.getFiles(INPUT_PATH, langCode, ".txt");
@@ -46,8 +42,8 @@ public class RetrieveAlphabetInfo {
     }
 
     private void getValuesFromTextFile(File propFile) throws FileNotFoundException, IOException {
-        Map<String, String> temp=FileRelatedUtils.getHash(propFile.getAbsolutePath());
-        allTerms.addAll(temp.keySet());
+        Map<String, String> temp = FileRelatedUtils.getHash(propFile.getAbsolutePath());
+        allTerms.putAll(temp);
     }
 
     private void getValuesFromTextFile(File propFile, String pair) throws FileNotFoundException, IOException {
@@ -64,10 +60,9 @@ public class RetrieveAlphabetInfo {
         return langSortedTerms;
     }
 
-    public Set<String> getAllTerms() {
+    public Map<String, String> getAllTerms() {
         return allTerms;
     }
-
 
     public File getPairFile(String pair) {
         return pairFile.get(pair);

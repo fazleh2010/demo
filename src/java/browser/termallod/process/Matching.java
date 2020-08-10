@@ -8,8 +8,8 @@ package browser.termallod.process;
 import browser.termallod.constants.Parameter;
 import static browser.termallod.constants.SparqlEndpoint.query_writtenRep;
 import browser.termallod.core.sparql.CurlSparqlQuery;
+import browser.termallod.core.termbase.TermDetail;
 import browser.termallod.core.termbase.Termbase;
-import browser.termallod.process.RetrieveAlphabetInfo;
 import browser.termallod.utils.StringMatcherUtil2;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Sets;
@@ -30,19 +30,26 @@ import java.util.logging.Logger;
 public class Matching {
 
     private String terminologyName = "otherTerminology";
-    private Map<String, Set<String>> matchedTermsInto = new TreeMap<String, Set<String>>();
+    private Map<String, Set<TermDetail>> matchedTermsInto = new TreeMap<String, Set<TermDetail>>();
 
-    public Matching(String INPUT_PATH, String otherTermSparqlEndpoint,String languageJson, String otherTermTableName) {
+    public Matching(String INPUT_PATH, String otherTermSparqlEndpoint, String localLanguages, String otherTermTableName) throws IOException, Exception {
         CurlSparqlQuery curlSparqlQuery = new CurlSparqlQuery();
-        Set<String> remoteLanguages = getLanguaes(languageJson);
+        Set<String> remoteLanguages = getLanguaes(localLanguages);
         for (String langCode : remoteLanguages) {
-            try {
-                RetrieveAlphabetInfo retrieveAlphabetInfo = new RetrieveAlphabetInfo(INPUT_PATH, langCode, false);
-                Termbase otherTerminology = curlSparqlQuery.findListOfTerms(otherTermSparqlEndpoint, query_writtenRep, otherTermTableName);
-                Set<String> matchedTerms = match(retrieveAlphabetInfo.getAllTerms(), otherTerminology.getTerms().keySet());
-                matchedTermsInto.put(langCode, matchedTerms);
-            } catch (Exception ex) {
-                Logger.getLogger(Matching.class.getName()).log(Level.SEVERE, null, ex);
+
+            RetrieveAlphabetInfo retrieveAlphabetInfo = new RetrieveAlphabetInfo(INPUT_PATH, langCode, false);
+            Termbase otherTerminology = curlSparqlQuery.findListOfTerms(otherTermSparqlEndpoint, query_writtenRep, otherTermTableName);
+            Map<String, String> localTermUrls = retrieveAlphabetInfo.getAllTerms();
+            Set<String> matchedTerms = match(localTermUrls.keySet(), otherTerminology.getTerms().keySet());
+            Set<TermDetail> termDetails = new HashSet<TermDetail>();
+            for (String term : matchedTerms) {
+                String url = localTermUrls.get(term);
+                TermDetail remoteTermDetail = otherTerminology.getTerms().get(term);
+                TermDetail termDetail = new TermDetail(term, url, terminologyName, remoteTermDetail.getTermUrl());
+                termDetails.add(termDetail);
+            }
+            if (!matchedTerms.isEmpty()) {
+                matchedTermsInto.put(langCode, termDetails);
             }
         }
     }
@@ -82,7 +89,7 @@ public class Matching {
         return terminologyName;
     }
 
-    public Map<String, Set<String>> getMatchedTermsInto() {
+    public Map<String, Set<TermDetail>> getMatchedTermsInto() {
         return matchedTermsInto;
     }
 
