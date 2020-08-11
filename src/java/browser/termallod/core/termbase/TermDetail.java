@@ -195,7 +195,7 @@ public class TermDetail {
     }
 
     private String makeTermUrl(String subject) {
-        System.out.println(subject);
+        //System.out.println(subject);
         boolean isSubjectFound = subject.toString().indexOf(HASH_SYMBOLE) != -1 ? true : false;
         if (isSubjectFound) {
             String[] info = subject.toString().split(HASH_SYMBOLE);

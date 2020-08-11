@@ -101,8 +101,8 @@ public class CreateAlphabetFiles {
             }
 
         } catch (Exception ex) {
-            System.out.println("language:" + language);
-            System.out.println("term:" + term);
+            //System.out.println("language:" + language);
+            //System.out.println("term:" + term);
         }
 
         return pair;

@@ -44,6 +44,7 @@ public class Parameter {
 
     private String localLangJson = "[{\"language\":{\"type\":\"uri\",\"value\":\"http://tbx2rdf.lider-project.eu/data/YourNameSpace/NL\"},\"entrycount\":{\"type\":\"typed-literal\",\"datatype\":\"http://www.w3.org/2001/XMLSchema#integer\",\"value\":\"186\"}},{\"language\":{\"type\":\"uri\",\"value\":\"http://tbx2rdf.lider-project.eu/data/YourNameSpace/EN\"},\"entrycount\":{\"type\":\"typed-literal\",\"datatype\":\"http://www.w3.org/2001/XMLSchema#integer\",\"value\":\"19\"}}]";
 
+    private String insertFile=null;
     /*public Parameter(String args[]) {
         if (args.length > 1) {
             BASE_PATH = args[1] + BASE_PATH;
@@ -126,7 +127,8 @@ public class Parameter {
     
     public Parameter(String args[],String htmlType) {
 
-        if (args[0].contains("link")) {
+       
+        if (htmlType.contains("link")) {
             this.setParameter(args);
         } else {
 
@@ -152,7 +154,7 @@ public class Parameter {
             if (args.length > 4) {
                 list = args[4];
                 BASE_PATH = args[4] + BASE_PATH;
-                //System.out.println("BASE_PATH: " + BASE_PATH);
+                System.out.println("BASE_PATH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!: " + BASE_PATH);
             } else {
             }
 
@@ -160,7 +162,7 @@ public class Parameter {
                 htmltype = args[5];
                 //System.out.println("htmltype: " + htmltype);
             } else {
-                htmltype = htmlType;
+                htmltype = ListOfTerms;
                 //htmltype = ListOfTermPage;
                 //matchTerms
             }
@@ -198,6 +200,12 @@ public class Parameter {
             otherTermSparqlEndpoint = args[3];
             System.out.println("otherTermSparqlEndpoint: " + otherTermSparqlEndpoint);
         }
+        if (args.length > 4) {
+            insertFile = args[4];
+            System.out.println("insertFile: " + insertFile);
+        }
+        
+        //String insertFile =  "/tmp/server/uploads/insert.db";
         /*if (args.length > 4) {
             this.myTermSparqlEndpoint = args[4];
             System.out.println("myTermSparqlEndpoint: " + myTermSparqlEndpoint);
@@ -293,6 +301,10 @@ public class Parameter {
 
     public String getLocalLangJson() {
         return localLangJson;
+    }
+
+    public String getInsertFile() {
+        return insertFile;
     }
 
 }

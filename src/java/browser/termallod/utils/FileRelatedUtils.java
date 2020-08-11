@@ -224,7 +224,7 @@ public class FileRelatedUtils {
     public static void writeLangFile(Map<String, TreeMap<String, String>> langHash, String path) throws IOException {
         for (String language : langHash.keySet()) {
             String str = "";
-            System.out.println(language);
+            //System.out.println(language);
             TreeMap<String, String> idSense = langHash.get(language);
             String fileName = path + language + ".txt";
             for (String id : idSense.keySet()) {
@@ -286,7 +286,7 @@ public class FileRelatedUtils {
         for (String term : terms.keySet()) {
             String line = term + "=" + terms.get(term);
             str += line + "\n";
-            System.out.println(line);
+            //System.out.println(line);
         }
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
         writer.write(str);
@@ -354,8 +354,34 @@ public class FileRelatedUtils {
         props.load(new InputStreamReader(new FileInputStream(propFile), "UTF-8"));
         return props;
     }
-
+    
+    
     public static Map<String, String> getHash(String fileName) throws FileNotFoundException, IOException {
+        Map<String, String> hash = new HashMap<String, String>();
+        BufferedReader reader;
+        try {
+            reader = new BufferedReader(new FileReader(fileName));
+            String line = reader.readLine();
+            while (line != null) {
+
+                // read next line
+                line = reader.readLine();
+                if(line!=null){
+                String[] info = line.split("=");
+                String key=StringMatcherUtil2.encripted(info[0].toLowerCase().trim());
+                String value=info[1].trim();
+                hash.put(key, value);
+                }
+                 
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return hash;
+    }
+
+    /*public static Map<String, String> getHash(String fileName) throws FileNotFoundException, IOException {
         Map<String, String> hash = new HashMap<String, String>();
         BufferedReader reader;
         try {
@@ -378,7 +404,7 @@ public class FileRelatedUtils {
             e.printStackTrace();
         }
         return hash;
-    }
+    }*/
 
     public static void appendStringInFile(String textToAppend, String fileName) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));

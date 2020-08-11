@@ -65,7 +65,7 @@ public class Main {
         if (type.contains("html")||type.contains("link")) {
             HtmlMain HtmlMain = new HtmlMain(args);
             try {
-                result= HtmlMain.html(args);
+                result= HtmlMain.html();
             } catch (Exception ex) {
                 java.util.logging.Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }

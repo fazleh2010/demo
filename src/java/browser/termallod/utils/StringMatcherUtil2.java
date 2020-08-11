@@ -18,7 +18,7 @@ public class StringMatcherUtil2 {
 
     public static void main(String args[]) {
         String language = getLanguage("http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/fatigue-EN");
-        System.out.println(language);
+        //System.out.println(language);
     }
 
     public static String encripted(String term) {

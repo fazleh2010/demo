@@ -36,12 +36,12 @@ public class Matching {
         CurlSparqlQuery curlSparqlQuery = new CurlSparqlQuery();
         Set<String> remoteLanguages = getLanguaes(localLanguages);
         for (String langCode : remoteLanguages) {
-
+            System.out.println("langCode:"+langCode);
             RetrieveAlphabetInfo retrieveAlphabetInfo = new RetrieveAlphabetInfo(INPUT_PATH, langCode, false);
             Termbase otherTerminology = curlSparqlQuery.findListOfTerms(otherTermSparqlEndpoint, query_writtenRep, otherTermTableName);
             Map<String, String> localTermUrls = retrieveAlphabetInfo.getAllTerms();
-            System.out.println("localTermUrls:"+localTermUrls);
-             System.out.println(" otherTerminology.getTerms().keySet():"+ otherTerminology.getTerms().keySet());
+            //System.out.println("localTermUrls:"+localTermUrls.values());
+            //System.out.println(" otherTerminology.getTerms().keySet():"+ otherTerminology.getTerms().values());
             Set<String> matchedTerms = match(localTermUrls.keySet(), otherTerminology.getTerms().keySet());
             Set<TermDetail> termDetails = new HashSet<TermDetail>();
             for (String term : matchedTerms) {

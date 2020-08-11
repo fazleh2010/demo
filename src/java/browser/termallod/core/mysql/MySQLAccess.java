@@ -213,7 +213,7 @@ public class MySQLAccess implements DataBaseConst {
                     insertDataLinkTable(myterm, otherTerm, matchedTermTable, index);
                 }
             }
-            System.out.println("insert to " + matchedTermTable + " table is successful!!...");
+            //System.out.println("insert to " + matchedTermTable + " table is successful!!...");
 
         } catch (Exception e) {
             System.out.println("insert data to " + matchedTermTable + " is failed!!!!");
@@ -271,7 +271,7 @@ public class MySQLAccess implements DataBaseConst {
     }
     
     public void readTermTable(String termTableName) throws SQLException, Exception {
-        System.out.println("running read table command");
+        //System.out.println("running read table command");
       
         try {
 
@@ -286,9 +286,9 @@ public class MySQLAccess implements DataBaseConst {
                 String term = rs.getString("term");
                 String orginalUrl = rs.getString("originalUrl");
 
-                System.out.println(id + " " + term + " " + orginalUrl);
+                //System.out.println(id + " " + term + " " + orginalUrl);
             }
-            System.out.println("reading " + termTableName + " table is successful!!...");
+            //System.out.println("reading " + termTableName + " table is successful!!...");
 
         } catch (Exception e) {
             System.out.println("reading data to " + termTableName + " is failed!!!!");
@@ -297,7 +297,7 @@ public class MySQLAccess implements DataBaseConst {
     }
     
     public List<TermDetail> readMatchedTermTable(String termTableName) throws SQLException, Exception {
-        System.out.println("running read table command");
+        //System.out.println("running read table command");
         List<TermDetail> termInfos=new ArrayList<TermDetail>();
       
         try {
@@ -313,12 +313,12 @@ public class MySQLAccess implements DataBaseConst {
                 String term = rs.getString("term");
                 String myTermOrginalUrl = rs.getString("myTermUrl");
                 String OtherTermOrginalUrl = rs.getString("otherTermUrl");                
-                System.out.println(termOrg + " " + term + " " + myTermOrginalUrl+" "+OtherTermOrginalUrl);
+                //System.out.println(termOrg + " " + term + " " + myTermOrginalUrl+" "+OtherTermOrginalUrl);
                 TermDetail terminfo=new TermDetail(termOrg,myTermOrginalUrl,"",OtherTermOrginalUrl);
                 termInfos.add(terminfo);
                 //SparqlGenerator.linkSparqlGenerator(termOrg,myTermOrginalUrl,"other",OtherTermOrginalUrl);
             }
-            System.out.println("reading " + termTableName + " table is successful!!...");
+            //System.out.println("reading " + termTableName + " table is successful!!...");
 
         } catch (Exception e) {
             System.out.println("reading data to " + termTableName + " is failed!!!!");

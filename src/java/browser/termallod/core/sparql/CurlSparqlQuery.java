@@ -50,7 +50,7 @@ public class CurlSparqlQuery {
 
     public TermDetail findTermDetail(String endpoint, String query) throws Exception {
         String resultSparql = executeSparqlQuery(endpoint, query);
-        System.out.println("results:"+resultSparql);
+        //System.out.println("results:"+resultSparql);
         TermDetail termDetail = this.parseResultsforTermDetail(resultSparql);
         return termDetail;
     }

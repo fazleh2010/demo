@@ -28,7 +28,6 @@ public final class HtmlTermDetail {
     public HtmlTermDetail(TermDetail termDetail, Document templateHtml) throws Exception {
         this.templateHtml = templateHtml;
         this.termDetail = termDetail;
-        System.out.println("term detail:"+termDetail);
         this.createTermPage();
 
     }
@@ -59,7 +58,7 @@ public final class HtmlTermDetail {
 
         Map<String, String> matchedTerms = termDetail.getTermLinks();
         List<String> divStrS = createTermInfo(matchedTerms, term, url);
-        System.out.println(divStrS);
+        //System.out.println(divStrS);
 
 
         if (!divStrS.isEmpty()) {

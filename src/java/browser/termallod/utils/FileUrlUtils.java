@@ -59,11 +59,11 @@ public class FileUrlUtils implements SparqlEndpoint{
          String testUrl= "http://edan.si.edu/saam/sparql?query=SELECT%20*%20WHERE%20%7B%3Fs%20%3Fp%20%3Fo%7D%20LIMIT%208";
          
          String resultString=FileUrlUtils.urlUnicodeToString(testUrl);
-         System.out.println("uniCodeToString: "+resultString);
+         //System.out.println("uniCodeToString: "+resultString);
          
          String string= "SELECT * WHERE {?s ?p ?o} LIMIT 8";
          String resultUnicode=FileUrlUtils.stringToUrlUnicode(iate_query1);
-         System.out.println("curl "+endpoint_atc+"?query="+resultUnicode);
+         //System.out.println("curl "+endpoint_atc+"?query="+resultUnicode);
          
          String command ="curl "+endpoint_atc+"?query="+resultUnicode;
          Process process = Runtime.getRuntime().exec(command);
@@ -77,8 +77,8 @@ public class FileUrlUtils implements SparqlEndpoint{
 				builder.append(System.getProperty("line.separator"));
 			}
 			String result = builder.toString();
-                        System.out.println("result String:");
-			System.out.print(result);
+                        //System.out.println("result String:");
+			//System.out.print(result);
 
 		} catch (IOException e) {
 			System.out.print("error");

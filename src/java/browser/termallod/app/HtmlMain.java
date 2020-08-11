@@ -42,14 +42,19 @@ public class HtmlMain implements SparqlEndpoint {
     public HtmlMain(String[] args) {
          parameter = new Parameter(args);
     }
-
-    public static void main(String[] args) throws ParserConfigurationException, SAXException, Exception {
-        HtmlMain HtmlMain = new HtmlMain(args);
-        HtmlMain.html(args);
+    
+     public HtmlMain(String[] args,String type) {
+         parameter = new Parameter(args,type);
     }
 
-    public String html(String[] args) throws Exception {
-        parameter = new Parameter(args);
+
+    public static void main(String[] args) throws ParserConfigurationException, SAXException, Exception {
+        HtmlMain HtmlMain = new HtmlMain(args,"link");
+        HtmlMain.html();
+    }
+
+    public String html() throws Exception {
+        //parameter = new Parameter(args);
 
         //String myTermTableName = "myTerminology";
         /*String myTermSparqlEndpoint = null, list = null;
@@ -105,42 +110,39 @@ public class HtmlMain implements SparqlEndpoint {
         
         
         else if (parameter.getHtmltype().contains(Parameter.link)) {
-            System.out.println("inside into term matching!!!!!!!!!!!!");
-            String insertFile =  "/tmp/server/uploads/insert.db";
-            
-            //String insertFile = "/tmp/server/uploads/link.json";
-            /*Termbase myTerminology = curlSparqlQuery.findListOfTerms(parameter.getMyTermSparqlEndpoint(), query_writtenRep, myTermSparqlEndpoint);
-            CreateAlphabetFiles alphabetFiles = new CreateAlphabetFiles(parameter.getLanguageInfo(), myTerminology);
-            FileRelatedUtils.writeFile(alphabetFiles.getLangTerms(), parameter.getINPUT_PATH());*/
-            
-            /*Matching mattchTerminologies = new Matching(parameter.getINPUT_PATH(), parameter.getOtherTermSparqlEndpoint(), parameter.getLocalLangJson(), parameter.getOtherTermTableName());
+            System.out.println("inside into term matching!!!!!!!!!!!!");                   
+            Matching mattchTerminologies = new Matching(parameter.getINPUT_PATH(), parameter.getOtherTermSparqlEndpoint(), parameter.getLocalLangJson(), parameter.getOtherTermTableName());
 
             for (String key : mattchTerminologies.getMatchedTermsInto().keySet()) {
+                System.out.println("key:"+key);
                 Set<TermDetail> matchedTerms = mattchTerminologies.getMatchedTermsInto().get(key);
                 for (TermDetail termDetail : matchedTerms) {
-                    System.out.println(termDetail);
+                    String term = termDetail.getTermDecrpt();
                     String localTermUrl = termDetail.getTermUrl();
                     String remoteTermUrl = termDetail.getTermLinks().get("otherTerminology");
+                    System.out.println("!!!!!!!!!!!localTermUrl:"+localTermUrl);
+                    System.out.println("!!!!!!!!!!!remoteTermUrl:"+remoteTermUrl);
+                    System.out.println("!!!!!!!!!!!!term:"+term);
                     String sparqlEnd = "SPARQL INSERT DATA {\n"
                             + "GRAPH <http://tbx2rdf.lider-project.eu/> {\n"
                             + "<" + localTermUrl + "> <http://www.w3.org/ns/lemon/ontolex#sameAs> <" + remoteTermUrl + ">\n"
                             + "} };";
-                    System.out.println(sparqlEnd);              
-                    writeINFile(insertFile,termDetail);
+                    System.out.println("!!!!!!!!!!!sparqlEnd!!!!!!!!!!!!!"+sparqlEnd);
+                    writeSparqlToFile(parameter.getInsertFile(),sparqlEnd);
                 }
-            }*/
+            }
              /* String term="hole";
              String localTermUrl = "http://tbx2rdf.lider-project.eu/data/YourNameSpace/hole-EN";
              String remoteTermUrl ="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/hole-EN";
-             writeINFile(insertFile,term,localTermUrl,remoteTermUrl);*/
+             writeSparqlToFile(insertFile,term,localTermUrl,remoteTermUrl);*/
              
-             String localTermUrl="http://tbx2rdf.lider-project.eu/data/YourNameSpace/hole-EN";
+             /*String localTermUrl="http://tbx2rdf.lider-project.eu/data/YourNameSpace/hole-EN";
              String remoteTermUrl="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/hole-EN";
              String sparqlEnd = "SPARQL INSERT DATA {\n"
                             + "GRAPH <http://tbx2rdf.lider-project.eu/> {\n"
                             + "<" + localTermUrl + "> <http://www.w3.org/ns/lemon/ontolex#sameAs> <" + remoteTermUrl + ">\n"
                             + "} };";
-              writeINFile(insertFile, sparqlEnd);
+              writeSparqlToFile(parameter.getInsertFile(), sparqlEnd);*/
              return Parameter.link;
         }
 
@@ -210,7 +212,7 @@ public class HtmlMain implements SparqlEndpoint {
             }*/
     //String url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/hole-EN";
     //String term="hole";
-    private void writeINFile(String file, String sparqlEnd) {
+    private void writeSparqlToFile(String file, String sparqlEnd) {
         FileWriter fileWriter;
         try {
             fileWriter = new FileWriter(file, true);

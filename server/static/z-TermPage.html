@@ -9,65 +9,92 @@
         <link href="./static/css/interface.css" rel="stylesheet" type="text/css" />
         <link href="./static/css/oxford.css" rel="stylesheet" type="text/css" />
         <link href="./static/css/responsive.css" rel="stylesheet" type="text/css" />
-        
-
         <style>
-#termDetail {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
+table, td, th {
+  border:2px solid #0076BF;
+  margin:10px;
+  text-align:left;  
+}
+
+table {
+   color:#0076BF;
+   margin: -10px 0px -10px 0px;
+   border-spacing: 10px;
+   empty-cells:show;
+   width:90%;
+}
+
+th {
+  height: 50px;
+  color: darkblue;
+}
+
+h3   
+{color: #0000A0;
+}
+
+{
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px Arial;  
+}
+
+/*the container must be positioned relative:*/
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+
+input[type=text] {
+  background-color: #f1f1f1;
   width: 100%;
 }
 
-#termDetail td, #termDetail th {
-  border: 1px solid #ddd;
-  padding: 8px;
-  font-size: 15px;
-  border: 1px solid black;
-  width: 150px;
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+  cursor: pointer;
 }
 
-#termDetail tr:nth-child(even){background-color: #f2f2f2;}
-
-#termDetail tr:hover {background-color: gray;}
-
-#termDetail th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: royalblue;
-  color: white;
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
 }
-        </style>
 
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
 
-        <style>
-       #termLink {
-         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-         border-collapse: collapse;
-         width: 100%;
-       }
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
 
-       #termLink td, #termLink th {
-         border: 1px solid #ddd;
-         padding: 8px;
-         font-size: 15px;
-         border: 1px solid black;
-         width: 150px;
-       }
-
-       #termLink tr:nth-child(even){background-color: #f2f2f2;}
-
-       #termLink tr:hover {background-color: gray;}
-
-       #termLink th {
-         padding-top: 12px;
-         padding-bottom: 12px;
-         text-align: left;
-         background-color: mediumseagreen;
-         color: white;
-       }
-        </style>      
-      
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+</style>  
         
     </head>
 

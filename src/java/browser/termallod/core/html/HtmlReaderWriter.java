@@ -72,7 +72,7 @@ public class HtmlReaderWriter {
         this.outputFile = outputFile;
         try {
            if (!outputFile.getName().contains(".html")) {
-                System.out.println("Cannot process the File" + outputFile);
+                //System.out.println("Cannot process the File" + outputFile);
             } else {
                if(outputDocument!=null){
                    FileUtils.writeStringToFile(outputFile, outputDocument.outerHtml(), "UTF-8"); 

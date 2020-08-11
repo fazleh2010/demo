@@ -18,6 +18,7 @@ const app = express();
 const local_sparql_endpoint = "http://localhost:8890/sparql";
 const htmlDir = "/tmp/server/uploads/browser/";
 const templateDir = "/tmp/server/static/";
+//const templateDir = "/tmp/src/java/resources/data/template/";
 const inputDir = "/tmp/";
 const listOfTerms="ListOfTerms";
 const termDetail="TermPage";

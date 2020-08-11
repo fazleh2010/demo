@@ -117,7 +117,7 @@ async function dolinking(req, res, next) {
 
            var localLangJson = JSON.stringify(local_languages);
            const cmdExec = "java";
-           const cmdArgs = ["-Xms512M", "-Xmx20G", "-jar","/tmp/target/tbx2rdf-0.4.jar","link" ,inputDir,localLangJson,remote_sparql_endpoint];
+           const cmdArgs = ["-Xms512M", "-Xmx20G", "-jar","/tmp/target/tbx2rdf-0.4.jar","link" ,inputDir,localLangJson,remote_sparql_endpoint,insert_file];
            const execOptions = {cwd: "/tmp"}; //, stdout: process.stderr, stderr: process.stderr};
 
            try {
