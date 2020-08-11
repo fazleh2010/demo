@@ -59,6 +59,20 @@ public class Main {
      */
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException {
         PropertyConfigurator.configure("log4j.properties");
+        
+        String result="";
+          String type = args[0];                                           
+        if (type.contains("html")||type.contains("link")) {
+            HtmlMain HtmlMain = new HtmlMain(args);
+            try {
+                result= HtmlMain.html(args);
+            } catch (Exception ex) {
+                java.util.logging.Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println(result);
+            return;
+        } 
+        
 
         boolean ok = parseParams(args);
         if (!ok) {
@@ -92,16 +106,16 @@ public class Main {
             return false;
         }
         
-        String type = args[0];                                           
-        if(type.contains("html")){
-            HtmlMain HtmlMain=new HtmlMain();
+       /* String type = args[0];                                           
+        if (type.contains("html")||type.contains("link")) {
+            HtmlMain HtmlMain = new HtmlMain(args);
             try {
                 return HtmlMain.html(args);
             } catch (Exception ex) {
                 java.util.logging.Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 return false;
             }
-        }
+        } */
         
         
         //First argument, input file

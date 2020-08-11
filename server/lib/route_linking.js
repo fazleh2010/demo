@@ -6,6 +6,10 @@ const fsp = require('fs').promises;
 const streamExec = require("./streamexec");
 const mstatus = require("./mstatus");
 const sparql_utils = require("./sparql_utils")
+const inputDir = "/tmp/";
+const default_graph = "http://tbx2rdf.lider-project.eu/";
+const insert_file = "/tmp/server/uploads/insert.db";
+
 
 module.exports = exports = function(app) {
 
@@ -77,36 +81,100 @@ async function isqlExecute(filename) {
 	}
 }
 
-const default_graph = "http://tbx2rdf.lider-project.eu/"; 
 
 async function insert_match(local_term, remote_term) {
-
-    const sparql_insert = `SPARQL INSERT DATA {
-GRAPH <http://tbx2rdf.lider-project.eu/> {
-<${local_term.iri}> <http://www.w3.org/ns/lemon/ontolex#sameAs> <${remote_term.iri}>
-} };
-`
-
-    const insert_file = "/tmp/server/uploads/insert.db";
-    await fsp.writeFile(insert_file, sparql_insert);
-
-    console.log("insert statement", !!sparql_insert);
+    console.log("insert statement");
     const insert_result = await isqlExecute(insert_file);
     console.log("insert result", !!insert_result);
 }
 
-async function perform_matching(local_terms, remote_terms) {
+async function dolinking(req, res, next) {
+	
+	try {
+        let linking_results = {};
+        linking_results.action = 'link';
+        linking_results.error = null;
+         
+        mstatus.update("linking", {
+            "status": "starting"
+        });
+
+        let local_sparql_endpoint = "http://localhost:8890/sparql";
+        let remote_sparql_endpoint = req.body.endpoint || null;
+        if (!remote_sparql_endpoint) {
+            linking_results.error = 'endpoint argument missing in request';
+        } else {
+              
+		let local_languages = sparql_utils.sparql_result(await sparql_utils.performSPARQL("SELECT ?language, COUNT(?entry) AS ?entrycount WHERE { ?language rdf:type ontolex:Lexicon .  ?language ontolex:entry ?entry } GROUP BY ?language"));
+               console.log("local_languages!!!!!!:",local_languages);
+
+            mstatus.update("linking", {
+                "status": "matching",
+                "languages": linking_results.languages,
+                "matches": 0
+            });
+
+
+           var localLangJson = JSON.stringify(local_languages);
+           const cmdExec = "java";
+           const cmdArgs = ["-Xms512M", "-Xmx20G", "-jar","/tmp/target/tbx2rdf-0.4.jar","link" ,inputDir,localLangJson,remote_sparql_endpoint];
+           const execOptions = {cwd: "/tmp"}; //, stdout: process.stderr, stderr: process.stderr};
+
+           try {
+            result = await streamExec("tbx2rdf", cmdExec, cmdArgs, execOptions);
+            console.log("result:",result); 
+	    await insert_match("localTerm", "remoteTerm");
+	    
+            console.log("!!!!!!!!!!!!!!!!!!!!!!!!insert done!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+              if (result.code != 0) {
+                 throw Error("exit code != 0");
+                      return; 
+                   }
+                else
+                   {
+                    console.log("linking works fine:",result);
+                   }
+
+            if (result.stdcache.stdout) { data.stdout = result.stdcache.stdout; }
+            if (result.stdcache.stderr) { data.stderr = result.stdcache.stderr; }
+            } catch (errconv) {
+             console.log("java -jar does not work!!"+errconv);
+            
+            }
+            mstatus.update("linking", {
+                "status": "complete"
+            });
+        }
+    } catch (e) {
+	    console.log("error in status field!!!");
+        mstatus.update("linking", {
+            "status": "error",
+            "error": e
+        });
+
+        return next(e);
+    }
+}
+
+app.post("/link", dolinking);
+app.put("/link", dolinking);
+
+
+	           // const linkInfoJson  ='{"localTerm":"hole","localUrl":"http://tbx2rdf.lider-project.eu/data/YourNameSpace/hole-EN","remoteTerm":"hole","remoteUrl":"http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/hole-EN"}';
+
+
+            /*linking_results.languages = {
+                "local": local_languages,
+                "remote": remote_languages
+            }*/
+
+
+/*async function perform_matching(local_terms, remote_terms) {
     console.log("performing matching");
     console.log("\tlocal languages:", Object.keys(local_terms).length);
     console.log("\tremote languages:", Object.keys(remote_terms).length);
 
     let total_matches = 0;
-
-	                //console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                        //console.log("local_term: ",local_terms);
-                        //console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                        //console.log("remote_term: ",remote_terms);
-                        //console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
     for (let [local_lang, local_lang_terms] of Object.entries(local_terms)) {
         for (let [remote_lang, remote_lang_terms] of Object.entries(remote_terms)) {
@@ -122,10 +190,6 @@ async function perform_matching(local_terms, remote_terms) {
                 for (let remote_i = 0; remote_i < remote_termcount; remote_i++) {
                     let local_term = local_lang_terms[local_i];
                     let remote_term = remote_lang_terms[remote_i];
-			//console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-			//console.log("local_term: ",local_term);
-                        //console.log("remote_term: ",remote_term);
-		        //console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                     if (normalize_for_linking(local_term.rep) === normalize_for_linking(remote_term.rep)) {
 			  console.log("local_term: ",local_term);
                           console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -152,138 +216,9 @@ async function perform_matching(local_terms, remote_terms) {
 
         }
     }
-}
-
-async function dolinking(req, res, next) {
-	
-	try {
-        let linking_results = {};
-        linking_results.action = 'link';
-        linking_results.error = null;
-            
-        mstatus.update("linking", {
-            "status": "starting"
-        });
-
-        let local_sparql_endpoint = "http://localhost:8890/sparql";
-		//console.log("local sparql endpoint:",local_sparql_endpoint);
-        let remote_sparql_endpoint = req.body.endpoint || null;
-		 // console.log("remote sparql endpoint:",remote_sparql_endpoint);
-        if (!remote_sparql_endpoint) {
-            linking_results.error = 'endpoint argument missing in request';
-        } else {
-              
-		let local_languages = sparql_utils.sparql_result(await sparql_utils.performSPARQL("SELECT ?language, COUNT(?entry) AS ?entrycount WHERE { ?language rdf:type ontolex:Lexicon .  ?language ontolex:entry ?entry } GROUP BY ?language"));
-               console.log("local_languages!!!!!!:",local_languages);
-
-		let remote_languages = sparql_utils.sparql_result(await sparql_utils.performSPARQL("SELECT ?language, COUNT(?entry) AS ?entrycount WHERE { ?language rdf:type ontolex:Lexicon .  ?language ontolex:entry ?entry } GROUP BY ?language", remote_sparql_endpoint));
-
-	       //console.log("remote_languages!!!!!!:",remote_languages);
-            linking_results.languages = {
-                "local": local_languages,
-                "remote": remote_languages
-            }
-            
-            mstatus.update("linking", {
-                "status": "matching",
-                "languages": linking_results.languages,
-                "matches": 0
-            });
-
-            const term_query = `PREFIX cc:    <http://creativecommons.org/ns#> 
-PREFIX void:  <http://rdfs.org/ns/void#> 
-PREFIX skos:  <http://www.w3.org/2004/02/skos/core#> 
-PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#> 
-PREFIX tbx:   <http://tbx2rdf.lider-project.eu/tbx#> 
-PREFIX decomp: <http://www.w3.org/ns/lemon/decomp#> 
-PREFIX dct:   <http://purl.org/dc/terms/> 
-PREFIX rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
-PREFIX ontolex: <http://www.w3.org/ns/lemon/ontolex#> 
-PREFIX ldr:   <http://purl.oclc.org/NET/ldr/ns#> 
-PREFIX odrl:  <http://www.w3.org/ns/odrl/2/> 
-PREFIX dcat:  <http://www.w3.org/ns/dcat#> 
-PREFIX prov:  <http://www.w3.org/ns/prov#> 
-
-SELECT ?entity ?rep ?lang from <http://tbx2rdf.lider-project.eu/> WHERE { 
-    ?entity ontolex:canonicalForm ?canform .
-    ?canform ontolex:writtenRep ?rep .
-    ?lang rdf:type ontolex:Lexicon .
-    ?lang ontolex:entry ?entity .
-}`;
-
-            var localLangJson = JSON.stringify(local_languages);
-            console.log("remote_languages!!!!!!:",localLangJson);
+}*/
 
             
-            const local_terms = termlist(sparql_utils.sparql_result(await sparql_utils.performSPARQL(term_query)));
-            const remote_terms = termlist(sparql_utils.sparql_result(await sparql_utils.performSPARQL(term_query,remote_sparql_endpoint)));
-
-            linking_results.local_terms = local_terms;
-            linking_results.remote_terms = remote_terms;
-
-
-            mstatus.update("linking", {
-                "local_terms": !!local_terms,
-                "remote_terms": !!remote_terms,
-                "languages": linking_results.languages,
-                "status": "matching",
-                "matches": 0
-            });
-
- //console.log("linking_results.local_terms:",linking_results.local_terms);
- //console.log("linking_results.remote_terms:",linking_results.remote_terms);
-
-
-
-            res.redirect("/status.json");
-            //await perform_matching(local_terms, remote_terms);
-
-const cmdExec = "java";
-const cmdArgs = ["-Xms512M", "-Xmx20G", "-jar","/tmp/target/tbx2rdf-0.4.jar","link" ,inputDir,localLangJson,remote_sparql_endpoint];
-const execOptions = {cwd: "/tmp"}; //, stdout: process.stderr, stderr: process.stderr};
-
-        try {
-            result = await streamExec("tbx2rdf", cmdExec, cmdArgs, execOptions);
-            console.log("result:",result);
-              if (result.code != 0) {
-                 throw Error("exit code != 0");
-                      return;
-                   }
-                else
-                   {
-                    console.log("linking works fine:",result);
-                   }
-
-            if (result.stdcache.stdout) { data.stdout = result.stdcache.stdout; }
-            if (result.stdcache.stderr) { data.stderr = result.stdcache.stderr; }
-            } catch (errconv) {
-             console.log("java -jar does not work!!"+errconv);
-            
-            }
-
-
-
-
-
-            mstatus.update("linking", {
-                "status": "complete"
-            });
-        }
-    } catch (e) {
-	    console.log("error in status field!!!");
-        mstatus.update("linking", {
-            "status": "error",
-            "error": e
-        });
-
-        return next(e);
-    }
-}
-
-app.post("/link", dolinking);
-app.put("/link", dolinking);
-
-
 
 }
 

@@ -23,11 +23,11 @@ import java.util.logging.Logger;
  */
 public class Parameter {
 
-    private String BASE_PATH = "src/java/resources/data/";
-    private String OUTPUT_PATH = BASE_PATH + "/output/";
-    private String INPUT_PATH = BASE_PATH + "/input/";
-    private String CONFIG_PATH = BASE_PATH + "/conf/";
-    private String TEMPLATE_PATH = BASE_PATH + "/template/";
+    public  String BASE_PATH = "src/java/resources/data/";
+    public  String OUTPUT_PATH = BASE_PATH + "/output/";
+    public  String INPUT_PATH = BASE_PATH + "/input/";
+    public  String CONFIG_PATH = BASE_PATH + "/conf/";
+    public  String TEMPLATE_PATH = BASE_PATH + "/template/";
     private LanguageManager languageInfo;
     private String myTermSparqlEndpoint = null, list = null;
     private String htmltype = null;
@@ -37,14 +37,14 @@ public class Parameter {
     private String matchedTermTable = "link";
     public static String ListOfTerms = "ListOfTerms";
     public static String TermPage = "TermPage";
-    public static String MatchTerms = "matchTerms";
+    public static String link = "matchTerms";
     private String termJson = "{\"term\":\"hole\","
             + "\"iri\":\"http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/hole-EN\","
             + "\"lang\":\"en\"}";
 
     private String localLangJson = "[{\"language\":{\"type\":\"uri\",\"value\":\"http://tbx2rdf.lider-project.eu/data/YourNameSpace/NL\"},\"entrycount\":{\"type\":\"typed-literal\",\"datatype\":\"http://www.w3.org/2001/XMLSchema#integer\",\"value\":\"186\"}},{\"language\":{\"type\":\"uri\",\"value\":\"http://tbx2rdf.lider-project.eu/data/YourNameSpace/EN\"},\"entrycount\":{\"type\":\"typed-literal\",\"datatype\":\"http://www.w3.org/2001/XMLSchema#integer\",\"value\":\"19\"}}]";
 
-    public Parameter(String args[]) {
+    /*public Parameter(String args[]) {
         if (args.length > 1) {
             BASE_PATH = args[1] + BASE_PATH;
         } else {
@@ -61,63 +61,121 @@ public class Parameter {
         } else {
             System.err.println("otherTermSparqlEndpoint " + otherTermSparqlEndpoint);
         }
-    }
+    }*/
 
-    public Parameter(String args[], String htmlType) {
+    public Parameter(String args[]) {
 
-        if (args.length > 1&& args[0].contains("link")) {
+        if (args.length > 1&&args[0].contains("link")) {
             this.setParameter(args);
-        }
-       
-        if (args.length > 1) {
-            myTermSparqlEndpoint = args[1];
-            //System.out.println("SparqlEndpoint: " + myTermSparqlEndpoint);
         } else {
-            myTermSparqlEndpoint = endpoint_solar;
-            System.err.println("no sparql endpoint in arguments");
-        }
-        if (args.length > 2) {
-            OUTPUT_PATH = args[2];
-            //System.out.println("OUTPUT_PATH: " + OUTPUT_PATH);
-        } else {
-            System.err.println("no output folder in arguments");
 
-        }
-        if (args.length > 3) {
-            list = args[3];
-            //System.out.println("list of terms taken from node.js: " + list);
-        } else {
-        }
-        if (args.length > 4) {
-            list = args[4];
-            BASE_PATH = args[4] + BASE_PATH;
-            //System.out.println("BASE_PATH: " + BASE_PATH);
-        } else {
-        }
+            if (args.length > 1) {
+                myTermSparqlEndpoint = args[1];
+                //System.out.println("SparqlEndpoint: " + myTermSparqlEndpoint);
+            } else {
+                myTermSparqlEndpoint = endpoint_solar;
+                System.err.println("no sparql endpoint in arguments");
+            }
+            if (args.length > 2) {
+                OUTPUT_PATH = args[2];
+                //System.out.println("OUTPUT_PATH: " + OUTPUT_PATH);
+            } else {
+                System.err.println("no output folder in arguments");
 
-        if (args.length > 5) {
-            htmltype = args[5];
-            //System.out.println("htmltype: " + htmltype);
-        } else {
-            htmltype = htmlType;
-            //htmltype = ListOfTermPage;
-            //matchTerms
-        }
-        if (args.length > 6) {
-            TEMPLATE_PATH = args[6];
-            //System.out.println("TEMPLATE_PATH: " + TEMPLATE_PATH);
-        } else {
-            TEMPLATE_PATH = BASE_PATH + "template/";
-        }
-        if (args.length > 7) {
-            if (htmltype.contains(TermPage)) {
-                termJson = args[7];
-            } else if (htmltype.contains(MatchTerms)) {
-                otherTermSparqlEndpoint = args[7];
-                System.out.println("otherTermSparqlEndpoint: " + otherTermSparqlEndpoint);
+            }
+            if (args.length > 3) {
+                list = args[3];
+                //System.out.println("list of terms taken from node.js: " + list);
+            } else {
+            }
+            if (args.length > 4) {
+                list = args[4];
+                BASE_PATH = args[4] + BASE_PATH;
+                System.out.println("BASE_PATH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!: " + BASE_PATH);
+            } else {
+            }
+
+            if (args.length > 5) {
+                htmltype = args[5];
+                //System.out.println("htmltype: " + htmltype);
+            } else {
+                htmltype = ListOfTerms;
+                //htmltype = ListOfTermPage;
+                //matchTerms
+            }
+            if (args.length > 6) {
+                TEMPLATE_PATH = args[6];
+                //System.out.println("TEMPLATE_PATH: " + TEMPLATE_PATH);
+            } else {
+                TEMPLATE_PATH = BASE_PATH + "template/";
+            }
+            if (args.length > 7) {
+                if (htmltype.contains(TermPage)) {
+                    termJson = args[7];
+                }
             }
         }
-       
+
+        INPUT_PATH = BASE_PATH + "input/";
+        try {
+            languageInfo = new LanguageAlphabetPro(new File(BASE_PATH + "/conf/" + "language.conf"));
+        } catch (IOException ex) {
+            Logger.getLogger(Parameter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public Parameter(String args[],String htmlType) {
+
+        if (args[0].contains("link")) {
+            this.setParameter(args);
+        } else {
+
+            if (args.length > 1) {
+                myTermSparqlEndpoint = args[1];
+                //System.out.println("SparqlEndpoint: " + myTermSparqlEndpoint);
+            } else {
+                myTermSparqlEndpoint = endpoint_solar;
+                System.err.println("no sparql endpoint in arguments");
+            }
+            if (args.length > 2) {
+                OUTPUT_PATH = args[2];
+                //System.out.println("OUTPUT_PATH: " + OUTPUT_PATH);
+            } else {
+                System.err.println("no output folder in arguments");
+
+            }
+            if (args.length > 3) {
+                list = args[3];
+                //System.out.println("list of terms taken from node.js: " + list);
+            } else {
+            }
+            if (args.length > 4) {
+                list = args[4];
+                BASE_PATH = args[4] + BASE_PATH;
+                //System.out.println("BASE_PATH: " + BASE_PATH);
+            } else {
+            }
+
+            if (args.length > 5) {
+                htmltype = args[5];
+                //System.out.println("htmltype: " + htmltype);
+            } else {
+                htmltype = htmlType;
+                //htmltype = ListOfTermPage;
+                //matchTerms
+            }
+            if (args.length > 6) {
+                TEMPLATE_PATH = args[6];
+                //System.out.println("TEMPLATE_PATH: " + TEMPLATE_PATH);
+            } else {
+                TEMPLATE_PATH = BASE_PATH + "template/";
+            }
+            if (args.length > 7) {
+                if (htmltype.contains(TermPage)) {
+                    termJson = args[7];
+                }
+            }
+        }
 
         INPUT_PATH = BASE_PATH + "input/";
         try {
@@ -140,6 +198,11 @@ public class Parameter {
             otherTermSparqlEndpoint = args[3];
             System.out.println("otherTermSparqlEndpoint: " + otherTermSparqlEndpoint);
         }
+        /*if (args.length > 4) {
+            this.myTermSparqlEndpoint = args[4];
+            System.out.println("myTermSparqlEndpoint: " + myTermSparqlEndpoint);
+        }*/
+        htmltype = link;
     }
 
     public TermDetail getTermDetail() {
@@ -217,11 +280,19 @@ public class Parameter {
     }
 
     public String getMatchTerms() {
-        return MatchTerms;
+        return link;
     }
 
     public String getOtherTermSparqlEndpoint() {
         return otherTermSparqlEndpoint;
+    }
+
+    public String getTermJson() {
+        return termJson;
+    }
+
+    public String getLocalLangJson() {
+        return localLangJson;
     }
 
 }

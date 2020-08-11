@@ -29,7 +29,7 @@ import java.util.logging.Logger;
  */
 public class Matching {
 
-    private String terminologyName = "otherTerminology";
+    private static String terminologyName = "otherTerminology";
     private Map<String, Set<TermDetail>> matchedTermsInto = new TreeMap<String, Set<TermDetail>>();
 
     public Matching(String INPUT_PATH, String otherTermSparqlEndpoint, String localLanguages, String otherTermTableName) throws IOException, Exception {
@@ -40,6 +40,8 @@ public class Matching {
             RetrieveAlphabetInfo retrieveAlphabetInfo = new RetrieveAlphabetInfo(INPUT_PATH, langCode, false);
             Termbase otherTerminology = curlSparqlQuery.findListOfTerms(otherTermSparqlEndpoint, query_writtenRep, otherTermTableName);
             Map<String, String> localTermUrls = retrieveAlphabetInfo.getAllTerms();
+            System.out.println("localTermUrls:"+localTermUrls);
+             System.out.println(" otherTerminology.getTerms().keySet():"+ otherTerminology.getTerms().keySet());
             Set<String> matchedTerms = match(localTermUrls.keySet(), otherTerminology.getTerms().keySet());
             Set<TermDetail> termDetails = new HashSet<TermDetail>();
             for (String term : matchedTerms) {
