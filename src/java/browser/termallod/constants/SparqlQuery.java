@@ -61,7 +61,7 @@ public class SparqlQuery implements SparqlEndpoint {
                 + "PREFIX dcat:  <http://www.w3.org/ns/dcat#> \n"
                 + "PREFIX prov:  <http://www.w3.org/ns/prov#> \n"
                 + "\n"
-                + "SELECT * from <http://tbx2rdf.lider-project.eu/> WHERE { \n"
+                + "SELECT ?exactmatch from <http://tbx2rdf.lider-project.eu/> WHERE { \n"
                 + "    ?s ontolex:entry ?entry .\n"
                 + "    ?entry ontolex:sameAs ?exactmatch .\n"
                 + "    FILTER (?entry = <"+url+">)\n"

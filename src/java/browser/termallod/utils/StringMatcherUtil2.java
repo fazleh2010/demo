@@ -6,6 +6,10 @@
 package browser.termallod.utils;
 
 import static browser.termallod.core.termbase.TermDetail.HASH_SYMBOLE;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,7 +22,9 @@ public class StringMatcherUtil2 {
 
     public static void main(String args[]) {
         String language = getLanguage("http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/fatigue-EN");
-        //System.out.println(language);
+        System.out.println(language);
+        String terminologyName=getTerminologyName("http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/hole-EN");
+        System.out.println(terminologyName);
     }
 
     public static String encripted(String term) {
@@ -66,6 +72,19 @@ public class StringMatcherUtil2 {
            language = lastString;
             
         return language.toLowerCase();
+    }
+
+    public static String getTerminologyName(String url) {
+        int index = url.lastIndexOf('/');
+        String lastString = url.substring(index + 1);
+        try {
+            url = new URI(url).getPath().replace(lastString, "");
+            String info[] = url.split("/");
+            return info[info.length - 1];
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(StringMatcherUtil2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
 }

@@ -97,13 +97,6 @@ public class HtmlMain implements SparqlEndpoint {
         } else if (parameter.getHtmltype().contains(Parameter.TermPage)) {
             String termDetailSparql = SparqlQuery.getTermDetailSpqlByTerm(parameter.getTermDetail());
             TermDetail termDetail = curlSparqlQuery.findTermDetail(myTermSparqlEndpoint, termDetailSparql);
-            String termLinkSparql = SparqlQuery.getTermLinks(termDetail.getTermUrl());
-            System.out.println(termLinkSparql);
-            curlSparqlQuery.findTermDetail(myTermSparqlEndpoint, termLinkSparql);
-            /* made up links..
-            Map<String, String> termLinks=new HashMap<String, String>();
-            termLinks.put("solar", "http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/hole-EN");
-            termDetail.setTermLinks(termLinks);*/
             htmlCreator.createHtmlTermPage(termDetail, parameter.getHtmltype());
              return Parameter.TermPage;
         } 

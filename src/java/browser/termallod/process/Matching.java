@@ -29,7 +29,7 @@ import java.util.logging.Logger;
  */
 public class Matching {
 
-    private static String terminologyName = "otherTerminology";
+    public static String terminologyName = "otherTerminology";
     private Map<String, Set<TermDetail>> matchedTermsInto = new TreeMap<String, Set<TermDetail>>();
 
     public Matching(String INPUT_PATH, String otherTermSparqlEndpoint, String localLanguages, String otherTermTableName) throws IOException, Exception {
@@ -87,7 +87,7 @@ public class Matching {
         return Sets.intersection(myTerms, otherTerms);
     }
 
-    public String getTerminologyName() {
+    public static String getTerminologyName() {
         return terminologyName;
     }
 

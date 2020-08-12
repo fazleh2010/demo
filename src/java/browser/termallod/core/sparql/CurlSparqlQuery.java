@@ -5,10 +5,13 @@
  */
 package browser.termallod.core.sparql;
 
+import browser.termallod.app.HtmlMain;
 import static browser.termallod.constants.SparqlEndpoint.iate_query1;
+import browser.termallod.constants.SparqlQuery;
 import browser.termallod.core.termbase.TermDetail;
 import browser.termallod.core.termbase.Termbase;
 import browser.termallod.utils.FileUrlUtils;
+import browser.termallod.utils.StringMatcherUtil2;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -39,21 +42,24 @@ import org.w3c.dom.NamedNodeMap;
  */
 public class CurlSparqlQuery {
 
-    public CurlSparqlQuery() {
-    }
-
     public Termbase findListOfTerms(String endpoint, String query, String termBaseName) throws Exception {
         String resultSparql = executeSparqlQuery(endpoint, query);
         Termbase termbase = new Termbase(termBaseName, parseResult(resultSparql));
         return termbase;
     }
 
-    public TermDetail findTermDetail(String endpoint, String query) throws Exception {
-        String resultSparql = executeSparqlQuery(endpoint, query);
-        //System.out.println("results:"+resultSparql);
-        TermDetail termDetail = this.parseResultsforTermDetail(resultSparql);
-        return termDetail;
+    public TermDetail findTermDetail(String endpoint, String sparqlTermDetail) throws Exception {
+        String result = executeSparqlQuery(endpoint, sparqlTermDetail);
+        TermDetail detail = this.parseResults(result,1);    
+        
+        String termLinkSparql = SparqlQuery.getTermLinks(detail.getTermUrl());
+        result =this.executeSparqlQuery(endpoint, termLinkSparql);
+        TermDetail link = this.parseResults(result,2);
+        detail.setTermLinks(link.getTermLinks());
+        
+        return detail;
     }
+
 
     private String executeSparqlQuery(String endpoint, String query) {
         String result = null, resultUnicode = null, command = null;
@@ -176,7 +182,7 @@ public class CurlSparqlQuery {
         return allkeysValues;
     }
 
-    private TermDetail parseResultsforTermDetail(String xmlStr) {
+    private TermDetail parseResults(String xmlStr,Integer index) {
         Document doc = convertStringToXMLDocument(xmlStr);
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = null;
@@ -191,7 +197,12 @@ public class CurlSparqlQuery {
                     Node childNode = childList.item(j);
                     if ("result".equals(childNode.getNodeName())) {
                         String string = childNode.getTextContent().trim();
-                        return this.parseResultForTermDetail(string);
+                        if (index == 1) {
+                            return this.forTermDetail(string);
+                        } else if (index == 2) {
+                            return this.forTermLink(string);
+                        }
+
                     }
 
                 }
@@ -204,7 +215,7 @@ public class CurlSparqlQuery {
         return new TermDetail();
     }
 
-    private TermDetail parseResultForTermDetail(String string) {
+    private TermDetail forTermDetail(String string) {
         String[] infos = string.split("\n");
         List<String> wordList = Arrays.asList(infos);
         Integer index = 0, termIndex = 1, urlIndex = 2;
@@ -220,4 +231,40 @@ public class CurlSparqlQuery {
         return new TermDetail(url, null, term, true);
     }
 
+    private TermDetail forTermLink(String string) {
+        String terminologyName = null, url = null;
+        TermDetail termDetail = new TermDetail();
+        Map<String, String> termLInks = new HashMap<String, String>();
+        String[] infos = string.split("\n");
+        List<String> wordList = Arrays.asList(infos);
+        if (wordList.isEmpty()) {
+            return termDetail;
+        } else {
+            for (String textContent : wordList) {
+                url = textContent;
+            }
+            terminologyName = StringMatcherUtil2.getTerminologyName(url);
+            termLInks.put(terminologyName, url);
+            System.out.println("!!!!!!!!!!!!termLInks!!!!!!!!!!!!!!!!!" + termLInks);
+            termDetail.setTermLinks(termLInks);
+        }
+        return termDetail;
+    }
+
+    public static void main(String[] args)  {
+        CurlSparqlQuery curlSparqlQuery=new CurlSparqlQuery();
+
+        String resultSparql = "<sparql xmlns=\"http://www.w3.org/2005/sparql-results#\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.w3.org/2001/sw/DataAccess/rf1/result2.xsd\">\n"
+                + "<head>\n"
+                + "<variable name=\"exactmatch\"/>\n"
+                + "</head>\n"
+                + "<results distinct=\"false\" ordered=\"true\">\n"
+                + "<result>\n"
+                + "<binding name=\"exactmatch\"><uri>http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/hole-EN</uri>\n"
+                + "</binding>\n"
+                + "</result>\n"
+                + "</results>\n"
+                + "</sparql>";
+        curlSparqlQuery.forTermLink(resultSparql);
+    }
 }
