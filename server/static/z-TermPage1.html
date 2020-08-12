@@ -2,7 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
     <head>
-	<title>PRÊT-À-LLOD task status</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="_csrf" content="5691811d-ef48-4a3b-9da6-d8e862f0d804" />
@@ -10,23 +9,13 @@
         <link href="./static/css/interface.css" rel="stylesheet" type="text/css" />
         <link href="./static/css/oxford.css" rel="stylesheet" type="text/css" />
         <link href="./static/css/responsive.css" rel="stylesheet" type="text/css" />
-	<meta charset="utf-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css"/>
-	<link href="https://fonts.googleapis.com/css?family=Raleway|Roboto+Slab|Ubuntu+Mono&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/css/autoComplete.min.css">
-	<link rel="stylesheet" href="./static/status.css" />
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js"></script>
-	<script src="./static/status.js"></script>
+        
 
-
-<style>
+        <style>
 #termDetail {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
-  
 }
 
 #termDetail td, #termDetail th {
@@ -34,6 +23,7 @@
   padding: 8px;
   font-size: 15px;
   border: 1px solid black;
+  width: 150px;
 }
 
 #termDetail tr:nth-child(even){background-color: #f2f2f2;}
@@ -41,18 +31,16 @@
 #termDetail tr:hover {background-color: gray;}
 
 #termDetail th {
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   text-align: left;
   background-color: royalblue;
   color: white;
-  column-width: 100%;
-
 }
-</style>
+        </style>
 
 
-<style>
+        <style>
        #termLink {
          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
          border-collapse: collapse;
@@ -72,13 +60,13 @@
        #termLink tr:hover {background-color: gray;}
 
        #termLink th {
-         padding-top: 5px;
-         padding-bottom: 5px;
+         padding-top: 12px;
+         padding-bottom: 12px;
          text-align: left;
          background-color: mediumseagreen;
          color: white;
        }
-</style>      
+        </style>      
       
         
     </head>
@@ -90,21 +78,12 @@
                 <div class="responsive_container responsive_display_on_smartphone">
                     <div class="menu_button"></div>
                 </div>
-
-      <div id="header">
-      <h1 class="tpl_service_name">Prêt-à-LLOD</h1>
-           <ul id="topnav">
-               <li><a class="btn btntopnav" href="http://localhost:8080/status?view=status">status</a></li>
-               <li><a class="btn btntopnav" onclick="goBack()">Back</a></li>
-           </ul>
-       </div>
-       <script>
-          function goBack() {
-          window.history.back();
-          }
-      </script>
-
-
+                <div class="nav responsive_container main_nav">
+                    <ul class="menu">
+                        <li><a href="http://scdemo.techfak.uni-bielefeld.de/termeallod/">Home</a></li>
+                        <li><a href="browser_en_A_B_1.html">Back</a></li>
+                    </ul>
+                </div>
             </div>
 
             <div id="ox-container">
@@ -206,7 +185,7 @@
 
                 </div>
             </div>
-           <footer>&copy; 2020 - <a href="http://www.pret-a-llod.eu/">PRÊT-À-LLOD - <span class="tpl_service_name">{{service_name}}</span></a></footer>
+
     </body>
 
 </html>

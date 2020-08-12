@@ -245,26 +245,9 @@ public class CurlSparqlQuery {
             }
             terminologyName = StringMatcherUtil2.getTerminologyName(url);
             termLInks.put(terminologyName, url);
-            System.out.println("!!!!!!!!!!!!termLInks!!!!!!!!!!!!!!!!!" + termLInks);
             termDetail.setTermLinks(termLInks);
         }
         return termDetail;
     }
 
-    public static void main(String[] args)  {
-        CurlSparqlQuery curlSparqlQuery=new CurlSparqlQuery();
-
-        String resultSparql = "<sparql xmlns=\"http://www.w3.org/2005/sparql-results#\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.w3.org/2001/sw/DataAccess/rf1/result2.xsd\">\n"
-                + "<head>\n"
-                + "<variable name=\"exactmatch\"/>\n"
-                + "</head>\n"
-                + "<results distinct=\"false\" ordered=\"true\">\n"
-                + "<result>\n"
-                + "<binding name=\"exactmatch\"><uri>http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/hole-EN</uri>\n"
-                + "</binding>\n"
-                + "</result>\n"
-                + "</results>\n"
-                + "</sparql>";
-        curlSparqlQuery.forTermLink(resultSparql);
-    }
 }
