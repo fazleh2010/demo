@@ -64,10 +64,21 @@ res.sendFile(htmlDir+page);
 
 
 app.get("/termPage", async (req, res, next) => {
+     //var termString=req.query.term;
+     //var url="url";
+     //var en=req.query.term.lang; 
+
 const linkInfo = JSON.parse(req.query.term);
+var local_term  = { term:linkInfo.term, iri:linkInfo.iri};
 console.log("term!!!!!!!!!!!!!!!!!!!: "+linkInfo.term);
 console.log("url!!!!!!!!!!!!!!!!!!!: " +linkInfo.iri);
 console.log("lang!!!!!!!!!!!!!!!!!!!: "+linkInfo.lang);
+    // var obj = { term:linkInfo.term, iri:linkInfo.iri, lang:en};
+    // var myJSON = JSON.stringify(obj);
+	
+//var myJSON={"iri":"http://tbx2rdf.lider-project.eu/data/YourNameSpace/hole-EN","lang":"en"};
+//var obj = { term:"hole", iri:"http://tbx2rdf.lider-project.eu/data/YourNameSpace/hole-EN",lang:"en"};
+//var myJSON = JSON.stringify(obj);
 
 const termlistResult ="";
 const cmdExec = "java";

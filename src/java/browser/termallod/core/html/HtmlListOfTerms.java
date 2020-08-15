@@ -108,7 +108,8 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
     }
 
     public void createTerms(Element body, List<String> terms, String alphebetPair, Integer emptyTerm, String htmlFileName, String lang) throws Exception {
-        Element divTerm = body.getElementsByClass("result-list1 wordlist-oxford3000 list-plain").get(0);
+        //Element divTerm = body.getElementsByClass("result-list1 wordlist-oxford3000 list-plain").get(0);
+        Element divTerm = body.getElementsByClass("termUrlList").get(0);
         Integer index = 0;
         for (String term : terms) {
             //System.out.println(term);
@@ -126,6 +127,7 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
     public String getTermLi(String term, String url, String lang) {
 
         //System.out.println("Term Original:"+term);
+        String searchTerm=null;
         term = StringMatcherUtil.decripted(term);
         term = term.toLowerCase().trim();
         // /api?paramA=valueA&paramB=valueB
@@ -133,7 +135,15 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         //String searchTerm = "termPage?term="+StringMatcherUtil.encripted(term) + "&" + "url="+url+ "&" +"lang="+lang;
         //searchTerm="term="+StringMatcherUtil.encripted(term) + "&" + "paramB="+url+"lang="+lang;
         //String searchTerm="termPage?term="+StringMatcherUtil.encripted(term)+"&url="+url+"&lang="+lang;
-        String searchTerm="termPage?term="+StringMatcherUtil.encripted(term);
+        //&latitude=12.12
+        //searchTerm="termPage?term="+StringMatcherUtil.encripted(term)+"&lang="+lang;
+        searchTerm= "termPage?term="+"{\"term\":\""+StringMatcherUtil.encripted(term)+"\","
+                                    + "\"iri\":\""+url+"\","
+                                    + "\"lang\":\""+lang+"\"}";
+        /*searchTerm="termPage?term="
+                   +"{\"term\":\""+StringMatcherUtil.encripted(term)
+                   +"{\"url\":\""+url
+                   +"\",\"lang\":\""+lang+"\"}";*/
         String title = "url=" + '"' + url + " definition" + '"';
         String a = "<a href=" + searchTerm + " " + title + ">" + term + "</a>";
         String li = "\n<li>" + a + "</li>\n";

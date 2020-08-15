@@ -5,11 +5,6 @@
 
 
                 <title>PRÊT-À-LLOD task status</title>
-                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-                <meta name='viewport' content='width=device-width, initial-scale=1' />
-                <meta name="_csrf" content="b40c2453-5c92-4fb8-8a48-9329d11c12e3"/>
-                <meta name="_csrf_header" content="X-CSRF-TOKEN"/>
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css"/>
@@ -19,28 +14,86 @@
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
                 <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js"></script>
 		<script src="./static/status.js"></script>
-                <link href="./static/css/interface.css" rel="stylesheet" type="text/css" />
-                <link href="./static/css/oxford.css" rel="stylesheet" type="text/css" />
-                <link href="./static/css/responsive.css" rel="stylesheet" type="text/css" /-->
 
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name='viewport' content='width=device-width, initial-scale=1' />
+      <meta name="_csrf" content="b40c2453-5c92-4fb8-8a48-9329d11c12e3"/>
+      <meta name="_csrf_header" content="X-CSRF-TOKEN"/>
+      <!--link href="./static/css/interface.css" rel="stylesheet" type="text/css" />
+      <link href="./static/css/oxford.css" rel="stylesheet" type="text/css" />
+      <link href="./static/css/responsive.css" rel="stylesheet" type="text/css" /-->
+
+      <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px Arial;  
+}
+
+/*the container must be positioned relative:*/
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+  cursor: pointer;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+      </style>
+      
       
    </head>
 
-<style>
-.side-selector__left {
-  background-color: #f2f2f2;
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  color:#0000A0; 
-  font-size: 20px;
-  font-color: #0000A0;
-  text-align: left;
-}
-
-
-</style>
-
 
    <body >
+
 
       <div id="ox-header" class="">
          <div class="responsive_row flush-below top">
@@ -51,7 +104,7 @@
 	    
        <div id="header">
            <h1 class="tpl_service_name">Prêt-à-LLOD</h1>
-           <ul id="topnav" class="statusmenu">
+           <ul id="topnav">
              <li><a class="btn btntopnav" href="http://localhost:8080/status?view=status">status</a></li>
              <li><a class="btn btntopnav" href="http://localhost:8080/describe">browser</a></li>
              <li><a class="btn btntopnav" href="http://localhost:8080/status?view=sparql">sparql</a></li>
@@ -149,7 +202,7 @@
                               </div>
                            </div>
                            <div id="entrylist1">
-                              <ul class="termUrlList">
+                              <ul class="result-list1 wordlist-oxford3000 list-plain">
                               </ul>
                            </div>
                            <div id="paging" class="wl-nav nav-top hideoverflow">
@@ -167,6 +220,20 @@
             </div>
          </div>
       </div>
+      <!--div id="ox-footer" class="">
+      <div class="responsive_row flush-below top">
+         <div class="responsive_container responsive_display_on_smartphone">
+         <div class="menu_button"></div>
+         </div>
+         <div class="nav responsive_container main_nav">
+            <!ul class="menu">
+                <li><a  href="http://localhost:8080/status?view=status">status</a></li>
+                  <li><a  href="http://localhost:8080/describe">browser</a></li>
+                  <li><a  href="http://localhost:8080/status?view=sparql">sparql</a></li>
+                  <li><a  href="http://localhost:8080/status?view=search">terms</a></li>
+            </ul>
+         </div>
+      </div-->
       <footer>&copy; 2020 - <a href="http://www.pret-a-llod.eu/">PRÊT-À-LLOD - <span class="tpl_service_name">{{service_name}}</span></a></footer>
    </body>
 </html>

@@ -92,7 +92,7 @@ public class Parameter {
             if (args.length > 4) {
                 list = args[4];
                 BASE_PATH = args[4] + BASE_PATH;
-                System.out.println("BASE_PATH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!: " + BASE_PATH);
+                //System.out.println("BASE_PATH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!: " + BASE_PATH);
             } else {
             }
 
@@ -154,7 +154,7 @@ public class Parameter {
             if (args.length > 4) {
                 list = args[4];
                 BASE_PATH = args[4] + BASE_PATH;
-                System.out.println("BASE_PATH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!: " + BASE_PATH);
+                //System.out.println("BASE_PATH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!: " + BASE_PATH);
             } else {
             }
 

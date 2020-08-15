@@ -25,6 +25,8 @@ public class StringMatcherUtil2 {
         System.out.println(language);
         String terminologyName=getTerminologyName("http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/hole-EN");
         System.out.println(terminologyName);
+        String searchTerm="termPage?term="+StringMatcherUtil.encripted("anderson,_b.l.")+"&lang="+"en";
+        System.out.println(searchTerm);
     }
 
     public static String encripted(String term) {
