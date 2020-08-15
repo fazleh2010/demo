@@ -39,8 +39,8 @@ public class TermDetail {
     public TermDetail(String subject, String predicate, String object, Boolean flag) {
         if (flag) {
             this.termUrl = makeTermUrl(subject);
-            this.termOrg =StringMatcherUtil2.encripted(object).trim();
-            this.termDecrpt = StringMatcherUtil2.decripted(termOrg).trim();
+            this.termOrg =StringMatcherUtil2.encripted(object.trim());
+            this.termDecrpt = StringMatcherUtil2.decripted(termOrg.trim());
             this.language = this.setLanguage(this.termUrl);
 
         } else {

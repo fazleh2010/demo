@@ -128,8 +128,8 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
 
         //System.out.println("Term Original:"+term);
         String searchTerm=null;
-        term = StringMatcherUtil.decripted(term);
-        term = term.toLowerCase().trim();
+        String termPresent = StringMatcherUtil.decripted(term).toLowerCase().trim();
+        //term = term.toLowerCase().trim();
         // /api?paramA=valueA&paramB=valueB
         //System.out.println("Term decripted:"+term);
         //String searchTerm = "termPage?term="+StringMatcherUtil.encripted(term) + "&" + "url="+url+ "&" +"lang="+lang;
@@ -137,6 +137,9 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         //String searchTerm="termPage?term="+StringMatcherUtil.encripted(term)+"&url="+url+"&lang="+lang;
         //&latitude=12.12
         //searchTerm="termPage?term="+StringMatcherUtil.encripted(term)+"&lang="+lang;
+        //System.out.println("original term:"+term);
+        //System.out.println("termPresent:"+termPresent);
+                
         searchTerm= "termPage?term="+"{\"term\":\""+StringMatcherUtil.encripted(term)+"\","
                                     + "\"iri\":\""+url+"\","
                                     + "\"lang\":\""+lang+"\"}";
@@ -145,7 +148,7 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
                    +"{\"url\":\""+url
                    +"\",\"lang\":\""+lang+"\"}";*/
         String title = "url=" + '"' + url + " definition" + '"';
-        String a = "<a href=" + searchTerm + " " + title + ">" + term + "</a>";
+        String a = "<a href=" + searchTerm + " " + title + ">" + termPresent + "</a>";
         String li = "\n<li>" + a + "</li>\n";
         return li;
     }

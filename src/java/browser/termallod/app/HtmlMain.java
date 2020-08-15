@@ -49,7 +49,7 @@ public class HtmlMain implements SparqlEndpoint {
 
 
     public static void main(String[] args) throws ParserConfigurationException, SAXException, Exception {
-        HtmlMain HtmlMain = new HtmlMain(args,"link");
+        HtmlMain HtmlMain = new HtmlMain(args,"html");
         HtmlMain.html();
     }
 
@@ -96,7 +96,9 @@ public class HtmlMain implements SparqlEndpoint {
              return Parameter.ListOfTerms;
         } else if (parameter.getHtmltype().contains(Parameter.TermPage)) {
             String termDetailSparql = SparqlQuery.getTermDetailSpqlByTerm(parameter.getTermDetail());
+            //System.out.println("termDetailSparql :"+termDetailSparql);
             TermDetail termDetail = curlSparqlQuery.findTermDetail(myTermSparqlEndpoint, termDetailSparql);
+            //System.out.println("after sparql query :"+termDetail);
             htmlCreator.createHtmlTermPage(termDetail, parameter.getHtmltype());
              return Parameter.TermPage;
         } 

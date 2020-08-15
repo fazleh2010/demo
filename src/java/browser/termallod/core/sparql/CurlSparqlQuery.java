@@ -170,11 +170,13 @@ public class CurlSparqlQuery {
                         if (http.contains("http") && http.contains("CanonicalForm")) {
                             url = http;
                         } else {
-                            term = http.trim();
+                            term = http;
                         }
 
                     }
+                    //System.out.println("in side java term........"+"("+term+")");
                     TermDetail termInfo = new TermDetail(url, null, term, true);
+                    //System.out.println("in side java termDetail........"+"("+termInfo.getTermOrg()+")");
                     allkeysValues.put(termInfo.getTermOrg(), termInfo);
                 }
             }
