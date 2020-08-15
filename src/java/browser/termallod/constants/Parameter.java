@@ -6,6 +6,7 @@
 package browser.termallod.constants;
 
 import browser.termallod.api.LanguageManager;
+import static browser.termallod.constants.SparqlEndpoint.endpoint_atc;
 import static browser.termallod.constants.SparqlEndpoint.endpoint_intaglio;
 import static browser.termallod.constants.SparqlEndpoint.endpoint_solar;
 import browser.termallod.core.LanguageAlphabetPro;
@@ -74,7 +75,7 @@ public class Parameter {
                 myTermSparqlEndpoint = args[1];
                 //System.out.println("SparqlEndpoint: " + myTermSparqlEndpoint);
             } else {
-                myTermSparqlEndpoint = endpoint_solar;
+                myTermSparqlEndpoint = endpoint_atc;
                 System.err.println("no sparql endpoint in arguments");
             }
             if (args.length > 2) {
@@ -136,7 +137,7 @@ public class Parameter {
                 myTermSparqlEndpoint = args[1];
                 //System.out.println("SparqlEndpoint: " + myTermSparqlEndpoint);
             } else {
-                myTermSparqlEndpoint = endpoint_solar;
+                myTermSparqlEndpoint = endpoint_atc;
                 System.err.println("no sparql endpoint in arguments");
             }
             if (args.length > 2) {

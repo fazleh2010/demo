@@ -2,78 +2,24 @@
 <html
    xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
    <head>
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name='viewport' content='width=device-width, initial-scale=1' />
-      <meta name="_csrf" content="b40c2453-5c92-4fb8-8a48-9329d11c12e3"/>
-      <meta name="_csrf_header" content="X-CSRF-TOKEN"/>
-       <link href="../static/css/interface.css" rel="stylesheet" type="text/css" />
-      <link href="../static/css/oxford.css" rel="stylesheet" type="text/css" />
-      <link href="../static/css/responsive.css" rel="stylesheet" type="text/css" />
-
-      <style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font: 16px Arial;  
-}
-
-/*the container must be positioned relative:*/
-.autocomplete {
-  position: relative;
-  display: inline-block;
-}
-
-input {
-  border: 1px solid transparent;
-  background-color: #f1f1f1;
-  padding: 10px;
-  font-size: 16px;
-}
-
-input[type=text] {
-  background-color: #f1f1f1;
-  width: 100%;
-}
-
-input[type=submit] {
-  background-color: DodgerBlue;
-  color: #fff;
-  cursor: pointer;
-}
-
-.autocomplete-items {
-  position: absolute;
-  border: 1px solid #d4d4d4;
-  border-bottom: none;
-  border-top: none;
-  z-index: 99;
-  /*position the autocomplete items to be the same width as the container:*/
-  top: 100%;
-  left: 0;
-  right: 0;
-}
-
-.autocomplete-items div {
-  padding: 10px;
-  cursor: pointer;
-  background-color: #fff; 
-  border-bottom: 1px solid #d4d4d4; 
-}
-
-/*when hovering an item:*/
-.autocomplete-items div:hover {
-  background-color: #e9e9e9; 
-}
-
-/*when navigating through the items using the arrow keys:*/
-.autocomplete-active {
-  background-color: DodgerBlue !important; 
-  color: #ffffff; 
-}
-      </style>
+                     <title>PRÊT-À-LLOD task status</title>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta name='viewport' content='width=device-width, initial-scale=1' />
+                <meta name="_csrf" content="b40c2453-5c92-4fb8-8a48-9329d11c12e3"/>
+                <meta name="_csrf_header" content="X-CSRF-TOKEN"/>
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css"/>
+                <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto+Slab|Ubuntu+Mono&display=swap" rel="stylesheet" />
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/css/autoComplete.min.css">
+                <link rel="stylesheet" href="/home/elahi/NetBeansProjects/demo/server/static/status.css" />
+                <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js"></script>
+                <script src="/home/elahi/NetBeansProjects/demo/server/static/status.js"></script>
+                <link href="/home/elahi/NetBeansProjects/demo/server/static/css/interface.css" rel="stylesheet" type="text/css" />
+                <link href="/home/elahi/NetBeansProjects/demo/server/static/css/oxford.css" rel="stylesheet" type="text/css" />
+                <link href="/home/elahi/NetBeansProjects/demo/server/static/responsive.css" rel="stylesheet" type="text/css" /-->
       
       
    </head>
@@ -110,15 +56,8 @@ input[type=submit] {
                   <div class="middle_wrap wordlist-page">
                      <div class="responsive_row">
                         <h4>Language Selection:</h4>
-                        <div class="langauge selection box">
-                           <table style="width:60%">
-                              <tbody>
-                                 <tr>
-                                    <td><a href="listOfTerms?page=browser_en_A_B_1.html">English</a></td>
-                                    <td><a href="listOfTerms?page=browser_nl_1_1.html">Dutch</a></td>
-                                 </tr>
-                              </tbody>
-                           </table>
+                        <div class="langauge_selection_box">
+                           
                         </div>
                         
                          <!--h4>Search terms</h4-->
@@ -179,7 +118,7 @@ input[type=submit] {
                               </div>
                            </div>
                            <div id="entrylist1">
-                              <ul class="result-list1 wordlist-oxford3000 list-plain">
+                              <ul class="termUrlList">
                               </ul>
                            </div>
                            <div id="paging" class="wl-nav nav-top hideoverflow">

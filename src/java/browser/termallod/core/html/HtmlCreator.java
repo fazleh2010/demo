@@ -44,7 +44,7 @@ public class HtmlCreator {
             langSortedTerms.put(langCode, retrieveAlphabetInfo);
         }
 
-        createHtmlForEachLanguage(langSortedTerms,categoryName);
+        createHtmlForEachLanguage(langSortedTerms,categoryName,languages);
     }
     
     public void createHtmlTermPage(TermDetail termDetail,String categoryName) throws Exception {
@@ -57,13 +57,13 @@ public class HtmlCreator {
             htmlReaderWriter.writeHtml(termPage, outputFileName);
     }
 
-    private void createHtmlForEachLanguage(TreeMap<String, RetrieveAlphabetInfo> langSortedTerms,String categoryName) throws Exception {
+    private void createHtmlForEachLanguage(TreeMap<String, RetrieveAlphabetInfo> langSortedTerms,String categoryName,Set<String> languages) throws Exception {
         PageContentGenerator pageContentGenerator = new PageContentGenerator(langSortedTerms);
         for (String language : pageContentGenerator.getLanguages()) {
             File LIST_OF_Terms = getTemplate(categoryName, ".html");
             List<AlphabetTermPage> alphabetTermPageList = pageContentGenerator.getLangPages(language);
             for (AlphabetTermPage alphabetTermPage : alphabetTermPageList) {
-                createHtmlForEachAlphabetPair( LIST_OF_Terms, language, alphabetTermPage, pageContentGenerator,categoryName);
+                createHtmlForEachAlphabetPair( LIST_OF_Terms, language, alphabetTermPage, pageContentGenerator,categoryName,languages);
                 //Alpahbet pair pages
                 //break;
             }
@@ -72,7 +72,7 @@ public class HtmlCreator {
         }
     }
 
-    private void createHtmlForEachAlphabetPair( File templateFile, String language, AlphabetTermPage alphabetTermPage, PageContentGenerator pageContentGenerator, String categoryName) throws Exception {
+    private void createHtmlForEachAlphabetPair( File templateFile, String language, AlphabetTermPage alphabetTermPage, PageContentGenerator pageContentGenerator, String categoryName,Set<String> languages) throws Exception {
         Partition partition = alphabetTermPage.getPartition();
 
         for (Integer page = 0; page < partition.size(); page++) {
@@ -84,7 +84,7 @@ public class HtmlCreator {
             HtmlListOfTerms htmlPage = new HtmlListOfTerms(info, htmlReaderWriter,templateHtml);
             File outputFileName = new File(OUTPUT_PATH + info.creatHtmlFileName(currentPageNumber, alphabetTermPage));
             String htmlFileName = outputFileName.getName();
-            Document listOfTermHtmlPage = htmlPage.createAllElements(templateHtml,terms, pageContentGenerator, htmlFileName, currentPageNumber,language);
+            Document listOfTermHtmlPage = htmlPage.createAllElements(templateHtml,terms, pageContentGenerator, htmlFileName, currentPageNumber,language,languages);
             htmlReaderWriter.writeHtml(listOfTermHtmlPage, outputFileName);
             //page indexes..number of pages of same alphabet..
             break;

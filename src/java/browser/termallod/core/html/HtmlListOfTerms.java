@@ -17,7 +17,9 @@ import browser.termallod.core.PageContentGenerator;
 import browser.termallod.core.html.HtmlReaderWriter;
 import browser.termallod.core.html.HtmlParameter;
 import browser.termallod.utils.StringMatcherUtil;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 /**
@@ -31,6 +33,7 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
     private HtmlParameter info;
     private Document templateHtml;
     private Document termPageTemplate;
+    private Set<String> allLanguages=new HashSet<String>();
 
     public HtmlListOfTerms(HtmlParameter info, HtmlReaderWriter htmlReaderWriter, Document templateHtml) throws Exception {
         this.info = info;
@@ -38,7 +41,7 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         //this.termPage = new HtmlTermPage(info, htmlReaderWriter, termPageTemplate);
     }
 
-    public Document createAllElements(Document templateHtml, List<String> terms, PageContentGenerator pageContentGenerator, String htmlFileName, Integer currentPageNumber, String lang) throws Exception {
+    public Document createAllElements(Document templateHtml, List<String> terms, PageContentGenerator pageContentGenerator, String htmlFileName, Integer currentPageNumber, String lang,Set<String> lanCodes) throws Exception {
         AlphabetTermPage alphabetTermPage = info.getAlphabetTermPage();
         Element body = templateHtml.body();
         String alphebetPair = alphabetTermPage.getAlpahbetPair();
@@ -47,9 +50,8 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         Integer emptyTerm = alphabetTermPage.getEmptyTerm();
         //this part of code is used to automatically generated language selection box
         //currently it is hard coded in HTML template
-        /*if (!this.categoryType.contains(iate)) {
-            this.createLangSelectBox(body, pageContentGenerator);
-        }*/
+        this.createLangSelectBox(body,lanCodes );
+       
 
         createAlphabet(body, alphebetPair, pageContentGenerator);
         createTerms(body, terms, alphebetPair, emptyTerm, htmlFileName, lang);
@@ -65,8 +67,31 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         createPageNumber(body, "paging_links inner_down", alphebetPair, numberofPages, currentPageNumber);
         return templateHtml;
     }
+    
+    
+    private void createLangSelectBox(Element body,Set<String> lanCodes) throws Exception {
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!language!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        Element divLanguage = body.getElementsByClass("langauge_selection_box").get(0);
+        String url=null,str="";
+        for (String languageCode :lanCodes) {
+            if (languageMapper.containsKey(languageCode)) {
+                String languageDetail = languageMapper.get(languageCode);
+                if(languageCode.contains("en"))
+                  url = "browser_"+languageCode+"_A_B_1.html"; 
+                else
+                  url = "browser_"+languageCode+"_1_1.html";
+               
+                String line = "<td><a href=\"listOfTerms?page="+url+"\">"+languageDetail+"</a></td>";
+                str += line;
+            }
+        }
+        String table ="<table class=\"panel-body rdf_embedded_table\" id=\"langDetail\">"
+                      +"<tbody>"+"<tr>"+str+"</tr>"+" </tbody>"+"</table>";
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"+table);
+        divLanguage.append(table);
+    }
 
-    private void createLangSelectBox(Element body, PageContentGenerator pageContentGenerator, AlphabetTermPage alphabetTermPage) throws Exception {
+    /*private void createLangSelectBox(Element body, PageContentGenerator pageContentGenerator, AlphabetTermPage alphabetTermPage) throws Exception {
         Element divLanguage = body.getElementsByClass("langauge selection box").get(0);
         String options = "<ul class=" + "\"" + "language-list" + "\"" + ">";
         for (String languageCode : pageContentGenerator.getLanguages()) {
@@ -81,7 +106,7 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         options = options + "</ul>";
         String form = "<form>" + options + "</form>";
         divLanguage.append(form);
-    }
+    }*/
 
     private String createAlphabet(Element body, String alphebetPair, PageContentGenerator pageContentGenerator) throws Exception {
         Element divAlphabet = body.getElementsByClass("currentpage").get(0);
@@ -184,6 +209,7 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         List<String> liS = new ArrayList<String>();
         String pageUrl = null;
         String li = "";
+        String incrementPage="listOfTerms?incrementPage=";
         /*"<span>" + this.currentPageNumber + "</span>";
         liS.add(li);*/
 
@@ -194,9 +220,9 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
             return new ArrayList<String>();
         }
         if (currentPageNumber > INITIAL_PAGE) {
-            pageUrl = createUrlLink(currentPageNumber - 1, alphabetTermPage);
+            pageUrl = incrementPage+createUrlLink(currentPageNumber - 1, alphabetTermPage);
             if (info.getLanguage().contains("hu") && currentPageNumber == 2) {
-                pageUrl = "browser_hu_A_1_1.html";
+                pageUrl = incrementPage+"browser_hu_A_1_1.html";
             }
             String a = "<a href=" + pageUrl + ">" + "Previous" + "</a>";
             li = "\n<li>" + a + "</li>\n";
@@ -205,16 +231,16 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         Integer index = 0;
         for (Integer page = currentPageNumber; page < pages; page++) {
             Integer pageNumber = (page + 1);
-            pageUrl = createUrlLink(pageNumber, alphabetTermPage);
+            pageUrl = incrementPage+createUrlLink(pageNumber, alphabetTermPage);
             if (info.getLanguage().contains("hu") && pageNumber == 1) {
-                pageUrl = "browser_hu_A_1_1.html";
+                pageUrl =incrementPage+ "browser_hu_A_1_1.html";
             }
 
             String a = "<a href=" + pageUrl + ">" + pageNumber + "</a>";
             li = "\n<li>" + a + "</li>\n";
             liS.add(li);
             if (index > this.maximumNumberOfPages && (pageNumber + 1) < pages) {
-                pageUrl = createUrlLink(pageNumber + 1, alphabetTermPage);
+                pageUrl = incrementPage+createUrlLink(pageNumber + 1, alphabetTermPage);
                 a = "<a href=" + pageUrl + ">" + "Next" + "</a>";
                 li = "\n<li>" + a + "</li>\n";
                 liS.add(li);

@@ -1,0 +1,258 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head> 
+  <title>PRÊT-À-LLOD task status</title> 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <meta name="_csrf" content="b40c2453-5c92-4fb8-8a48-9329d11c12e3"> 
+  <meta name="_csrf_header" content="X-CSRF-TOKEN"> 
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css"> 
+  <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto+Slab|Ubuntu+Mono&amp;display=swap" rel="stylesheet"> 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/css/autoComplete.min.css"> 
+  <link rel="stylesheet" href="/home/elahi/NetBeansProjects/demo/server/static/status.css"> 
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js"></script> 
+  <script src="/home/elahi/NetBeansProjects/demo/server/static/status.js"></script> 
+  <link href="/home/elahi/NetBeansProjects/demo/server/static/css/interface.css" rel="stylesheet" type="text/css"> 
+  <link href="/home/elahi/NetBeansProjects/demo/server/static/css/oxford.css" rel="stylesheet" type="text/css"> 
+  <link href="/home/elahi/NetBeansProjects/demo/server/static/responsive.css" rel="stylesheet" type="text/css" --> 
+ </head> 
+ <body> 
+  <div id="ox-header" class=""> 
+   <div class="responsive_row flush-below top"> 
+    <div class="responsive_container responsive_display_on_smartphone"> 
+     <div class="menu_button"></div> 
+    </div> 
+    <div class="nav responsive_container main_nav"> 
+     <ul class="menu"> 
+      <li><a href="http://localhost:8080/status?view=status">status</a></li> 
+      <li><a href="http://localhost:8080/describe">browser</a></li> 
+      <li><a href="http://localhost:8080/status?view=sparql">sparql</a></li> 
+      <li><a href="http://localhost:8080/status?view=search">terms</a></li> 
+     </ul> 
+    </div> 
+   </div> 
+   <div class="responsive_row"> 
+    <div id="ad_leftslot_container" class="ad_leftslot_container responsive_entry_left"> 
+     <div class="ac_leftslot sticky"> 
+      <div id="ad_leftslot_a" class="am-default "> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="responsive_entry_center"> 
+     <div class="responsive_display_on_hd" id="leaderboardHD"> 
+      <div class=""> 
+       <div id="ad_topslot_b" class="am-default "> 
+       </div> 
+      </div> 
+     </div> 
+     <div id="main_column" class="responsive_row"> 
+      <div class="middle_wrap wordlist-page"> 
+       <div class="responsive_row"> 
+        <h4>Language Selection:</h4> 
+        <div class="langauge_selection_box"> 
+         <table class="panel-body rdf_embedded_table" id="langDetail">
+          <tbody>
+           <tr>
+            <td><a href="listOfTerms?page=browser_en_A_B_1.html">English</a></td>
+            <td><a href="listOfTerms?page=browser_nl_1_1.html">Dutch</a></td>
+           </tr> 
+          </tbody>
+         </table>
+        </div> 
+        <!--h4>Search terms</h4--> 
+        <!--Make sure the form has the autocomplete function switched off:--> 
+        <!--form autocomplete="off" id="form_id"> 
+                            <div class="autocomplete" style="width:300px;"> 
+                                <input id="myInput" type="text" placeholder="Search.."> 
+                            </div> 
+                            <input id="submit" type="submit"> 
+                        </form--> 
+        <!--script type="text/javascript" src="../files/browser/js/tbx2rdf_atc_en.js"></script--> 
+        <!--script type="text/javascript" src="../files/browser/js/tbx2rdf_atc_en.js"></script--> 
+        <!--div class="mainsearch">
+                           <form id="search-form" method="get" action="browser_hu_10_1.html">
+                              <div class="dictionarySelector">
+                                 <div id="select_div">
+                                    <div>English</div>
+                                 </div>
+                              </div>
+                              <div class="searchfield">
+                                 <input type="text" id="q" name="q"
+                                    class="searchfield_input"/>
+                                 <a id="keyboard_icon" class="oup_icons responsive_hide_on_smartphone responsive_hide_on_tablet"></a>
+                                 <div id="keyboard_letters"></div>
+                              </div>
+                              <div class="inputSuggestions"></div>
+                              <label id="search-btn" class="oup_icons">
+                              <input type="submit" value="" />
+                              </label>
+                           </form>
+                        </div>
+                     </div--> 
+        <div class="side-selector clear_fix"> 
+         <div class="side-selector__left"> 
+          <!-- the topics --> 
+          <div id="entries-selector" class=""> 
+           <ul class="hide_phone"> 
+            <li class="currentpage"> <span>O_P</span> <li><a href="listOfTerms?page=browser_en_A_B_1.html">A_B</a></li>  <li><a href="listOfTerms?page=browser_en_C_D_1.html">C_D</a></li>  <li><a href="listOfTerms?page=browser_en_E_F_1.html">E_F</a></li>  <li><a href="listOfTerms?page=browser_en_G_H_1.html">G_H</a></li>  <li><a href="listOfTerms?page=browser_en_I_J_1.html">I_J</a></li>  <li><a href="listOfTerms?page=browser_en_K_L_1.html">K_L</a></li>  <li><a href="listOfTerms?page=browser_en_M_N_1.html">M_N</a></li>  <li><a href="listOfTerms?page=browser_en_Q_R_1.html">Q_R</a></li>  <li><a href="listOfTerms?page=browser_en_S_T_1.html">S_T</a></li>  <li><a href="listOfTerms?page=browser_en_U_V_1.html">U_V</a></li>  <li><a href="listOfTerms?page=browser_en_W_X_1.html">W_X</a></li>  <li><a href="listOfTerms?page=browser_en_Y_Z_1.html">Y_Z</a></li> </li> 
+           </ul> 
+           <div class="wl-select hide_all display_phone"> 
+           </div> 
+          </div> 
+          <!-- entries-selector --> 
+         </div> 
+         <div class="side-selector__right"> 
+          <!-- the items of the selected topic --> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner"> 
+             <li class="activepageUpper"> </li>  
+             <li><a href="listOfTerms?incrementPage=browser_en_O_P_2.html">2</a></li>  
+             <li><a href="listOfTerms?incrementPage=browser_en_O_P_3.html">3</a></li>  
+             <li><a href="listOfTerms?incrementPage=browser_en_O_P_4.html">4</a></li> 
+            </ul> 
+           </div> 
+          </div> 
+          <div id="entrylist1"> 
+           <ul class="termUrlList">  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;OUT_OF_THE_REACH_AND_SIGHT_OF_CHILDREN&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/OUT+OF+THE+REACH+AND+SIGHT+OF+CHILDREN-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/OUT+OF+THE+REACH+AND+SIGHT+OF+CHILDREN-EN definition">out of the reach and sight of children</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;Posology_and_Method_of_administration&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/Posology+and+Method+of+administration-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/Posology+and+Method+of+administration-EN definition">posology and method of administration</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;obinutuzumab&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/obinutuzumab-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/obinutuzumab-EN definition">obinutuzumab</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;obsessive_compulsive_disorder&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/obsessive+compulsive+disorder-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/obsessive+compulsive+disorder-EN definition">obsessive compulsive disorder</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;octreotide&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/octreotide-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/octreotide-EN definition">octreotide</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oedema&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oedema-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oedema-EN definition">oedema</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;ofloxacin&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/ofloxacin-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/ofloxacin-EN definition">ofloxacin</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;olanzapine&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/olanzapine-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/olanzapine-EN definition">olanzapine</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;olaparib&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/olaparib-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/olaparib-EN definition">olaparib</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;olaratumab&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/olaratumab-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/olaratumab-EN definition">olaratumab</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;olmesartan_medoxomil&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/olmesartan+medoxomil-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/olmesartan+medoxomil-EN definition">olmesartan medoxomil</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;olmesartan_medoxomil,_amlodipine_and_hydrochloroth&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/olmesartan+medoxomil%2C+amlodipine+and+hydrochloroth-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/olmesartan+medoxomil%2C+amlodipine+and+hydrochloroth-EN definition">olmesartan medoxomil, amlodipine and hydrochloroth</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;olmesartan_medoxomil_and_amlodipine&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/olmesartan+medoxomil+and+amlodipine-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/olmesartan+medoxomil+and+amlodipine-EN definition">olmesartan medoxomil and amlodipine</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;olmesartan_medoxomil_and_diuretics&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/olmesartan+medoxomil+and+diuretics-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/olmesartan+medoxomil+and+diuretics-EN definition">olmesartan medoxomil and diuretics</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;olodaterol_and_tiotropium_bromide&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/olodaterol+and+tiotropium+bromide-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/olodaterol+and+tiotropium+bromide-EN definition">olodaterol and tiotropium bromide</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;olopatadine&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/olopatadine-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/olopatadine-EN definition">olopatadine</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;omalizumab&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/omalizumab-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/omalizumab-EN definition">omalizumab</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;ombitasvir,_paritaprevir_and_ritonavir&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/ombitasvir%2C+paritaprevir+and+ritonavir-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/ombitasvir%2C+paritaprevir+and+ritonavir-EN definition">ombitasvir, paritaprevir and ritonavir</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;omega-3-triglycerides_incl._other_esters_and_acids&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/omega-3-triglycerides+incl.+other+esters+and+acids-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/omega-3-triglycerides+incl.+other+esters+and+acids-EN definition">omega-3-triglycerides incl. other esters and acids</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;omeprazole&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/omeprazole-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/omeprazole-EN definition">omeprazole</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;omoconazole&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/omoconazole-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/omoconazole-EN definition">omoconazole</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;ondansetron&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/ondansetron-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/ondansetron-EN definition">ondansetron</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;opipramol&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/opipramol-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/opipramol-EN definition">opipramol</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;opium_derivatives_and_expectorants&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/opium+derivatives+and+expectorants-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/opium+derivatives+and+expectorants-EN definition">opium derivatives and expectorants</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;opium_derivatives_and_mucolytics&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/opium+derivatives+and+mucolytics-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/opium+derivatives+and+mucolytics-EN definition">opium derivatives and mucolytics</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oral_administration&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oral+administration-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oral+administration-EN definition">oral administration</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oral_use&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oral+use-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oral+use-EN definition">oral use</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;orciprenaline&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/orciprenaline-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/orciprenaline-EN definition">orciprenaline</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;ordinary_salt_combinations&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/ordinary+salt+combinations-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/ordinary+salt+combinations-EN definition">ordinary salt combinations</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;ordinary_salt_combinations_and_antiflatulents&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/ordinary+salt+combinations+and+antiflatulents-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/ordinary+salt+combinations+and+antiflatulents-EN definition">ordinary salt combinations and antiflatulents</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;organo-heparinoid&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/organo-heparinoid-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/organo-heparinoid-EN definition">organo-heparinoid</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;orlistat&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/orlistat-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/orlistat-EN definition">orlistat</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;ornidazole&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/ornidazole-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/ornidazole-EN definition">ornidazole</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;orphenadrine_(chloride)&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/orphenadrine+%28chloride%29-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/orphenadrine+%28chloride%29-EN definition">orphenadrine (chloride)</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;orphenadrine_(citrate)&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/orphenadrine+%28citrate%29-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/orphenadrine+%28citrate%29-EN definition">orphenadrine (citrate)</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oseltamivir&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oseltamivir-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oseltamivir-EN definition">oseltamivir</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;other_antiemetics&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+antiemetics-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+antiemetics-EN definition">other antiemetics</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;other_antiinflammatory_and_antirheumatic_agents,_non-steroids&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+antiinflammatory+and+antirheumatic+agents%2C+non-steroids-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+antiinflammatory+and+antirheumatic+agents%2C+non-steroids-EN definition">other antiinflammatory and antirheumatic agents, non-steroids</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;other_antineoplastic_agents&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+antineoplastic+agents-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+antineoplastic+agents-EN definition">other antineoplastic agents</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;other_antivirals&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+antivirals-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+antivirals-EN definition">other antivirals</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;other_capillary_stabilizing_agents&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+capillary+stabilizing+agents-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+capillary+stabilizing+agents-EN definition">other capillary stabilizing agents</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;other_cold_preparations&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+cold+preparations-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+cold+preparations-EN definition">other cold preparations</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;other_drugs_for_functional_gastrointestinal_disorders&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+drugs+for+functional+gastrointestinal+disorders-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+drugs+for+functional+gastrointestinal+disorders-EN definition">other drugs for functional gastrointestinal disorders</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;other_gynecologicals&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+gynecologicals-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+gynecologicals-EN definition">other gynecologicals</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;other_hypnotics_and_sedatives&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+hypnotics+and+sedatives-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+hypnotics+and+sedatives-EN definition">other hypnotics and sedatives</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;other_immunostimulants&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+immunostimulants-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+immunostimulants-EN definition">other immunostimulants</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;other_plasma_protein_fractions&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+plasma+protein+fractions-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+plasma+protein+fractions-EN definition">other plasma protein fractions</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;other_preparations,_combinations&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+preparations%2C+combinations-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+preparations%2C+combinations-EN definition">other preparations, combinations</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;other_respiratory_system_products&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+respiratory+system+products-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+respiratory+system+products-EN definition">other respiratory system products</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;other_systemic_drugs_for_obstructive_airway_diseases&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+systemic+drugs+for+obstructive+airway+diseases-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+systemic+drugs+for+obstructive+airway+diseases-EN definition">other systemic drugs for obstructive airway diseases</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;other_therapeutic_products&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+therapeutic+products-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+therapeutic+products-EN definition">other therapeutic products</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;other_urologicals&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+urologicals-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/other+urologicals-EN definition">other urologicals</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;otilonium_bromide&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/otilonium+bromide-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/otilonium+bromide-EN definition">otilonium bromide</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;outer_carton&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/outer+carton-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/outer+carton-EN definition">outer carton</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;outer_package&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/outer+package-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/outer+package-EN definition">outer package</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;overdose&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/overdose-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/overdose-EN definition">overdose</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxacillin&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxacillin-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxacillin-EN definition">oxacillin</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxaliplatin&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxaliplatin-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxaliplatin-EN definition">oxaliplatin</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxametacin&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxametacin-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxametacin-EN definition">oxametacin</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxaprozin&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxaprozin-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxaprozin-EN definition">oxaprozin</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxatomide&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxatomide-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxatomide-EN definition">oxatomide</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxazepam&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxazepam-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxazepam-EN definition">oxazepam</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxcarbazepine&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxcarbazepine-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxcarbazepine-EN definition">oxcarbazepine</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxeladin&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxeladin-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxeladin-EN definition">oxeladin</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxetorone&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxetorone-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxetorone-EN definition">oxetorone</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxidized_cellulose&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxidized+cellulose-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxidized+cellulose-EN definition">oxidized cellulose</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxitropium_bromide&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxitropium+bromide-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxitropium+bromide-EN definition">oxitropium bromide</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxolinic_acid&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxolinic+acid-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxolinic+acid-EN definition">oxolinic acid</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxomemazine&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxomemazine-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxomemazine-EN definition">oxomemazine</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxprenolol&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxprenolol-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxprenolol-EN definition">oxprenolol</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxybuprocaine&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxybuprocaine-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxybuprocaine-EN definition">oxybuprocaine</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxybutynin&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxybutynin-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxybutynin-EN definition">oxybutynin</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxycodone&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxycodone-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxycodone-EN definition">oxycodone</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxycodone,_combinations&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxycodone%2C+combinations-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxycodone%2C+combinations-EN definition">oxycodone, combinations</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxygen&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxygen-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxygen-EN definition">oxygen</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxymetazoline&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxymetazoline-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxymetazoline-EN definition">oxymetazoline</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxymetholone&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxymetholone-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxymetholone-EN definition">oxymetholone</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxypertine&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxypertine-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxypertine-EN definition">oxypertine</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxyphencyclimine&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxyphencyclimine-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxyphencyclimine-EN definition">oxyphencyclimine</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxyphenonium&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxyphenonium-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxyphenonium-EN definition">oxyphenonium</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxyquinoline&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxyquinoline-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxyquinoline-EN definition">oxyquinoline</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxytetracycline&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxytetracycline-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxytetracycline-EN definition">oxytetracycline</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;oxytocin&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxytocin-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/oxytocin-EN definition">oxytocin</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;p-doping&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/p-doping-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/p-doping-EN definition">p-doping</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;p-n_junction&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/p-n+junction-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/p-n+junction-EN definition">p-n junction</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;p-type_doping&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/p-type+doping-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/p-type+doping-EN definition">p-type doping</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;p-type_semiconductor&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/p-type+semiconductor-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/p-type+semiconductor-EN definition">p-type semiconductor</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;package&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/package-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/package-EN definition">package</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;package_leaflet&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/package+leaflet-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/package+leaflet-EN definition">package leaflet</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;paclitaxel&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/paclitaxel-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/paclitaxel-EN definition">paclitaxel</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;palbociclib&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/palbociclib-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/palbociclib-EN definition">palbociclib</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;palifermin&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/palifermin-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/palifermin-EN definition">palifermin</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;paliperidone&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/paliperidone-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/paliperidone-EN definition">paliperidone</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;palivizumab&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/palivizumab-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/palivizumab-EN definition">palivizumab</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;palonosetron&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/palonosetron-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/palonosetron-EN definition">palonosetron</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;palonosetron,_combinations&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/palonosetron%2C+combinations-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/palonosetron%2C+combinations-EN definition">palonosetron, combinations</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;palpitation&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/palpitation-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/palpitation-EN definition">palpitation</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;pamidronic_acid&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/pamidronic+acid-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/pamidronic+acid-EN definition">pamidronic acid</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;pancuronium&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/pancuronium-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/pancuronium-EN definition">pancuronium</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;panitumumab&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/panitumumab-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/panitumumab-EN definition">panitumumab</a></li> 
+           </ul> 
+          </div> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner_down"> 
+             <li class="activepageLower"> </li>  
+             <li><a href="listOfTerms?incrementPage=browser_en_O_P_2.html">2</a></li>  
+             <li><a href="listOfTerms?incrementPage=browser_en_O_P_3.html">3</a></li>  
+             <li><a href="listOfTerms?incrementPage=browser_en_O_P_4.html">4</a></li> 
+            </ul> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <div id="ox-footer" class=""> 
+    <div class="responsive_row flush-below top"> 
+     <div class="responsive_container responsive_display_on_smartphone"> 
+      <div class="menu_button"></div> 
+     </div> 
+     <div class="nav responsive_container main_nav"> 
+      <ul class="menu"> 
+       <li><a href="http://localhost:8080/status?view=status">status</a></li> 
+       <li><a href="http://localhost:8080/describe">browser</a></li> 
+       <li><a href="http://localhost:8080/status?view=sparql">sparql</a></li> 
+       <li><a href="http://localhost:8080/status?view=search">terms</a></li> 
+      </ul> 
+     </div> 
+    </div>         
+   </div>
+  </div>
+ </body>
+</html>

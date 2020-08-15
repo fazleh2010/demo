@@ -1,0 +1,256 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head> 
+  <title>PRÊT-À-LLOD task status</title> 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <meta name="_csrf" content="b40c2453-5c92-4fb8-8a48-9329d11c12e3"> 
+  <meta name="_csrf_header" content="X-CSRF-TOKEN"> 
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css"> 
+  <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto+Slab|Ubuntu+Mono&amp;display=swap" rel="stylesheet"> 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/css/autoComplete.min.css"> 
+  <link rel="stylesheet" href="/home/elahi/NetBeansProjects/demo/server/static/status.css"> 
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js"></script> 
+  <script src="/home/elahi/NetBeansProjects/demo/server/static/status.js"></script> 
+  <link href="/home/elahi/NetBeansProjects/demo/server/static/css/interface.css" rel="stylesheet" type="text/css"> 
+  <link href="/home/elahi/NetBeansProjects/demo/server/static/css/oxford.css" rel="stylesheet" type="text/css"> 
+  <link href="/home/elahi/NetBeansProjects/demo/server/static/responsive.css" rel="stylesheet" type="text/css" --> 
+ </head> 
+ <body> 
+  <div id="ox-header" class=""> 
+   <div class="responsive_row flush-below top"> 
+    <div class="responsive_container responsive_display_on_smartphone"> 
+     <div class="menu_button"></div> 
+    </div> 
+    <div class="nav responsive_container main_nav"> 
+     <ul class="menu"> 
+      <li><a href="http://localhost:8080/status?view=status">status</a></li> 
+      <li><a href="http://localhost:8080/describe">browser</a></li> 
+      <li><a href="http://localhost:8080/status?view=sparql">sparql</a></li> 
+      <li><a href="http://localhost:8080/status?view=search">terms</a></li> 
+     </ul> 
+    </div> 
+   </div> 
+   <div class="responsive_row"> 
+    <div id="ad_leftslot_container" class="ad_leftslot_container responsive_entry_left"> 
+     <div class="ac_leftslot sticky"> 
+      <div id="ad_leftslot_a" class="am-default "> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="responsive_entry_center"> 
+     <div class="responsive_display_on_hd" id="leaderboardHD"> 
+      <div class=""> 
+       <div id="ad_topslot_b" class="am-default "> 
+       </div> 
+      </div> 
+     </div> 
+     <div id="main_column" class="responsive_row"> 
+      <div class="middle_wrap wordlist-page"> 
+       <div class="responsive_row"> 
+        <h4>Language Selection:</h4> 
+        <div class="langauge_selection_box"> 
+         <table class="panel-body rdf_embedded_table" id="langDetail">
+          <tbody>
+           <tr>
+            <td><a href="listOfTerms?page=browser_en_A_B_1.html">English</a></td>
+            <td><a href="listOfTerms?page=browser_nl_1_1.html">Dutch</a></td>
+           </tr> 
+          </tbody>
+         </table>
+        </div> 
+        <!--h4>Search terms</h4--> 
+        <!--Make sure the form has the autocomplete function switched off:--> 
+        <!--form autocomplete="off" id="form_id"> 
+                            <div class="autocomplete" style="width:300px;"> 
+                                <input id="myInput" type="text" placeholder="Search.."> 
+                            </div> 
+                            <input id="submit" type="submit"> 
+                        </form--> 
+        <!--script type="text/javascript" src="../files/browser/js/tbx2rdf_atc_en.js"></script--> 
+        <!--script type="text/javascript" src="../files/browser/js/tbx2rdf_atc_en.js"></script--> 
+        <!--div class="mainsearch">
+                           <form id="search-form" method="get" action="browser_hu_10_1.html">
+                              <div class="dictionarySelector">
+                                 <div id="select_div">
+                                    <div>English</div>
+                                 </div>
+                              </div>
+                              <div class="searchfield">
+                                 <input type="text" id="q" name="q"
+                                    class="searchfield_input"/>
+                                 <a id="keyboard_icon" class="oup_icons responsive_hide_on_smartphone responsive_hide_on_tablet"></a>
+                                 <div id="keyboard_letters"></div>
+                              </div>
+                              <div class="inputSuggestions"></div>
+                              <label id="search-btn" class="oup_icons">
+                              <input type="submit" value="" />
+                              </label>
+                           </form>
+                        </div>
+                     </div--> 
+        <div class="side-selector clear_fix"> 
+         <div class="side-selector__left"> 
+          <!-- the topics --> 
+          <div id="entries-selector" class=""> 
+           <ul class="hide_phone"> 
+            <li class="currentpage"> <span>M_N</span> <li><a href="listOfTerms?page=browser_en_A_B_1.html">A_B</a></li>  <li><a href="listOfTerms?page=browser_en_C_D_1.html">C_D</a></li>  <li><a href="listOfTerms?page=browser_en_E_F_1.html">E_F</a></li>  <li><a href="listOfTerms?page=browser_en_G_H_1.html">G_H</a></li>  <li><a href="listOfTerms?page=browser_en_I_J_1.html">I_J</a></li>  <li><a href="listOfTerms?page=browser_en_K_L_1.html">K_L</a></li>  <li><a href="listOfTerms?page=browser_en_O_P_1.html">O_P</a></li>  <li><a href="listOfTerms?page=browser_en_Q_R_1.html">Q_R</a></li>  <li><a href="listOfTerms?page=browser_en_S_T_1.html">S_T</a></li>  <li><a href="listOfTerms?page=browser_en_U_V_1.html">U_V</a></li>  <li><a href="listOfTerms?page=browser_en_W_X_1.html">W_X</a></li>  <li><a href="listOfTerms?page=browser_en_Y_Z_1.html">Y_Z</a></li> </li> 
+           </ul> 
+           <div class="wl-select hide_all display_phone"> 
+           </div> 
+          </div> 
+          <!-- entries-selector --> 
+         </div> 
+         <div class="side-selector__right"> 
+          <!-- the items of the selected topic --> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner"> 
+             <li class="activepageUpper"> </li>  
+             <li><a href="listOfTerms?incrementPage=browser_en_M_N_2.html">2</a></li>  
+             <li><a href="listOfTerms?incrementPage=browser_en_M_N_3.html">3</a></li> 
+            </ul> 
+           </div> 
+          </div> 
+          <div id="entrylist1"> 
+           <ul class="termUrlList">  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;National_Competent_Authority&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/National+Competent+Authority-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/National+Competent+Authority-EN definition">national competent authority</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;macitentan&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/macitentan-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/macitentan-EN definition">macitentan</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;macrogol&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/macrogol-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/macrogol-EN definition">macrogol</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;macrogol,_combinations&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/macrogol%2C+combinations-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/macrogol%2C+combinations-EN definition">macrogol, combinations</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;magaldrate&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/magaldrate-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/magaldrate-EN definition">magaldrate</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;magnesium_(different_salts_in_combination)&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/magnesium+%28different+salts+in+combination%29-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/magnesium+%28different+salts+in+combination%29-EN definition">magnesium (different salts in combination)</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;magnesium_chloride&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/magnesium+chloride-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/magnesium+chloride-EN definition">magnesium chloride</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;magnesium_gluconate&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/magnesium+gluconate-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/magnesium+gluconate-EN definition">magnesium gluconate</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;magnesium_lactate&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/magnesium+lactate-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/magnesium+lactate-EN definition">magnesium lactate</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;magnesium_sulfate&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/magnesium+sulfate-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/magnesium+sulfate-EN definition">magnesium sulfate</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;maintenance_dose&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/maintenance+dose-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/maintenance+dose-EN definition">maintenance dose</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;major_influence&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/major+influence-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/major+influence-EN definition">major influence</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;malathion&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/malathion-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/malathion-EN definition">malathion</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mandelic_acid&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mandelic+acid-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mandelic+acid-EN definition">mandelic acid</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mangafodipir&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mangafodipir-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mangafodipir-EN definition">mangafodipir</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mannitol&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mannitol-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mannitol-EN definition">mannitol</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;maprotiline&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/maprotiline-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/maprotiline-EN definition">maprotiline</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;maraviroc&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/maraviroc-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/maraviroc-EN definition">maraviroc</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;marketing_authorisation&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/marketing+authorisation-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/marketing+authorisation-EN definition">marketing authorisation</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;maximum_tolerated_dose&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/maximum+tolerated+dose-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/maximum+tolerated+dose-EN definition">maximum tolerated dose</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mean_residence_time&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mean+residence+time-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mean+residence+time-EN definition">mean residence time</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;measles,_combinations_with_mumps,_live_attenuated&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/measles%2C+combinations+with+mumps%2C+live+attenuated-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/measles%2C+combinations+with+mumps%2C+live+attenuated-EN definition">measles, combinations with mumps, live attenuated</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;measles,_combinations_with_mumps,_rubella_and_vari&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/measles%2C+combinations+with+mumps%2C+rubella+and+vari-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/measles%2C+combinations+with+mumps%2C+rubella+and+vari-EN definition">measles, combinations with mumps, rubella and vari</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;measles,_combinations_with_mumps_and_rubella,_live&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/measles%2C+combinations+with+mumps+and+rubella%2C+live-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/measles%2C+combinations+with+mumps+and+rubella%2C+live-EN definition">measles, combinations with mumps and rubella, live</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;measles,_live_attenuated&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/measles%2C+live+attenuated-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/measles%2C+live+attenuated-EN definition">measles, live attenuated</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mebendazole&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mebendazole-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mebendazole-EN definition">mebendazole</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mebeverine&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mebeverine-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mebeverine-EN definition">mebeverine</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mebutizide&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mebutizide-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mebutizide-EN definition">mebutizide</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mecasermin&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mecasermin-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mecasermin-EN definition">mecasermin</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mechanism_of_action&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mechanism+of+action-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mechanism+of+action-EN definition">mechanism of action</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;meclofenamic_acid&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meclofenamic+acid-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meclofenamic+acid-EN definition">meclofenamic acid</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;meclozine&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meclozine-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meclozine-EN definition">meclozine</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;meclozine,_combinations&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meclozine%2C+combinations-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meclozine%2C+combinations-EN definition">meclozine, combinations</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;medicinal_charcoal&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/medicinal+charcoal-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/medicinal+charcoal-EN definition">medicinal charcoal</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;medrogestone&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/medrogestone-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/medrogestone-EN definition">medrogestone</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;medrogestone_and_estrogen&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/medrogestone+and+estrogen-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/medrogestone+and+estrogen-EN definition">medrogestone and estrogen</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;medroxyprogesterone&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/medroxyprogesterone-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/medroxyprogesterone-EN definition">medroxyprogesterone</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;medroxyprogesterone_and_estrogen&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/medroxyprogesterone+and+estrogen-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/medroxyprogesterone+and+estrogen-EN definition">medroxyprogesterone and estrogen</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;medrysone&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/medrysone-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/medrysone-EN definition">medrysone</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mefloquine&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mefloquine-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mefloquine-EN definition">mefloquine</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;megestrol&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/megestrol-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/megestrol-EN definition">megestrol</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;melatonin&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/melatonin-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/melatonin-EN definition">melatonin</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;melitracen&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/melitracen-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/melitracen-EN definition">melitracen</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;melitracen_and_psycholeptics&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/melitracen+and+psycholeptics-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/melitracen+and+psycholeptics-EN definition">melitracen and psycholeptics</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;meloxicam&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meloxicam-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meloxicam-EN definition">meloxicam</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;melperone&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/melperone-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/melperone-EN definition">melperone</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;melphalan&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/melphalan-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/melphalan-EN definition">melphalan</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;memantine&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/memantine-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/memantine-EN definition">memantine</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;menadione&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/menadione-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/menadione-EN definition">menadione</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;meningococcus_B,_multicomponent_vaccine&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meningococcus+B%2C+multicomponent+vaccine-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meningococcus+B%2C+multicomponent+vaccine-EN definition">meningococcus b, multicomponent vaccine</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;meningococcus_a,c,_bivalent_purified_polysaccharid&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meningococcus+a%2Cc%2C+bivalent+purified+polysaccharid-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meningococcus+a%2Cc%2C+bivalent+purified+polysaccharid-EN definition">meningococcus a,c, bivalent purified polysaccharid</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;meningococcus_a,c,y,w-135,_tetravalent_purified_po&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meningococcus+a%2Cc%2Cy%2Cw-135%2C+tetravalent+purified+po-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meningococcus+a%2Cc%2Cy%2Cw-135%2C+tetravalent+purified+po-EN definition">meningococcus a,c,y,w-135, tetravalent purified po</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;meningococcus_c,_purified_polysaccharides_antigen&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meningococcus+c%2C+purified+polysaccharides+antigen-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meningococcus+c%2C+purified+polysaccharides+antigen-EN definition">meningococcus c, purified polysaccharides antigen</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mepartricin&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mepartricin-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mepartricin-EN definition">mepartricin</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mepenzolate&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mepenzolate-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mepenzolate-EN definition">mepenzolate</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mephenesin&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mephenesin-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mephenesin-EN definition">mephenesin</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mepivacaine&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mepivacaine-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mepivacaine-EN definition">mepivacaine</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mepivacaine,_combinations&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mepivacaine%2C+combinations-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mepivacaine%2C+combinations-EN definition">mepivacaine, combinations</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;meprobamate&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meprobamate-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meprobamate-EN definition">meprobamate</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;meprobamate,_combinations&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meprobamate%2C+combinations-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meprobamate%2C+combinations-EN definition">meprobamate, combinations</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mequitazine&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mequitazine-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mequitazine-EN definition">mequitazine</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mercaptamine&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mercaptamine-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mercaptamine-EN definition">mercaptamine</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mercaptopurine&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mercaptopurine-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mercaptopurine-EN definition">mercaptopurine</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mercurochrome&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mercurochrome-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mercurochrome-EN definition">mercurochrome</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mercury_compounds&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mercury+compounds-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mercury+compounds-EN definition">mercury compounds</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;meropenem&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meropenem-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/meropenem-EN definition">meropenem</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mesalazine&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mesalazine-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mesalazine-EN definition">mesalazine</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mesna&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mesna-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mesna-EN definition">mesna</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mesterolone&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mesterolone-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mesterolone-EN definition">mesterolone</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;mesuximide&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mesuximide-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/mesuximide-EN definition">mesuximide</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;metabolism_and_nutrition_disorders&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metabolism+and+nutrition+disorders-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metabolism+and+nutrition+disorders-EN definition">metabolism and nutrition disorders</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;metacycline&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metacycline-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metacycline-EN definition">metacycline</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;metamizole_sodium&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metamizole+sodium-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metamizole+sodium-EN definition">metamizole sodium</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;metamizole_sodium,_combinations_excl._psycholeptic&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metamizole+sodium%2C+combinations+excl.+psycholeptic-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metamizole+sodium%2C+combinations+excl.+psycholeptic-EN definition">metamizole sodium, combinations excl. psycholeptic</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;metaraminol&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metaraminol-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metaraminol-EN definition">metaraminol</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;metenolone&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metenolone-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metenolone-EN definition">metenolone</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;metformin&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin-EN definition">metformin</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;metformin_and_alogliptin&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin+and+alogliptin-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin+and+alogliptin-EN definition">metformin and alogliptin</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;metformin_and_canagliflozin&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin+and+canagliflozin-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin+and+canagliflozin-EN definition">metformin and canagliflozin</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;metformin_and_dapagliflozin&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin+and+dapagliflozin-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin+and+dapagliflozin-EN definition">metformin and dapagliflozin</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;metformin_and_empagliflozin&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin+and+empagliflozin-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin+and+empagliflozin-EN definition">metformin and empagliflozin</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;metformin_and_linagliptin&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin+and+linagliptin-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin+and+linagliptin-EN definition">metformin and linagliptin</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;metformin_and_rosiglitazone&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin+and+rosiglitazone-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin+and+rosiglitazone-EN definition">metformin and rosiglitazone</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;metformin_and_saxagliptin&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin+and+saxagliptin-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin+and+saxagliptin-EN definition">metformin and saxagliptin</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;metformin_and_sitagliptin&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin+and+sitagliptin-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin+and+sitagliptin-EN definition">metformin and sitagliptin</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;metformin_and_sulfonamides&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin+and+sulfonamides-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin+and+sulfonamides-EN definition">metformin and sulfonamides</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;metformin_and_vildagliptin&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin+and+vildagliptin-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/metformin+and+vildagliptin-EN definition">metformin and vildagliptin</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;methadone&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methadone-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methadone-EN definition">methadone</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;methadone,_combinations_excl._psycholeptics&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methadone%2C+combinations+excl.+psycholeptics-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methadone%2C+combinations+excl.+psycholeptics-EN definition">methadone, combinations excl. psycholeptics</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;methaqualone&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methaqualone-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methaqualone-EN definition">methaqualone</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;methaqualone,_combinations&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methaqualone%2C+combinations-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methaqualone%2C+combinations-EN definition">methaqualone, combinations</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;methenamine&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methenamine-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methenamine-EN definition">methenamine</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;methocarbamol,_combinations_with_psycholeptics&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methocarbamol%2C+combinations+with+psycholeptics-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methocarbamol%2C+combinations+with+psycholeptics-EN definition">methocarbamol, combinations with psycholeptics</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;methohexital&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methohexital-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methohexital-EN definition">methohexital</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;methotrexate&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methotrexate-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methotrexate-EN definition">methotrexate</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;methoxsalen&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methoxsalen-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methoxsalen-EN definition">methoxsalen</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;methoxy_polyethylene_glycol-epoetin_beta&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methoxy+polyethylene+glycol-epoetin+beta-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methoxy+polyethylene+glycol-epoetin+beta-EN definition">methoxy polyethylene glycol-epoetin beta</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;methoxyflurane&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methoxyflurane-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methoxyflurane-EN definition">methoxyflurane</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;methyl_aminolevulinate&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methyl+aminolevulinate-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methyl+aminolevulinate-EN definition">methyl aminolevulinate</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;methyldopa_(levorotatory)&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methyldopa+%28levorotatory%29-EN&quot;,&quot;lang&quot;:&quot;en&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_atc/data/atc/methyldopa+%28levorotatory%29-EN definition">methyldopa (levorotatory)</a></li> 
+           </ul> 
+          </div> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner_down"> 
+             <li class="activepageLower"> </li>  
+             <li><a href="listOfTerms?incrementPage=browser_en_M_N_2.html">2</a></li>  
+             <li><a href="listOfTerms?incrementPage=browser_en_M_N_3.html">3</a></li> 
+            </ul> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <div id="ox-footer" class=""> 
+    <div class="responsive_row flush-below top"> 
+     <div class="responsive_container responsive_display_on_smartphone"> 
+      <div class="menu_button"></div> 
+     </div> 
+     <div class="nav responsive_container main_nav"> 
+      <ul class="menu"> 
+       <li><a href="http://localhost:8080/status?view=status">status</a></li> 
+       <li><a href="http://localhost:8080/describe">browser</a></li> 
+       <li><a href="http://localhost:8080/status?view=sparql">sparql</a></li> 
+       <li><a href="http://localhost:8080/status?view=search">terms</a></li> 
+      </ul> 
+     </div> 
+    </div>         
+   </div>
+  </div>
+ </body>
+</html>
