@@ -60,11 +60,15 @@ public class Matching {
             String otherTerminologyName = getTerminologyName(remoteTermDetail.getTermUrl());
             TermDetail linkedTermDetail = new TermDetail(term, localTermDetail.getTermUrl(), otherTerminologyName, remoteTermDetail.getTermUrl());
             //System.out.println("linkedTermDetail:" + linkedTermDetail);
-            String insertSparql = "SPARQL INSERT DATA {\n"
-                    + "GRAPH <http://tbx2rdf.lider-project.eu/> {\n"
-                    + "<" + localTermDetail.getTermUrl() + "> <http://www.w3.org/ns/lemon/ontolex#sameAs> <" + remoteTermDetail.getTermUrl() + ">\n"
-                    + "} };";
-            FileRelatedUtils.writeSparqlToFile(parameter.getInsertFile(), insertSparql);
+            if (localTermDetail.getLanguage().contains(remoteTermDetail.getLanguage())) {
+                String insertSparql = "SPARQL INSERT DATA {\n"
+                        + "GRAPH <http://tbx2rdf.lider-project.eu/> {\n"
+                        + "<" + localTermDetail.getTermUrl() + "> <http://www.w3.org/ns/lemon/ontolex#sameAs> <" + remoteTermDetail.getTermUrl() + ">\n"
+                        + "} };";
+                FileRelatedUtils.writeSparqlToFile(parameter.getInsertFile(), insertSparql);
+                System.out.println("SPARQL inserted!!!!" );
+            }
+
         }
         //}
     }

@@ -60,6 +60,13 @@ res.sendFile(htmlDir+page);
 });
 
 
+app.get("/pageNumber", async (req, res, next) => {
+var page=req.query.page;
+console.log("page number!!!!!!!!!!!!!!!!!!!: "+req.query.page);
+
+});
+
+
 
 
 
@@ -92,40 +99,6 @@ const execOptions = {cwd: "/tmp"}; //, stdout: process.stderr, stderr: process.s
             return;
             }
 
-
-
-/*const term_details_sparql=`PREFIX ontolex: <http://www.w3.org/ns/lemon/ontolex#>
-PREFIX rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-
-PREFIX cc:    <http://creativecommons.org/ns#> 
-PREFIX void:  <http://rdfs.org/ns/void#> 
-PREFIX skos:  <http://www.w3.org/2004/02/skos/core#> 
-PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#> 
-PREFIX tbx:   <http://tbx2rdf.lider-project.eu/tbx#> 
-PREFIX decomp: <http://www.w3.org/ns/lemon/decomp#> 
-PREFIX dct:   <http://purl.org/dc/terms/> 
-PREFIX rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
-PREFIX ontolex: <http://www.w3.org/ns/lemon/ontolex#> 
-PREFIX ldr:   <http://purl.oclc.org/NET/ldr/ns#> 
-PREFIX odrl:  <http://www.w3.org/ns/odrl/2/> 
-PREFIX dcat:  <http://www.w3.org/ns/dcat#> 
-PREFIX prov:  <http://www.w3.org/ns/prov#> 
-
-SELECT ?entity ?rep ?lang from <http://tbx2rdf.lider-project.eu/> WHERE { 
-?entity ontolex:canonicalForm ?canform .
-?canform ontolex:writtenRep ?rep .
-?lang rdf:type ontolex:Lexicon .
-?lang ontolex:entry ?entity .
-FILTER regex(str(?rep), "hole") .
-} LIMIT 100`;
-
-
-    const lookup_result = {};
-    const term_details = await sparql_utils.performSPARQL(term_details_sparql);
-    lookup_result.term_details = sparql_utils.sparql_result(term_details);
-    console.log("termpage:"+term_details);
-    console.log("termpage:"+lookup_result.term_details);
-*/
 });
 
 
@@ -133,10 +106,12 @@ FILTER regex(str(?rep), "hole") .
 app.get("/describe", async (req, res, next) => {
 
 var result = null;
-const termlistResult = termlist(sparql_utils.sparql_result(await sparql_utils.performSPARQL(term_query)));
+//const termlistResult = termlist(sparql_utils.sparql_result(await sparql_utils.performSPARQL(term_query)));
+const termlistResult ="";
 const cmdExec = "java";
 const cmdArgs = ["-Xms512M", "-Xmx20G", "-jar","/tmp/target/tbx2rdf-0.4.jar","html" ,local_sparql_endpoint, htmlDir,termlistResult,inputDir,listOfTerms,templateDir];
 const execOptions = {cwd: "/tmp"}; //, stdout: process.stderr, stderr: process.stderr};
+
 
         try {
             result = await streamExec("tbx2rdf", cmdExec, cmdArgs, execOptions);
@@ -149,7 +124,21 @@ const execOptions = {cwd: "/tmp"}; //, stdout: process.stderr, stderr: process.s
                    }
 		else
 		   {
-	            res.sendFile(htmlDir+'browser_en_A_B_1.html');
+
+
+	          try {
+                           if(fs.existsSync(htmlDir+'browser_en_A_B_1.html')) {
+                              console.log("The file exists.");
+	                      res.sendFile(htmlDir+'browser_en_A_B_1.html');
+                             } 
+		           else {
+                             console.log('The file does not exist.');
+	                     res.sendFile(templateDir+'ListOfTermsHome.html');
+                                }
+                     } catch (err) {
+                   console.error(err);
+                  }
+	            
 		   }	
 
             if (result.stdcache.stdout) { data.stdout = result.stdcache.stdout; }
