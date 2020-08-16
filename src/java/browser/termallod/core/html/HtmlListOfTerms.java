@@ -70,7 +70,7 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
     
     
     private void createLangSelectBox(Element body,Set<String> lanCodes) throws Exception {
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!language!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        //System.out.println("!!!!!!!!!!!!!!!!!!!!!language!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         Element divLanguage = body.getElementsByClass("langauge_selection_box").get(0);
         String url=null,str="";
         for (String languageCode :lanCodes) {
@@ -87,7 +87,7 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         }
         String table ="<table class=\"panel-body rdf_embedded_table\" id=\"langDetail\">"
                       +"<tbody>"+"<tr>"+str+"</tr>"+" </tbody>"+"</table>";
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"+table);
+        //System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"+table);
         divLanguage.append(table);
     }
 
@@ -209,7 +209,7 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         List<String> liS = new ArrayList<String>();
         String pageUrl = null;
         String li = "";
-        String incrementPage="listOfTerms?incrementPage=";
+        String incrementPage="pageNumber?page=";
         /*"<span>" + this.currentPageNumber + "</span>";
         liS.add(li);*/
 

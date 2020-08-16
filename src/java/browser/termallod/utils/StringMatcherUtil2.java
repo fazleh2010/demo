@@ -27,6 +27,7 @@ public class StringMatcherUtil2 {
         System.out.println(terminologyName);
         String searchTerm="termPage?term="+StringMatcherUtil.encripted("anderson,_b.l.")+"&lang="+"en";
         System.out.println(searchTerm);
+        System.out.println(getPageNumber("browser_en_A_B_2.html"));
     }
 
     public static String encripted(String term) {
@@ -74,6 +75,21 @@ public class StringMatcherUtil2 {
            language = lastString;
             
         return language.toLowerCase();
+    }
+    
+    public static Integer getPageNumber(String subject) {
+        subject=subject.replace(".html", "");
+        int i = 0;
+        if (subject.contains("_")) {
+            int index = subject.lastIndexOf('_');
+            if (index < 1) {
+                return 1;
+            }
+            String lastString = subject.substring(index + 1);
+            return Integer.parseInt(lastString);
+        }
+
+        return i;
     }
 
     public static String getTerminologyName(String url) {

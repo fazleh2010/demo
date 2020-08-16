@@ -10,12 +10,14 @@ import browser.termallod.core.html.HtmlCreator;
 import browser.termallod.api.LanguageManager;
 import browser.termallod.process.Matching;
 import browser.termallod.constants.Parameter;
+import static browser.termallod.constants.Parameter.Browser;
 import browser.termallod.utils.FileRelatedUtils;
 import browser.termallod.core.sparql.CurlSparqlQuery;
 import browser.termallod.constants.SparqlEndpoint;
 import browser.termallod.constants.SparqlQuery;
 import browser.termallod.core.termbase.TermDetail;
 import browser.termallod.core.termbase.Termbase;
+import static browser.termallod.utils.StringMatcherUtil2.getPageNumber;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.BufferedWriter;
@@ -75,7 +77,7 @@ public class HtmlMain implements SparqlEndpoint {
 
         System.out.println("reading terms");
         CurlSparqlQuery curlSparqlQuery = new CurlSparqlQuery();
-        HtmlCreator htmlCreator = new HtmlCreator(parameter.getTEMPLATE_PATH(), parameter.getOUTPUT_PATH());
+        HtmlCreator htmlCreator=null;
 
         if (parameter.getHtmltype().contains(Parameter.ListOfTerms)) {
             Termbase myTerminology = curlSparqlQuery.findListOfTerms(parameter.getMyTermSparqlEndpoint(), query_writtenRep, myTermSparqlEndpoint);
@@ -91,10 +93,30 @@ public class HtmlMain implements SparqlEndpoint {
             FileRelatedUtils.writeFile(alphabetFiles.getLangTerms(), parameter.getINPUT_PATH());
             
             System.out.println("creating html");
-
+            htmlCreator = new HtmlCreator(parameter.getTEMPLATE_PATH(), parameter.getOUTPUT_PATH(),"all",1);
             htmlCreator.createListOfTermHtmlPage(parameter.getINPUT_PATH(), alphabetFiles.getLangTerms().keySet(), parameter.getHtmltype(), true);
              return Parameter.ListOfTerms;
-        } else if (parameter.getHtmltype().contains(Parameter.TermPage)) {
+        }else if (parameter.getHtmltype().contains(Browser)) {
+            System.out.println("Browser................" + Browser);
+            Termbase myTerminology = curlSparqlQuery.findListOfTerms(parameter.getMyTermSparqlEndpoint(), query_writtenRep, myTermSparqlEndpoint);
+            System.out.println("saving terms");
+            if (myTerminology.getTerms().isEmpty()) {
+                return Parameter.Browser;
+            }
+
+            CreateAlphabetFiles alphabetFiles = new CreateAlphabetFiles(parameter.getLanguageInfo(), myTerminology);
+
+            //cleanDirectory();
+            System.out.println("saving files");
+            FileRelatedUtils.writeFile(alphabetFiles.getLangTerms(), parameter.getINPUT_PATH());
+
+            System.out.println("creating html");
+            Integer pageNumber=getPageNumber(parameter.getHtmltype());
+            htmlCreator = new HtmlCreator(parameter.getTEMPLATE_PATH(), parameter.getOUTPUT_PATH(),"A_B",pageNumber);
+            htmlCreator.createListOfTermHtmlPage(parameter.getINPUT_PATH(), alphabetFiles.getLangTerms().keySet(), parameter.getHtmltype(), true);
+
+        }
+        else if (parameter.getHtmltype().contains(Parameter.TermPage)) {
             String termDetailSparql = SparqlQuery.getTermDetailSpqlByTerm(parameter.getTermDetail());
             //System.out.println("termDetailSparql :"+termDetailSparql);
             TermDetail termDetail = curlSparqlQuery.findTermDetail(myTermSparqlEndpoint, termDetailSparql);

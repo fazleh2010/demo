@@ -37,6 +37,7 @@ public class Parameter {
     private String otherTermSparqlEndpoint = endpoint_intaglio;
     private String matchedTermTable = "link";
     public static String ListOfTerms = "ListOfTerms";
+    public static String Browser = "browser";
     public static String TermPage = "TermPage";
     public static String link = "matchTerms";
     private String termJson = "{\"term\":\"hole\","
@@ -163,8 +164,8 @@ public class Parameter {
                 htmltype = args[5];
                 //System.out.println("htmltype: " + htmltype);
             } else {
+                //htmltype = "browser_en_A_B_2.html";
                 htmltype = ListOfTerms;
-                //htmltype = ListOfTermPage;
                 //matchTerms
             }
             if (args.length > 6) {
