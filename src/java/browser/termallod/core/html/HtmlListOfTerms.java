@@ -81,7 +81,7 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
                 else
                   url = "browser_"+languageCode+"_1_1.html";
                
-                String line = "<td><a href=\"listOfTerms?page="+url+"\">"+languageDetail+"</a></td>";
+                String line = "<td><a href=\"listOfTerms?page="+url+"\""+ " " + "style=\"color:#00008B\";"+ " " +">"+languageDetail+"</a></td>";
                 str += line;
             }
         }
