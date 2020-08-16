@@ -110,7 +110,8 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
 
     private String createAlphabet(Element body, String alphebetPair, PageContentGenerator pageContentGenerator) throws Exception {
         Element divAlphabet = body.getElementsByClass("currentpage").get(0);
-        divAlphabet.append("<span>" + alphebetPair + "</span>");
+        String span="<span>" + alphebetPair + "</span>";
+        divAlphabet.append(span);
         List<AlphabetTermPage> alphabetPairs = pageContentGenerator.getLangPages(info.getLanguage());
         for (AlphabetTermPage alphabetTermPage : alphabetPairs) {
             if (!alphabetTermPage.getAlpahbetPair().contains(alphebetPair)) {
@@ -173,7 +174,7 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
                    +"{\"url\":\""+url
                    +"\",\"lang\":\""+lang+"\"}";*/
         String title = "url=" + '"' + url + " definition" + '"';
-        String a = "<a href=" + searchTerm + " " + title + ">" + termPresent + "</a>";
+        String a = "<a href=" + searchTerm + " " + title + " " + "class=\"software\""+ " " + ">" + termPresent + "</a>";
         String li = "\n<li>" + a + "</li>\n";
         return li;
     }
@@ -198,7 +199,7 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
             url = "browser_hu_A_1_1.html";
         }
 
-        String a = "<a href=" + url + ">" + alphabetTermPage.getAlpahbetPair() + "</a>";
+        String a = "<a href=" + url + " " + "class=\"alphabet\""+ " " + ">" + alphabetTermPage.getAlpahbetPair() + "</a>";
         String li = "\n" + "<li>" + a + "</li>" + "\n";
         return li;
     }
