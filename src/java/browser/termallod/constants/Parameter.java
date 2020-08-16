@@ -43,28 +43,8 @@ public class Parameter {
     private String termJson = "{\"term\":\"hole\","
             + "\"iri\":\"http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/hole-EN\","
             + "\"lang\":\"en\"}";
-
     private String localLangJson = "[{\"language\":{\"type\":\"uri\",\"value\":\"http://tbx2rdf.lider-project.eu/data/YourNameSpace/NL\"},\"entrycount\":{\"type\":\"typed-literal\",\"datatype\":\"http://www.w3.org/2001/XMLSchema#integer\",\"value\":\"186\"}},{\"language\":{\"type\":\"uri\",\"value\":\"http://tbx2rdf.lider-project.eu/data/YourNameSpace/EN\"},\"entrycount\":{\"type\":\"typed-literal\",\"datatype\":\"http://www.w3.org/2001/XMLSchema#integer\",\"value\":\"19\"}}]";
-
-    private String insertFile=null;
-    /*public Parameter(String args[]) {
-        if (args.length > 1) {
-            BASE_PATH = args[1] + BASE_PATH;
-        } else {
-            System.err.println("no parameter for BASE_PATH");
-        }
-        if (args.length > 2) {
-            localLangJson = args[2];
-        } else {
-            System.err.println("no parameter for " + localLangJson);
-        }
-        if (args.length > 3) {
-            otherTermSparqlEndpoint = args[3];
-            System.out.println("otherTermSparqlEndpoint: " + otherTermSparqlEndpoint);
-        } else {
-            System.err.println("otherTermSparqlEndpoint " + otherTermSparqlEndpoint);
-        }
-    }*/
+    private String insertFile=TEMPLATE_PATH+"linkData.txt";
 
     public Parameter(String args[]) {
 
@@ -102,8 +82,8 @@ public class Parameter {
                 htmltype = args[5];
                 //System.out.println("htmltype: " + htmltype);
             } else {
+                //htmltype = TermPage;
                 htmltype = ListOfTerms;
-                //htmltype = ListOfTermPage;
                 //matchTerms
             }
             if (args.length > 6) {
@@ -138,7 +118,8 @@ public class Parameter {
                 myTermSparqlEndpoint = args[1];
                 //System.out.println("SparqlEndpoint: " + myTermSparqlEndpoint);
             } else {
-                myTermSparqlEndpoint = endpoint_atc;
+                //myTermSparqlEndpoint = endpoint_atc;
+                myTermSparqlEndpoint = endpoint_solar;
                 System.err.println("no sparql endpoint in arguments");
             }
             if (args.length > 2) {
@@ -165,6 +146,7 @@ public class Parameter {
                 //System.out.println("htmltype: " + htmltype);
             } else {
                 //htmltype = "browser_en_A_B_2.html";
+                //htmltype = TermPage;
                 htmltype = ListOfTerms;
                 //matchTerms
             }
@@ -190,6 +172,7 @@ public class Parameter {
     }
 
     private void setParameter(String[] args) {
+        
         if (args.length > 1) {
             BASE_PATH = args[1] + BASE_PATH;
             System.out.println("BASE_PATH: " + BASE_PATH);
@@ -202,9 +185,18 @@ public class Parameter {
             otherTermSparqlEndpoint = args[3];
             System.out.println("otherTermSparqlEndpoint: " + otherTermSparqlEndpoint);
         }
+            
         if (args.length > 4) {
             insertFile = args[4];
             System.out.println("insertFile: " + insertFile);
+        }
+        if (args.length > 5) {
+            myTermSparqlEndpoint = args[5];
+            //System.out.println("SparqlEndpoint: " + myTermSparqlEndpoint);
+        } else {
+            //myTermSparqlEndpoint = endpoint_atc;
+            myTermSparqlEndpoint = endpoint_solar;
+            System.err.println("no sparql endpoint in arguments");
         }
         
         //String insertFile =  "/tmp/server/uploads/insert.db";
@@ -307,6 +299,11 @@ public class Parameter {
 
     public String getInsertFile() {
         return insertFile;
+    }
+
+    @Override
+    public String toString() {
+        return "Parameter{" + "BASE_PATH=" + BASE_PATH + ", OUTPUT_PATH=" + OUTPUT_PATH + ", INPUT_PATH=" + INPUT_PATH + ", CONFIG_PATH=" + CONFIG_PATH + ", TEMPLATE_PATH=" + TEMPLATE_PATH + ", languageInfo=" + languageInfo + ", myTermSparqlEndpoint=" + myTermSparqlEndpoint + ", list=" + list + ", htmltype=" + htmltype + ", myTermTableName=" + myTermTableName + ", otherTermTableName=" + otherTermTableName + ", otherTermSparqlEndpoint=" + otherTermSparqlEndpoint + ", matchedTermTable=" + matchedTermTable + ", termJson=" + termJson + ", localLangJson=" + localLangJson + ", insertFile=" + insertFile + '}';
     }
 
 }

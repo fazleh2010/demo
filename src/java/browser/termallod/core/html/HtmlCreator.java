@@ -22,20 +22,17 @@ import org.jsoup.nodes.Document;
  * @author Mohammad Fazleh Elahi
  */
 public class HtmlCreator {
-    
+
     private final String OUTPUT_PATH;
     private final String TEMPLATE_LOCATION;
-    private final String pair;
-    private final Integer pageNumber;
-    
-    public HtmlCreator(String TEMPLATE_LOCATION, String OUTPUT_PATH, String pair, Integer pageNUmber) {
+
+    public HtmlCreator(String TEMPLATE_LOCATION, String OUTPUT_PATH) {
         this.TEMPLATE_LOCATION = TEMPLATE_LOCATION;
         this.OUTPUT_PATH = OUTPUT_PATH;
-        this.pair = pair;
-        this.pageNumber = pageNUmber;
+
     }
-    
-    public void createListOfTermHtmlPage(String INPUT_PATH, Set<String> languages, String categoryName, Boolean pairFlag) throws Exception {
+
+    public void createListOfTermHtmlPage(String INPUT_PATH, Set<String> languages, String categoryName, Boolean pairFlag, String pair, Integer pageNUmber) throws Exception {
         TreeMap<String, RetrieveAlphabetInfo> langSortedTerms = new TreeMap<String, RetrieveAlphabetInfo>();
         /*String langCode = null;
         if (languages.contains("en")) {
@@ -43,15 +40,15 @@ public class HtmlCreator {
         } else {
             langCode = languages.iterator().next();
         }*/
-        
+
         for (String langCode : languages) {
             RetrieveAlphabetInfo retrieveAlphabetInfo = new RetrieveAlphabetInfo(INPUT_PATH, langCode, pairFlag);
             langSortedTerms.put(langCode, retrieveAlphabetInfo);
         }
-        
-        createHtmlForEachLanguage(langSortedTerms, categoryName, languages);
+
+        createHtmlForEachLanguage(langSortedTerms, categoryName, languages, pair, pageNUmber);
     }
-    
+
     public void createHtmlTermPage(TermDetail termDetail, String categoryName) throws Exception {
         File templateFile = getTemplate(categoryName, ".html");
         HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
@@ -61,17 +58,17 @@ public class HtmlCreator {
         Document termPage = htmlTermDetail.getOutputHtml();
         htmlReaderWriter.writeHtml(termPage, outputFileName);
     }
-    
-    private void createHtmlForEachLanguage(TreeMap<String, RetrieveAlphabetInfo> langSortedTerms, String categoryName, Set<String> languages) throws Exception {
+
+    private void createHtmlForEachLanguage(TreeMap<String, RetrieveAlphabetInfo> langSortedTerms, String categoryName, Set<String> languages, String pair, Integer pageNUmber) throws Exception {
         PageContentGenerator pageContentGenerator = new PageContentGenerator(langSortedTerms);
         for (String language : pageContentGenerator.getLanguages()) {
             File LIST_OF_Terms = getTemplate(ListOfTerms, ".html");
             List<AlphabetTermPage> alphabetTermPageList = pageContentGenerator.getLangPages(language);
             for (AlphabetTermPage alphabetTermPage : alphabetTermPageList) {
-                if (this.pair.contains("all")) {
-                    createHtmlForEachAlphabetPair(LIST_OF_Terms, language, alphabetTermPage, pageContentGenerator, categoryName, languages);                    
+                if (pair.contains("all")) {
+                    createHtmlForEachAlphabetPair(LIST_OF_Terms, language, alphabetTermPage, pageContentGenerator, categoryName, languages, pageNUmber);
                 } else if (alphabetTermPage.getAlpahbetPair().contains(pair)) {
-                    createHtmlForEachAlphabetPair(LIST_OF_Terms, language, alphabetTermPage, pageContentGenerator, categoryName, languages);
+                    createHtmlForEachAlphabetPair(LIST_OF_Terms, language, alphabetTermPage, pageContentGenerator, categoryName, languages, pageNUmber);
                     break;
                 }
                 //Alpahbet pair pages
@@ -81,32 +78,32 @@ public class HtmlCreator {
             //break;
         }
     }
-    
-    private void createHtmlForEachAlphabetPair(File templateFile, String language, AlphabetTermPage alphabetTermPage, PageContentGenerator pageContentGenerator, String categoryName, Set<String> languages) throws Exception {
+
+    private void createHtmlForEachAlphabetPair(File templateFile, String language, AlphabetTermPage alphabetTermPage, PageContentGenerator pageContentGenerator, String categoryName, Set<String> languages, Integer pageNUmber) throws Exception {
         Partition partition = alphabetTermPage.getPartition();
-        
+
         for (Integer page = 0; page < partition.size(); page++) {
             Integer currentPageNumber = page + 1;
-               if (currentPageNumber == this.pageNumber) {
-                    List<String> terms = partition.get(page);
-            HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
-            Document templateHtml = htmlReaderWriter.getInputDocument();
-            HtmlParameter info = new HtmlParameter(language, categoryName, alphabetTermPage);
-            HtmlListOfTerms htmlPage = new HtmlListOfTerms(info, htmlReaderWriter, templateHtml);
-            File outputFileName = new File(OUTPUT_PATH + info.creatHtmlFileName(currentPageNumber, alphabetTermPage));
-            String htmlFileName = outputFileName.getName();
-            Document listOfTermHtmlPage = htmlPage.createAllElements(templateHtml, terms, pageContentGenerator, htmlFileName, currentPageNumber, language, languages);
-            htmlReaderWriter.writeHtml(listOfTermHtmlPage, outputFileName);
-            //page indexes..number of pages of same alphabet..
-        
+            if (currentPageNumber == pageNUmber) {
+                List<String> terms = partition.get(page);
+                HtmlReaderWriter htmlReaderWriter = new HtmlReaderWriter(templateFile);
+                Document templateHtml = htmlReaderWriter.getInputDocument();
+                HtmlParameter info = new HtmlParameter(language, categoryName, alphabetTermPage);
+                HtmlListOfTerms htmlPage = new HtmlListOfTerms(info, htmlReaderWriter, templateHtml);
+                File outputFileName = new File(OUTPUT_PATH + info.creatHtmlFileName(currentPageNumber, alphabetTermPage));
+                String htmlFileName = outputFileName.getName();
+                Document listOfTermHtmlPage = htmlPage.createAllElements(templateHtml, terms, pageContentGenerator, htmlFileName, currentPageNumber, language, languages);
+                htmlReaderWriter.writeHtml(listOfTermHtmlPage, outputFileName);
+                //page indexes..number of pages of same alphabet..
+
                 break;
             }
         }
-        
+
     }
-    
+
     private File getTemplate(String categoryName, String extension) throws Exception {
         return new File(TEMPLATE_LOCATION + categoryName + extension);
     }
-    
+
 }

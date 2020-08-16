@@ -26,7 +26,7 @@ public class CreateAlphabetFiles {
     private Termbase myTerminology = null;
     private LanguageManager languageInfo = null;
     private TreeMap<String, TreeMap<String, List<TermDetail>>> langTerms = new TreeMap<String, TreeMap<String, List<TermDetail>>>();
-
+    
     public CreateAlphabetFiles(LanguageManager languageInfo, Termbase myTerminology) throws Exception {
         this.languageInfo = languageInfo;
         this.myTerminology = myTerminology;

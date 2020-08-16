@@ -134,6 +134,27 @@ public interface SparqlEndpoint {
     public static String query_writtenRep = ontoLexPrefix
             + "\n"
             + "select  ?s ?o  where { ?s ontolex:writtenRep ?o}";
+    
+     public static String query_writtenRep_lang = "PREFIX cc:    <http://creativecommons.org/ns#> \n" +
+"PREFIX void:  <http://rdfs.org/ns/void#> \n" +
+"PREFIX skos:  <http://www.w3.org/2004/02/skos/core#> \n" +
+"PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#> \n" +
+"PREFIX tbx:   <http://tbx2rdf.lider-project.eu/tbx#> \n" +
+"PREFIX decomp: <http://www.w3.org/ns/lemon/decomp#> \n" +
+"PREFIX dct:   <http://purl.org/dc/terms/> \n" +
+"PREFIX rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n" +
+"PREFIX ontolex: <http://www.w3.org/ns/lemon/ontolex#> \n" +
+"PREFIX ldr:   <http://purl.oclc.org/NET/ldr/ns#> \n" +
+"PREFIX odrl:  <http://www.w3.org/ns/odrl/2/> \n" +
+"PREFIX dcat:  <http://www.w3.org/ns/dcat#> \n" +
+"PREFIX prov:  <http://www.w3.org/ns/prov#> \n" +
+"\n" +
+"SELECT ?entity ?rep ?lang from <http://tbx2rdf.lider-project.eu/> WHERE { \n" +
+"    ?entity ontolex:canonicalForm ?canform .\n" +
+"    ?canform ontolex:writtenRep ?rep .\n" +
+"    ?lang rdf:type ontolex:Lexicon .\n" +
+"    ?lang ontolex:entry ?entity .\n" +
+"}";
 
     public static String iate_query = ontoLexPrefix
             + "\n"

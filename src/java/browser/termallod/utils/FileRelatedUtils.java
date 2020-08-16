@@ -5,8 +5,11 @@
  */
 package browser.termallod.utils;
 
+import browser.termallod.app.HtmlMain;
 import browser.termallod.core.AlphabetTermPage;
 import browser.termallod.core.termbase.TermDetail;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -27,6 +30,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
 
@@ -81,135 +86,27 @@ public class FileRelatedUtils {
         return selectedFile;
     }
 
-    /*public static List<File> writeFile(TreeMap<String, TreeMap<String, List<String>>> langSortedTerms, String path) throws IOException {
-        List<File> files = new ArrayList<File>();
-        for (String language : langSortedTerms.keySet()) {
-            String str = "";
-            String fileName = path + "_" + language +".txt";
-            files.add(new File(fileName));
-            TreeMap<String, List<String>> idSense = langSortedTerms.get(language);
-            for (String pair : idSense.keySet()) {
-                List<String> terms = idSense.get(pair);
-                String line = pair + " = " + terms.toString().replace("[", "");
-                line = line.replace("]", "");
-                str += line + "\n";
-            }
-            stringToFile(str, fileName);
-        }
-        return files;
-    }*/
- /*public static List<File> writeFile(TreeMap<String, TreeMap<String, List<TermInfo>>> langSortedTerms, String path) throws IOException {
-        List<File> files = new ArrayList<File>();
-        for (String language : langSortedTerms.keySet()) {
-            String str = "";
-            TreeMap<String, List<TermInfo>> idSense = langSortedTerms.get(language);
-            for (String pair : idSense.keySet()) {
-                String fileName = path + "_" + language + "_" + pair + ".txt";
-                List<TermInfo> terms = idSense.get(pair);
-                str = "";
-                for (TermInfo term : terms) {
-                    String line = term.getTermString() + " = " + term.getTermUrl();
-                    str += line + "\n";
-                }
-                stringToFile_ApendIf_Exists(str, fileName);
-            }
-
-        }
-        return files;
-    }*/
- /*public static List<File> writeFile(TreeMap<String, TreeMap<String, List<TermInfo>>> langSortedTerms, String path) throws IOException {
-        List<File> files = new ArrayList<File>();
-        for (String language : langSortedTerms.keySet()) {
-            String str = "";
-            TreeMap<String, List<TermInfo>> idSense = langSortedTerms.get(language);
-            for (String pair : idSense.keySet()) {
-                String fileName = path + "_" + language + "_" + pair + ".txt";
-                List<TermInfo> terms = idSense.get(pair);
-                str = "";
-                for (TermInfo term : terms) {
-                    String line = term.getTermString() + " = " + term.getTermUrl();
-                    str += line + "\n";
-                }
-                stringToFile_ApendIf_Exists(str, fileName);
-            }
-
-        }
-        return files;
-    }*/
-    /*public static List<File> writeFile(TreeMap<String, TreeMap<String, List<TermInfo>>> langSortedTerms, String path) throws IOException {
-        List<File> files = new ArrayList<File>();
-        for (String language : langSortedTerms.keySet()) {
-            String str = "";
-            TreeMap<String, List<TermInfo>> alphabetPairTerms = langSortedTerms.get(language);
-            Integer index=0;
-            for (String pair : alphabetPairTerms.keySet()) {
-                String fileName = path + "_" + language + "_" + pair + ".txt";
-                List<TermInfo> terms = alphabetPairTerms.get(pair);
-                str = "";
-                for (TermInfo term : terms) {
-                    String line = term.getTermString() + " = " + term.getTermUrl();
-                    str += line + "\n";
-                }
-                stringToFile_ApendIf_Exists(str, fileName);
-            }
-
-        }
-        return files;
-    }*/
-    
-    /*public static List<File> writeFile(TreeMap<String, TreeMap<String, List<TermInfo>>> langSortedTerms, String path) throws IOException {
-        List<File> files = new ArrayList<File>();
-        for (String language : langSortedTerms.keySet()) {
-            String str = "";
-            TreeMap<String, List<TermInfo>> alphabetPairTerms = langSortedTerms.get(language);
-             Integer pairIndex=0;
-            for (String pair : alphabetPairTerms.keySet()) {
-                String fileName = path + "_" + language + "_" + pair + ".txt";
-                List<TermInfo> terms = alphabetPairTerms.get(pair);
-                str = "";
-                pairIndex++;
-                Integer termIndex=0;
-                for (TermInfo term : terms) {
-                    String pairNote=null;
-                    
-                    if(language.contains("en"))
-                        pairNote=pair;
-                    else
-                        pairNote=pairIndex.toString();
-                    
-                        
-                    String line = term.getTermString() + " = " + term.getTermUrl()
-                                  + " = " +"browser"+ "_" + language+ "_" + pairNote+ "_" +"term" + "_" + (termIndex++) + ".html";
-                    str += line + "\n";
-                }
-                stringToFile_ApendIf_Exists(str, fileName);
-            }
-
-        }
-        return files;
-    }*/
-    
     public static List<File> writeFile(TreeMap<String, TreeMap<String, List<TermDetail>>> langSortedTerms, String path) throws IOException {
         List<File> files = new ArrayList<File>();
         for (String language : langSortedTerms.keySet()) {
             String str = "";
             TreeMap<String, List<TermDetail>> alphabetPairTerms = langSortedTerms.get(language);
-             Integer pairIndex=0;
+            Integer pairIndex = 0;
             for (String pair : alphabetPairTerms.keySet()) {
                 String fileName = path + language + "-" + pair + ".txt";
                 List<TermDetail> terms = alphabetPairTerms.get(pair);
                 str = "";
                 pairIndex++;
-                Integer termIndex=0;
+                Integer termIndex = 0;
                 for (TermDetail term : terms) {
-                    String pairNote=null;
-                    
-                    if(language.contains("en"))
-                        pairNote=pair;
-                    else
-                        pairNote=pairIndex.toString();
-                    
-                        
+                    String pairNote = null;
+
+                    if (language.contains("en")) {
+                        pairNote = pair;
+                    } else {
+                        pairNote = pairIndex.toString();
+                    }
+
                     String line = term.getTermOrg() + " = " + term.getTermUrl();
                     str += line + "\n";
                 }
@@ -219,7 +116,6 @@ public class FileRelatedUtils {
         }
         return files;
     }
-    
 
     public static void writeLangFile(Map<String, TreeMap<String, String>> langHash, String path) throws IOException {
         for (String language : langHash.keySet()) {
@@ -237,11 +133,12 @@ public class FileRelatedUtils {
         }
 
     }
-    public static void writeLangFile(Map<String, TreeMap<String, String>> langHash, String path,String type) throws IOException {
+
+    public static void writeLangFile(Map<String, TreeMap<String, String>> langHash, String path, String type) throws IOException {
         for (String language : langHash.keySet()) {
             String str = "";
             TreeMap<String, String> idSense = langHash.get(language);
-            String fileName = path + language + "_"+type+ ".txt";
+            String fileName = path + language + "_" + type + ".txt";
             for (String id : idSense.keySet()) {
 
                 String sense = idSense.get(id);
@@ -253,11 +150,11 @@ public class FileRelatedUtils {
 
     }
 
-    public static void writeLangFile2(Map<String, String> langHash, String path,String type) throws IOException {
+    public static void writeLangFile2(Map<String, String> langHash, String path, String type) throws IOException {
         for (String language : langHash.keySet()) {
             String str = "";
             str = langHash.get(language);
-            String fileName = path + language + "_"+type+".txt";
+            String fileName = path + language + "_" + type + ".txt";
             stringToFile_ApendIf_Exists(str, fileName);
         }
 
@@ -325,7 +222,7 @@ public class FileRelatedUtils {
         }
 
     }
-    
+
     public static void stringToFile(String str, String fileName)
             throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
@@ -347,15 +244,14 @@ public class FileRelatedUtils {
     }
 
     public static Properties getPropertyHash(File propFile) throws FileNotFoundException, IOException {
-      
+
         FileReader fr = new FileReader(propFile);
         BufferedReader br = new BufferedReader(fr);
         Properties props = new Properties();
         props.load(new InputStreamReader(new FileInputStream(propFile), "UTF-8"));
         return props;
     }
-    
-    
+
     public static Map<String, String> getHash(String fileName) throws FileNotFoundException, IOException {
         Map<String, String> hash = new HashMap<String, String>();
         BufferedReader reader;
@@ -366,13 +262,13 @@ public class FileRelatedUtils {
 
                 // read next line
                 line = reader.readLine();
-                if(line!=null){
-                String[] info = line.split("=");
-                String key=StringMatcherUtil2.encripted(info[0].toLowerCase().trim());
-                String value=info[1].trim();
-                hash.put(key, value);
+                if (line != null) {
+                    String[] info = line.split("=");
+                    String key = StringMatcherUtil2.encripted(info[0].toLowerCase().trim());
+                    String value = info[1].trim();
+                    hash.put(key, value);
                 }
-                 
+
             }
             reader.close();
         } catch (IOException e) {
@@ -380,31 +276,6 @@ public class FileRelatedUtils {
         }
         return hash;
     }
-
-    /*public static Map<String, String> getHash(String fileName) throws FileNotFoundException, IOException {
-        Map<String, String> hash = new HashMap<String, String>();
-        BufferedReader reader;
-        try {
-            reader = new BufferedReader(new FileReader(fileName));
-            String line = reader.readLine();
-            while (line != null) {
-
-                // read next line
-                line = reader.readLine();
-                if(line!=null){
-                String[] info = line.split("=");
-                String key=StringMatcherUtil2.encripted(info[0].toLowerCase().trim());
-                String value=info[1].toLowerCase().trim();
-                hash.put(key, value);
-                }
-                 
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return hash;
-    }*/
 
     public static void appendStringInFile(String textToAppend, String fileName) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
@@ -431,18 +302,18 @@ public class FileRelatedUtils {
         }
 
     }
-    
-    public static void cleanDirectory(Map<String, String> categoryOntologyMapper, String PATH,String DIR) throws IOException {
+
+    public static void cleanDirectory(Map<String, String> categoryOntologyMapper, String PATH, String DIR) throws IOException {
 
         for (String key : categoryOntologyMapper.keySet()) {
             key = categoryOntologyMapper.get(key);
             String mainDir = PATH + key;
-            String jsDir = mainDir+File.separator+DIR+File.separator;
-             FileRelatedUtils.deleteDirectory(mainDir);
-             FileRelatedUtils.createDirectory(mainDir);
-             FileRelatedUtils.deleteDirectory(jsDir);
-             FileRelatedUtils.createDirectory(jsDir);
-         
+            String jsDir = mainDir + File.separator + DIR + File.separator;
+            FileRelatedUtils.deleteDirectory(mainDir);
+            FileRelatedUtils.createDirectory(mainDir);
+            FileRelatedUtils.deleteDirectory(jsDir);
+            FileRelatedUtils.createDirectory(jsDir);
+
         }
 
     }
@@ -496,7 +367,6 @@ public class FileRelatedUtils {
         return source;
     }
 
-  
     public static void cleanDirectory(Set<String> categorySet, String PATH, String TEXT_DIR, String givenBrowser) throws IOException {
         //deleting all generated term filkes
         for (String browser : categorySet) {
@@ -509,18 +379,58 @@ public class FileRelatedUtils {
         }
     }
 
-
     public static void deleteFile(String fileName) {
         new File(fileName).delete();
     }
 
-   
-     public static Properties getProperties(String subjectFileName) throws IOException {
+    public static Properties getProperties(String subjectFileName) throws IOException {
         File propFile = new File(subjectFileName);
         Properties props = new Properties();
         props.load(new InputStreamReader(new FileInputStream(propFile), "UTF-8"));
         return props;
     }
 
+    public static void cleanDirectory(String INPUT_PATH, String OUTPUT_PATH) {
+        try {
+            FileRelatedUtils.deleteDirectory(INPUT_PATH);
+            FileRelatedUtils.createDirectory(INPUT_PATH);
+            FileRelatedUtils.deleteDirectory(OUTPUT_PATH);
+            FileRelatedUtils.createDirectory(OUTPUT_PATH);
+        } catch (IOException ex) {
+            Logger.getLogger(HtmlMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void writeINFile(String insertFile, String term, String localTermUrl, String remoteTermUrl) throws IOException {
+        Map<String, String> element = new HashMap<String, String>();
+        element.put("localTerm", term);
+        element.put("localUrl", localTermUrl);
+        element.put("remoteTerm", term);
+        element.put("remoteUrl", remoteTermUrl);
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            String json = objectMapper.writeValueAsString(element);
+            System.out.println("!!!!!!!!!!!!!!!inside Java!!!!!!!!!!!!!!!!!!!!" + json);
+            objectMapper.writeValue(new File(insertFile), json);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+    }
+    
+     public static void writeSparqlToFile(String file, String sparqlEnd) {
+        FileWriter fileWriter;
+        try {
+            fileWriter = new FileWriter(file, true);
+            BufferedWriter bufferFileWriter = new BufferedWriter(fileWriter);
+            bufferFileWriter.append(sparqlEnd);
+            bufferFileWriter.newLine();
+            bufferFileWriter.close();
+        } catch (IOException ex) {
+            Logger.getLogger(HtmlMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }

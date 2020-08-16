@@ -29,6 +29,7 @@ public class RetrieveAlphabetInfo {
     public RetrieveAlphabetInfo(String INPUT_PATH, String langCode, Boolean pairFlag) throws IOException, IOException, IOException, IOException, IOException {
         List<File> files = FileRelatedUtils.getFiles(INPUT_PATH, langCode, ".txt");
         for (File file : files) {
+            System.out.println(file.getName());
             String[] info = file.getName().split("-");
             String pair = info[1].replace(".txt", "");
             this.pairFile.put(pair, file);
@@ -43,6 +44,7 @@ public class RetrieveAlphabetInfo {
 
     private void getValuesFromTextFile(File propFile) throws FileNotFoundException, IOException {
         Map<String, String> temp = FileRelatedUtils.getHash(propFile.getAbsolutePath());
+        System.out.println(temp.keySet());
         allTerms.putAll(temp);
     }
 

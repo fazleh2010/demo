@@ -1,0 +1,5 @@
+
+SPARQL INSERT DATA {
+GRAPH <http://tbx2rdf.lider-project.eu/> {
+<http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/hole-EN> <http://www.w3.org/ns/lemon/ontolex#sameAs> <http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/data/intaglio/hole-EN>
+} };

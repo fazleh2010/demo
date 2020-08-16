@@ -5,18 +5,24 @@
  */
 package browser.termallod.process;
 
+import browser.termallod.api.LanguageManager;
 import browser.termallod.constants.Parameter;
 import static browser.termallod.constants.SparqlEndpoint.query_writtenRep;
+import static browser.termallod.constants.SparqlEndpoint.query_writtenRep_lang;
 import browser.termallod.core.sparql.CurlSparqlQuery;
 import browser.termallod.core.termbase.TermDetail;
 import browser.termallod.core.termbase.Termbase;
+import browser.termallod.utils.FileRelatedUtils;
 import browser.termallod.utils.StringMatcherUtil2;
+import static browser.termallod.utils.StringMatcherUtil2.getTerminologyName;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Sets;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -29,31 +35,52 @@ import java.util.logging.Logger;
  */
 public class Matching {
 
-    public static String terminologyName = "otherTerminology";
     private Map<String, Set<TermDetail>> matchedTermsInto = new TreeMap<String, Set<TermDetail>>();
 
-    public Matching(String INPUT_PATH, String otherTermSparqlEndpoint, String localLanguages, String otherTermTableName) throws IOException, Exception {
+    public Matching(Parameter parameter) throws IOException, Exception {
+
+        String myTermSparqlEndpoint = parameter.getMyTermSparqlEndpoint();
+        String otherTermSparqlEndpoint = parameter.getOtherTermSparqlEndpoint();
+        String localLanguages = parameter.getLocalLangJson();
+        LanguageManager langInfo = parameter.getLanguageInfo();
+
         CurlSparqlQuery curlSparqlQuery = new CurlSparqlQuery();
         Set<String> remoteLanguages = getLanguaes(localLanguages);
-        for (String langCode : remoteLanguages) {
-            System.out.println("langCode:"+langCode);
-            RetrieveAlphabetInfo retrieveAlphabetInfo = new RetrieveAlphabetInfo(INPUT_PATH, langCode, false);
-            Termbase otherTerminology = curlSparqlQuery.findListOfTerms(otherTermSparqlEndpoint, query_writtenRep, otherTermTableName);
-            Map<String, String> localTermUrls = retrieveAlphabetInfo.getAllTerms();
-            //System.out.println("localTermUrls:"+localTermUrls.values());
-            //System.out.println(" otherTerminology.getTerms().keySet():"+ otherTerminology.getTerms().values());
-            Set<String> matchedTerms = match(localTermUrls.keySet(), otherTerminology.getTerms().keySet());
-            Set<TermDetail> termDetails = new HashSet<TermDetail>();
-            for (String term : matchedTerms) {
-                String url = localTermUrls.get(term);
-                TermDetail remoteTermDetail = otherTerminology.getTerms().get(term);
-                TermDetail termDetail = new TermDetail(term, url, terminologyName, remoteTermDetail.getTermUrl());
-                termDetails.add(termDetail);
-            }
-            if (!matchedTerms.isEmpty()) {
-                matchedTermsInto.put(langCode, termDetails);
-            }
+
+        //for (String langCode : remoteLanguages) {
+        //System.out.println("langCode:" + langCode);
+        Termbase yourTerminology = curlSparqlQuery.findListOfTerms(myTermSparqlEndpoint, query_writtenRep, "myTerminology", true);
+        Termbase otherTerminology = curlSparqlQuery.findListOfTerms(otherTermSparqlEndpoint, query_writtenRep, "otherTerminology", true);
+        Set<String> matchedTerms = match(yourTerminology, otherTerminology);
+        //System.out.println(matchedTerms);
+        //Set<TermDetail> termDetails = new HashSet<TermDetail>();
+        for (String term : matchedTerms) {
+            TermDetail localTermDetail = yourTerminology.getTerms().get(term);
+            TermDetail remoteTermDetail = otherTerminology.getTerms().get(term);
+            String otherTerminologyName = getTerminologyName(remoteTermDetail.getTermUrl());
+            TermDetail linkedTermDetail = new TermDetail(term, localTermDetail.getTermUrl(), otherTerminologyName, remoteTermDetail.getTermUrl());
+            //System.out.println("linkedTermDetail:" + linkedTermDetail);
+            String insertSparql = "SPARQL INSERT DATA {\n"
+                    + "GRAPH <http://tbx2rdf.lider-project.eu/> {\n"
+                    + "<" + localTermDetail.getTermUrl() + "> <http://www.w3.org/ns/lemon/ontolex#sameAs> <" + remoteTermDetail.getTermUrl() + ">\n"
+                    + "} };";
+            FileRelatedUtils.writeSparqlToFile(parameter.getInsertFile(), insertSparql);
         }
+        //}
+    }
+
+    private static Set<String> getTerms(Termbase yourTerminology) {
+        List<String> localTerms = new ArrayList<String>(yourTerminology.getTerms().keySet());
+        Collections.sort(localTerms);
+        return new HashSet<String>(localTerms);
+    }
+
+    private static Set<String> match(Termbase yourTerminology, Termbase otherTerminology) {
+        return match(getTerms(yourTerminology), getTerms(otherTerminology));
+    }
+
+    private static Set<String> match(Set<String> myTerms, Set<String> otherTerms) {
+        return Sets.intersection(myTerms, otherTerms);
     }
 
     public static Set<String> getLanguaes(String jsonStr) {
@@ -83,21 +110,13 @@ public class Matching {
         return retrivedLangSets;
     }
 
-    private static Set<String> match(Set<String> myTerms, Set<String> otherTerms) {
-        return Sets.intersection(myTerms, otherTerms);
-    }
-
-    public static String getTerminologyName() {
-        return terminologyName;
-    }
-
     public Map<String, Set<TermDetail>> getMatchedTermsInto() {
         return matchedTermsInto;
     }
 
     @Override
     public String toString() {
-        return "Matching{" + "terminologyName=" + terminologyName + ", matchedTermsInto=" + matchedTermsInto + '}';
+        return "Matching{" + "matchedTermsInto=" + matchedTermsInto + '}';
     }
 
 }

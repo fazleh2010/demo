@@ -42,9 +42,9 @@ import org.w3c.dom.NamedNodeMap;
  */
 public class CurlSparqlQuery {
 
-    public Termbase findListOfTerms(String endpoint, String query, String termBaseName) throws Exception {
+    public Termbase findListOfTerms(String endpoint, String query, String termBaseName,Boolean flag) throws Exception {
         String resultSparql = executeSparqlQuery(endpoint, query);
-        Termbase termbase = new Termbase(termBaseName, parseResult(resultSparql));
+        Termbase termbase = new Termbase(termBaseName, parseResult(resultSparql,flag));
         return termbase;
     }
 
@@ -106,14 +106,14 @@ public class CurlSparqlQuery {
         return result;
     }
 
-    public Map<String, TermDetail> parseResult(String xmlStr) {
+    public Map<String, TermDetail> parseResult(String xmlStr,Boolean flag) {
         Document doc = convertStringToXMLDocument(xmlStr);
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = null;
         Map<String, TermDetail> terms = new HashMap<String, TermDetail>();
         try {
             builder = factory.newDocumentBuilder();
-            terms = this.parseResult(builder, xmlStr);
+            terms = this.parseResult(builder, xmlStr,flag);
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(CurlSparqlQuery.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("error in parsing sparql in XML!" + ex.getMessage());
@@ -147,7 +147,7 @@ public class CurlSparqlQuery {
         return null;
     }
 
-    private Map<String, TermDetail> parseResult(DocumentBuilder builder, String xmlStr) throws SAXException, IOException, DOMException, Exception {
+    private Map<String, TermDetail> parseResult(DocumentBuilder builder, String xmlStr,Boolean flag) throws SAXException, IOException, DOMException, Exception {
         Map<String, TermDetail> allkeysValues = new HashMap<String, TermDetail>();
         Document document = builder.parse(new InputSource(new StringReader(
                 xmlStr)));
@@ -177,7 +177,15 @@ public class CurlSparqlQuery {
                     //System.out.println("in side java term........"+"("+term+")");
                     TermDetail termInfo = new TermDetail(url, null, term, true);
                     //System.out.println("in side java termDetail........"+"("+termInfo.getTermOrg()+")");
-                    allkeysValues.put(termInfo.getTermOrg(), termInfo);
+                    if(flag){
+                       term = termInfo.getTermOrg().replaceAll("\\s+","");
+                       term = term.toLowerCase().trim();
+                    }
+                    else{
+                        term = termInfo.getTermOrg();
+                    }
+                        
+                    allkeysValues.put(term, termInfo);
                 }
             }
         }
