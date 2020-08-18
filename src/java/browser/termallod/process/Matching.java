@@ -59,7 +59,7 @@ public class Matching {
             TermDetail remoteTermDetail = otherTerminology.getTerms().get(term);
             String otherTerminologyName = getTerminologyName(remoteTermDetail.getTermUrl());
             TermDetail linkedTermDetail = new TermDetail(term, localTermDetail.getTermUrl(), otherTerminologyName, remoteTermDetail.getTermUrl());
-            //System.out.println("linkedTermDetail:" + linkedTermDetail);
+            System.out.println("linkedTermDetail:" + linkedTermDetail);
             if (localTermDetail.getLanguage().contains(remoteTermDetail.getLanguage())) {
                 String insertSparql = "SPARQL INSERT DATA {\n"
                         + "GRAPH <http://tbx2rdf.lider-project.eu/> {\n"

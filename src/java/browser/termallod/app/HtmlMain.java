@@ -62,22 +62,14 @@ public class HtmlMain implements SparqlEndpoint {
             htmlCreator.createListOfTermHtmlPage(parameter.getINPUT_PATH(), alphabetFiles.getLangTerms().keySet(), parameter.getHtmltype(), true, "all", 1);
             return Parameter.ListOfTerms;
         } else if (parameter.getHtmltype().contains(Browser)) {
-            //System.out.println("Browser................" + Browser);
+            System.out.println("Browser................" + Browser);
             Termbase myTerminology = curlSparqlQuery.findListOfTerms(parameter.getMyTermSparqlEndpoint(), query_writtenRep, myTermSparqlEndpoint, false);
-            //System.out.println("saving terms");
             if (myTerminology.getTerms().isEmpty()) {
                 return Parameter.Browser;
             }
-
             CreateAlphabetFiles alphabetFiles = new CreateAlphabetFiles(parameter.getLanguageInfo(), myTerminology);
-
-            //cleanDirectory();
-            //System.out.println("saving files");
             FileRelatedUtils.writeFile(alphabetFiles.getLangTerms(), parameter.getINPUT_PATH());
-
-            //System.out.println("creating html");
             Integer pageNumber = getPageNumber(parameter.getHtmltype());
-
             htmlCreator.createListOfTermHtmlPage(parameter.getINPUT_PATH(), alphabetFiles.getLangTerms().keySet(), parameter.getHtmltype(), true, "A_B", pageNumber);
 
         } else if (parameter.getHtmltype().contains(Parameter.TermPage)) {

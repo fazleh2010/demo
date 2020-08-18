@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static browser.termallod.constants.SparqlEndpoint.endpoint_lider_iate;
 
 /**
  *
@@ -34,7 +35,8 @@ public class Parameter {
     private String htmltype = null;
     private String myTermTableName = "myTerminology";
     private String otherTermTableName = "otherTerminology";
-    private String otherTermSparqlEndpoint = endpoint_intaglio;
+    //private String otherTermSparqlEndpoint = endpoint_intaglio;
+    private String otherTermSparqlEndpoint = endpoint_lider_iate; 
     private String matchedTermTable = "link";
     public static String ListOfTerms = "ListOfTerms";
     public static String Browser = "browser";
@@ -118,8 +120,8 @@ public class Parameter {
                 myTermSparqlEndpoint = args[1];
                 //System.out.println("SparqlEndpoint: " + myTermSparqlEndpoint);
             } else {
-                //myTermSparqlEndpoint = endpoint_atc;
-                myTermSparqlEndpoint = endpoint_solar;
+                myTermSparqlEndpoint = endpoint_atc;
+                //myTermSparqlEndpoint = endpoint_local;
                 System.err.println("no sparql endpoint in arguments");
             }
             if (args.length > 2) {
@@ -143,7 +145,7 @@ public class Parameter {
 
             if (args.length > 5) {
                 htmltype = args[5];
-                //System.out.println("htmltype: " + htmltype);
+                System.out.println("htmltype: " + htmltype);
             } else {
                 //htmltype = "browser_en_A_B_2.html";
                 //htmltype = TermPage;
@@ -195,7 +197,7 @@ public class Parameter {
             //System.out.println("SparqlEndpoint: " + myTermSparqlEndpoint);
         } else {
             //myTermSparqlEndpoint = endpoint_atc;
-            myTermSparqlEndpoint = endpoint_solar;
+            myTermSparqlEndpoint = endpoint_atc;
             System.err.println("no sparql endpoint in arguments");
         }
         

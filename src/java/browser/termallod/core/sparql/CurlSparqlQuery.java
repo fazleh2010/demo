@@ -44,6 +44,8 @@ public class CurlSparqlQuery {
 
     public Termbase findListOfTerms(String endpoint, String query, String termBaseName,Boolean flag) throws Exception {
         String resultSparql = executeSparqlQuery(endpoint, query);
+         //System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!endpoint:"+endpoint);
+         //System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!resultSparql:"+resultSparql);
         Termbase termbase = new Termbase(termBaseName, parseResult(resultSparql,flag));
         return termbase;
     }
@@ -174,7 +176,7 @@ public class CurlSparqlQuery {
                         }
 
                     }
-                    //System.out.println("in side java term........"+"("+term+")");
+                    //System.out.println("term.."+"("+term+")"+".."+url);
                     TermDetail termInfo = new TermDetail(url, null, term, true);
                     //System.out.println("in side java termDetail........"+"("+termInfo.getTermOrg()+")");
                     if(flag){

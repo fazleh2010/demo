@@ -211,12 +211,8 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         String pageUrl = null;
         String li = "";
         String incrementPage="pageNumber?page=";
-        /*"<span>" + this.currentPageNumber + "</span>";
-        liS.add(li);*/
-
-        //there is an error in Hungarian langauge link in HTML template, 
-        //since all static htmls are already generated so the problem is now solved by hardcoded.
-        //extreme bad solution but quick solution. 
+        String id= " " + "class=\"pageNumber\""+ " " ;
+      
         if (pages == 1) {
             return new ArrayList<String>();
         }
@@ -225,7 +221,7 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
             if (info.getLanguage().contains("hu") && currentPageNumber == 2) {
                 pageUrl = incrementPage+"browser_hu_A_1_1.html";
             }
-            String a = "<a href=" + pageUrl + ">" + "Previous" + "</a>";
+            String a = "<a href=" + pageUrl +  id+">" + "Previous" + "</a>";
             li = "\n<li>" + a + "</li>\n";
             liS.add(li);
         }
@@ -237,12 +233,12 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
                 pageUrl =incrementPage+ "browser_hu_A_1_1.html";
             }
 
-            String a = "<a href=" + pageUrl + ">" + pageNumber + "</a>";
+            String a = "<a href=" + pageUrl  + id+ ">" + pageNumber + "</a>";
             li = "\n<li>" + a + "</li>\n";
             liS.add(li);
             if (index > this.maximumNumberOfPages && (pageNumber + 1) < pages) {
                 pageUrl = incrementPage+createUrlLink(pageNumber + 1, alphabetTermPage);
-                a = "<a href=" + pageUrl + ">" + "Next" + "</a>";
+                a = "<a href=" + pageUrl  +  id+ ">" + "Next" + "</a>";
                 li = "\n<li>" + a + "</li>\n";
                 liS.add(li);
                 break;

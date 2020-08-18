@@ -1,1 +1,0 @@
-light-induced_defect = http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/light-induced+defect-EN
