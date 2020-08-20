@@ -40,7 +40,7 @@ public class BrowserMain implements SparqlEndpoint {
     public static void main(String[] args) throws ParserConfigurationException, SAXException, Exception {
         String html = "html";
         String link = "link";
-        BrowserMain HtmlMain = new BrowserMain(args, html);
+        BrowserMain HtmlMain = new BrowserMain(args, link);
         HtmlMain.html();
     }
 

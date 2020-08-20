@@ -59,14 +59,19 @@ public class TermListMatcher {
             TermDetail remoteTermDetail = otherTerminology.getTerms().get(term);
             String otherTerminologyName = getTerminologyName(remoteTermDetail.getTermUrl());
             TermDetail linkedTermDetail = new TermDetail(term, localTermDetail.getTermUrl(), otherTerminologyName, remoteTermDetail.getTermUrl());
-            System.out.println("linkedTermDetail:" + linkedTermDetail);
+            //System.out.println("linkedTermDetail:" + linkedTermDetail);
             if (localTermDetail.getLanguage().contains(remoteTermDetail.getLanguage())) {
-                String insertSparql = "SPARQL INSERT DATA {\n"
+                /*String insertSparql = "SPARQL INSERT DATA {\n"
                         + "GRAPH <http://tbx2rdf.lider-project.eu/> {\n"
                         + "<" + localTermDetail.getTermUrl() + "> <http://www.w3.org/ns/lemon/ontolex#sameAs> <" + remoteTermDetail.getTermUrl() + ">\n"
-                        + "} };";
-                FileRelatedUtils.writeSparqlToFile(parameter.getInsertFile(), insertSparql);
-                System.out.println("SPARQL inserted!!!!" );
+                        + "} };";*/
+                
+       
+                String rdfLine="\n\n<" + localTermDetail.getTermUrl() + ">\n"
+                               + "      ontolex:sameAs <" + remoteTermDetail.getTermUrl() + "> .\n";
+
+                FileRelatedUtils.appendToFile(parameter.getInsertFile(), rdfLine);
+                System.out.println("SPARQL inserted in RDF!!!!" );
             }
 
         }

@@ -29,7 +29,7 @@ public class AlphabetFilesReader {
     public AlphabetFilesReader(String INPUT_PATH, String langCode, Boolean pairFlag) throws IOException, IOException, IOException, IOException, IOException {
         List<File> files = FileRelatedUtils.getFiles(INPUT_PATH, langCode, ".txt");
         for (File file : files) {
-            System.out.println(file.getName());
+            //System.out.println(file.getName());
             String[] info = file.getName().split("-");
             String pair = info[1].replace(".txt", "");
             this.pairFile.put(pair, file);

@@ -9,6 +9,7 @@ const sparql_utils = require("./sparql_utils")
 const inputDir = "/tmp/";
 const default_graph = "http://tbx2rdf.lider-project.eu/";
 const insert_file = "/tmp/server/uploads/insert.db";
+const insert_file_rdf = "/tmp/server/uploads/current.ttl";
 
 
 module.exports = exports = function(app) {
@@ -117,7 +118,7 @@ async function dolinking(req, res, next) {
 
            var localLangJson = JSON.stringify(local_languages);
            const cmdExec = "java";
-           const cmdArgs = ["-Xms512M", "-Xmx20G", "-jar","/tmp/target/tbx2rdf-0.4.jar","link" ,inputDir,localLangJson,remote_sparql_endpoint,insert_file,local_sparql_endpoint];
+           const cmdArgs = ["-Xms512M", "-Xmx20G", "-jar","/tmp/target/tbx2rdf-0.4.jar","link" ,inputDir,localLangJson,remote_sparql_endpoint,insert_file_rdf,local_sparql_endpoint];
            const execOptions = {cwd: "/tmp"}; //, stdout: process.stderr, stderr: process.stderr};
 
            try {

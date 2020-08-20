@@ -183,9 +183,9 @@ const pipeline = [
 	{"name": "tbx to rdf",
 	"function": tbx2rdf,
     "indicator": "/tmp/server/uploads/tbx2rdf.done"},
-    {"name": "rdf to ttl.gz",
+    /*{"name": "rdf to ttl.gz",
     "function": rdf2gzip,
-    "indicator": "/tmp/server/uploads/rdf2gzip.done"},
+    "indicator": "/tmp/server/uploads/rdf2gzip.done"},*/
 	{"name": "virtuoso backend configuration",
 	"function": writeVirtuosoBackend,
     "indicator": "/tmp/server/uploads/virt_backend.done"},

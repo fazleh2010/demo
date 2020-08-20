@@ -420,7 +420,7 @@ public class FileRelatedUtils {
 
     }
     
-     public static void writeSparqlToFile(String file, String sparqlEnd) {
+     public static void appendToFile(String file, String sparqlEnd) {
         FileWriter fileWriter;
         try {
             fileWriter = new FileWriter(file, true);

@@ -197,7 +197,7 @@ public class Parameter {
             //System.out.println("SparqlEndpoint: " + myTermSparqlEndpoint);
         } else {
             //myTermSparqlEndpoint = endpoint_atc;
-            myTermSparqlEndpoint = endpoint_atc;
+            myTermSparqlEndpoint = endpoint_solar;
             System.err.println("no sparql endpoint in arguments");
         }
         
