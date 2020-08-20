@@ -6,7 +6,7 @@
 package browser.termallod.core.termbase;
 
 import browser.termallod.utils.JsonParser;
-import browser.termallod.utils.StringMatcherUtil2;
+import browser.termallod.utils.StringMatcher;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,8 +21,7 @@ public class TermDetail {
     private String termOrg = "";
     private String termDecrpt = "";
     private String termUrl = "";
-    private String alternativeUrl = "";
-    private SubjectInfo subject = new SubjectInfo();
+    private TermSubjectInfo subject = new TermSubjectInfo();
     private String reliabilityCode = "";
     private String administrativeStatus = "";
     private String POST = "";
@@ -39,8 +38,8 @@ public class TermDetail {
     public TermDetail(String subject, String predicate, String object, Boolean flag) {
         if (flag) {
             this.termUrl = makeTermUrl(subject);
-            this.termOrg =StringMatcherUtil2.encripted(object.trim());
-            this.termDecrpt = StringMatcherUtil2.decripted(termOrg.trim());
+            this.termOrg =StringMatcher.encripted(object.trim());
+            this.termDecrpt = StringMatcher.decripted(termOrg.trim());
             this.language = this.setLanguage(this.termUrl);
 
         } else {
@@ -52,7 +51,7 @@ public class TermDetail {
     public TermDetail(JsonParser jsonParser) {
             this.termUrl = jsonParser.getUrl();
             this.termDecrpt = jsonParser.getTerm().trim();
-            this.termOrg =StringMatcherUtil2.encripted(this.termDecrpt).trim();
+            this.termOrg =StringMatcher.encripted(this.termDecrpt).trim();
             this.language = this.setLanguage(this.termUrl);
     }
 
@@ -64,7 +63,7 @@ public class TermDetail {
     public TermDetail(String line) {
         String[] info = line.split("=");
         this.termOrg = info[0].toLowerCase().trim();
-        this.termDecrpt = StringMatcherUtil2.decripted(termOrg).trim();
+        this.termDecrpt = StringMatcher.decripted(termOrg).trim();
         this.termUrl = info[1];
         this.language= info[2].toLowerCase().trim();
     }
@@ -72,7 +71,7 @@ public class TermDetail {
     public TermDetail(String line,Map<String,String> termLinks) {
         String[] info = line.split("=");
         this.termOrg = info[0].toLowerCase().trim();
-        this.termDecrpt = StringMatcherUtil2.decripted(termOrg).trim();
+        this.termDecrpt = StringMatcher.decripted(termOrg).trim();
         this.termUrl = info[1];
         this.language= info[2].toLowerCase().trim();
         this.termLinks=termLinks;
@@ -91,30 +90,13 @@ public class TermDetail {
         this.termLinks.put(terminologyName,otherTermUrl);
     }
 
-    public TermDetail(String term, String url, String alternativeUrl, SubjectInfo subject) {
-        this(term, url);
-        this.subject = subject;
-        this.alternativeUrl = alternativeUrl.toString();
-    }
-
-    public TermDetail(String term, String url, String alternativeUrl, String reliabilityCode, String administrativeStatus, SubjectInfo subjectInfo) {
-        this(term, url, alternativeUrl, subjectInfo);
-        if (reliabilityCode != null) {
-            this.reliabilityCode = reliabilityCode;
-        }
-        if (administrativeStatus != null) {
-            this.administrativeStatus = administrativeStatus;
-        }
-
-    }
-
 
     public String getTermOrg() {
         return termOrg;
     }
 
     public String getTermDecrpt() {
-        return StringMatcherUtil2.decripted(termOrg);
+        return StringMatcher.decripted(termOrg);
     }
 
     public String getTermUrl() {
@@ -141,11 +123,7 @@ public class TermDetail {
         return this.subject.getSubjectId();
     }
 
-    public String getAlternativeUrl() {
-        return alternativeUrl;
-    }
-
-    public SubjectInfo getSubject() {
+    public TermSubjectInfo getSubject() {
         return subject;
     }
 
@@ -209,7 +187,7 @@ public class TermDetail {
         if (isObjectFound) {
             String[] info = object.toString().split(LANGUAGE_SEPERATE_SYMBOLE);
             this.termOrg = info[0].toLowerCase().trim();
-            this.termDecrpt = StringMatcherUtil2.decripted(termOrg);
+            this.termDecrpt = StringMatcher.decripted(termOrg);
             this.language = info[1].toLowerCase().trim();
         }
     }
@@ -217,7 +195,7 @@ public class TermDetail {
     @Override
     public String toString() {
         return "TermInfo{" + "language=" + language + ",termOrg=" + termOrg + ", termDecrpt=" + termDecrpt + ", termUrl=" + termUrl
-                + ", alternativeUrl=" + alternativeUrl + ", subject=" + subject
+                +", subject=" + subject
                 + ", reliabilityCode=" + reliabilityCode + ", administrativeStatus=" + administrativeStatus + ", POST=" + POST
                 + ", Number=" + Number + ", Gender=" + Gender + ", Definition=" + Definition
                 + ", Hypernym=" + Hypernym + ", Hyponym=" + Hyponym + ", Variant=" + Variant
@@ -225,8 +203,8 @@ public class TermDetail {
                 + ", Synonym=" + Synonym + '}';
     }
 
-    private String setLanguage(String subject) {
-        return StringMatcherUtil2.getLanguage(subject);
+    public String setLanguage(String subject) {
+        return StringMatcher.getLanguage(subject);
     }
 
     public Map<String, String> getTermLinks() {
@@ -236,6 +214,30 @@ public class TermDetail {
     public void setTermLinks(Map<String, String> termLinks) {
         this.termLinks = termLinks;
     }
+    
+    public void setLang(String subject) {
+        this.language= StringMatcher.getLastString(subject,'/', Boolean.TRUE);
+    }
 
+    public void setTerm(String object) {
+        this.termOrg = StringMatcher.encripted(object.trim());
+        this.termDecrpt = StringMatcher.decripted(termOrg.trim());
+    }
+
+    public void setUrl(String textContent) {
+        this.termUrl=textContent;
+    }
+
+    public void setReliabilityCode(String textContent) {
+        this.reliabilityCode=textContent;
+    }
+
+    public void setAdministrativeStatus(String textContent) {
+        this.administrativeStatus= StringMatcher.getLastString(textContent, '#',Boolean.FALSE);
+    }
+
+    public void setSubject(TermSubjectInfo subjectInfo) {
+        this.subject=subjectInfo;
+    }
 
 }

@@ -1,0 +1,170 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head> 
+  <title>PRÊT-À-LLOD task status</title> 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <meta name="_csrf" content="b40c2453-5c92-4fb8-8a48-9329d11c12e3"> 
+  <meta name="_csrf_header" content="X-CSRF-TOKEN"> 
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css"> 
+  <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto+Slab|Ubuntu+Mono&amp;display=swap" rel="stylesheet"> 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/css/autoComplete.min.css"> 
+  <link rel="stylesheet" href="/home/elahi/NetBeansProjects/demo/server/static/status.css"> 
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js"></script> 
+  <script src="/home/elahi/NetBeansProjects/demo/server/static/status.js"></script> 
+  <link href="/home/elahi/NetBeansProjects/demo/server/static/css/interface.css" rel="stylesheet" type="text/css"> 
+  <link href="/home/elahi/NetBeansProjects/demo/server/static/css/oxford.css" rel="stylesheet" type="text/css"> 
+  <link href="/home/elahi/NetBeansProjects/demo/server/static/responsive.css" rel="stylesheet" type="text/css" --> 
+ </head> 
+ <body> 
+  <div id="ox-header" class=""> 
+   <div class="responsive_row flush-below top"> 
+    <div class="responsive_container responsive_display_on_smartphone"> 
+     <div class="menu_button"></div> 
+    </div> 
+    <div class="nav responsive_container main_nav"> 
+     <ul class="menu"> 
+      <li><a href="http://localhost:8080/status?view=status">status</a></li> 
+      <li><a href="http://localhost:8080/describe">browser</a></li> 
+      <li><a href="http://localhost:8080/status?view=sparql">sparql</a></li> 
+      <li><a href="http://localhost:8080/status?view=search">terms</a></li> 
+     </ul> 
+    </div> 
+   </div> 
+   <div class="responsive_row"> 
+    <div id="ad_leftslot_container" class="ad_leftslot_container responsive_entry_left"> 
+     <div class="ac_leftslot sticky"> 
+      <div id="ad_leftslot_a" class="am-default "> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="responsive_entry_center"> 
+     <div class="responsive_display_on_hd" id="leaderboardHD"> 
+      <div class=""> 
+       <div id="ad_topslot_b" class="am-default "> 
+       </div> 
+      </div> 
+     </div> 
+     <div id="main_column" class="responsive_row"> 
+      <div class="middle_wrap wordlist-page"> 
+       <div class="responsive_row"> 
+        <h4>Language Selection:</h4> 
+        <div class="langauge_selection_box"> 
+         <table class="panel-body rdf_embedded_table" id="langDetail">
+          <tbody>
+           <tr>
+            <td><a href="listOfTerms?page=browser_en_A_B_1.html" style="color:#00008B" ;>English</a></td>
+            <td><a href="listOfTerms?page=browser_nl_1_1.html" style="color:#00008B" ;>Dutch</a></td>
+           </tr> 
+          </tbody>
+         </table>
+        </div> 
+        <!--h4>Search terms</h4--> 
+        <!--Make sure the form has the autocomplete function switched off:--> 
+        <!--form autocomplete="off" id="form_id"> 
+                            <div class="autocomplete" style="width:300px;"> 
+                                <input id="myInput" type="text" placeholder="Search.."> 
+                            </div> 
+                            <input id="submit" type="submit"> 
+                        </form--> 
+        <!--script type="text/javascript" src="../files/browser/js/tbx2rdf_atc_en.js"></script--> 
+        <!--script type="text/javascript" src="../files/browser/js/tbx2rdf_atc_en.js"></script--> 
+        <!--div class="mainsearch">
+                           <form id="search-form" method="get" action="browser_hu_10_1.html">
+                              <div class="dictionarySelector">
+                                 <div id="select_div">
+                                    <div>English</div>
+                                 </div>
+                              </div>
+                              <div class="searchfield">
+                                 <input type="text" id="q" name="q"
+                                    class="searchfield_input"/>
+                                 <a id="keyboard_icon" class="oup_icons responsive_hide_on_smartphone responsive_hide_on_tablet"></a>
+                                 <div id="keyboard_letters"></div>
+                              </div>
+                              <div class="inputSuggestions"></div>
+                              <label id="search-btn" class="oup_icons">
+                              <input type="submit" value="" />
+                              </label>
+                           </form>
+                        </div>
+                     </div--> 
+        <div class="side-selector clear_fix"> 
+         <div class="side-selector__left"> 
+          <!-- the topics --> 
+          <div id="entries-selector" class=""> 
+           <ul class="hide_phone"> 
+            <li class="currentpage"> <span>C_D</span> <li><a href="listOfTerms?page=browser_nl_1_1.html" class="alphabet">A_B</a></li>  <li><a href="listOfTerms?page=browser_nl_3_1.html" class="alphabet">E_F</a></li>  <li><a href="listOfTerms?page=browser_nl_4_1.html" class="alphabet">G_H</a></li>  <li><a href="listOfTerms?page=browser_nl_5_1.html" class="alphabet">I_J</a></li>  <li><a href="listOfTerms?page=browser_nl_6_1.html" class="alphabet">K_L</a></li>  <li><a href="listOfTerms?page=browser_nl_7_1.html" class="alphabet">M_N</a></li>  <li><a href="listOfTerms?page=browser_nl_8_1.html" class="alphabet">O_P</a></li>  <li><a href="listOfTerms?page=browser_nl_9_1.html" class="alphabet">Q_R</a></li>  <li><a href="listOfTerms?page=browser_nl_10_1.html" class="alphabet">S_T</a></li>  <li><a href="listOfTerms?page=browser_nl_11_1.html" class="alphabet">U_V</a></li>  <li><a href="listOfTerms?page=browser_nl_12_1.html" class="alphabet">W_X</a></li>  <li><a href="listOfTerms?page=browser_nl_13_1.html" class="alphabet">Y_Z</a></li> </li> 
+           </ul> 
+           <div class="wl-select hide_all display_phone"> 
+           </div> 
+          </div> 
+          <!-- entries-selector --> 
+         </div> 
+         <div class="side-selector__right"> 
+          <!-- the items of the selected topic --> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner"> 
+             <li class="activepageUpper"> </li> 
+            </ul> 
+           </div> 
+          </div> 
+          <div id="entrylist1"> 
+           <ul class="termUrlList">  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;CSA&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/CSA-NL&quot;,&quot;lang&quot;:&quot;nl&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/CSA-NL definition" class="software">csa</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;Campenhout,_J._Van&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Campenhout%2C+J.+Van-NL&quot;,&quot;lang&quot;:&quot;nl&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Campenhout%2C+J.+Van-NL definition" class="software">campenhout, j. van</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;Capper,_P.&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Capper%2C+P.-NL&quot;,&quot;lang&quot;:&quot;nl&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Capper%2C+P.-NL definition" class="software">capper, p.</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;Cassidy,_D.&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Cassidy%2C+D.-NL&quot;,&quot;lang&quot;:&quot;nl&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Cassidy%2C+D.-NL definition" class="software">cassidy, d.</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;Chaure,_N.B.&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Chaure%2C+N.B.-NL&quot;,&quot;lang&quot;:&quot;nl&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Chaure%2C+N.B.-NL definition" class="software">chaure, n.b.</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;Clason,_W.E.&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Clason%2C+W.E.-NL&quot;,&quot;lang&quot;:&quot;nl&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Clason%2C+W.E.-NL definition" class="software">clason, w.e.</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;Climate_Action&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Climate+Action-NL&quot;,&quot;lang&quot;:&quot;nl&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Climate+Action-NL definition" class="software">climate action</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;Crop,_F.&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Crop%2C+F.-NL&quot;,&quot;lang&quot;:&quot;nl&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Crop%2C+F.-NL definition" class="software">crop, f.</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;D'haeseleer,_W._.&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/D%27haeseleer%2C+W.+.-NL&quot;,&quot;lang&quot;:&quot;nl&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/D%27haeseleer%2C+W.+.-NL definition" class="software">d'haeseleer, w. .</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;Detavernier,_Christophe&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Detavernier%2C+Christophe-NL&quot;,&quot;lang&quot;:&quot;nl&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Detavernier%2C+Christophe-NL definition" class="software">detavernier, christophe</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;Dictionary&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Dictionary-NL&quot;,&quot;lang&quot;:&quot;nl&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Dictionary-NL definition" class="software">dictionary</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;Dobbeleir,_M.&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Dobbeleir%2C+M.-NL&quot;,&quot;lang&quot;:&quot;nl&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Dobbeleir%2C+M.-NL definition" class="software">dobbeleir, m.</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;Dorpe,_P._Van&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Dorpe%2C+P.+Van-NL&quot;,&quot;lang&quot;:&quot;nl&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/Dorpe%2C+P.+Van-NL definition" class="software">dorpe, p. van</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;defect_door_licht_geïnduceerd&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/defect+door+licht+ge%C3%AFnduceerd-NL&quot;,&quot;lang&quot;:&quot;nl&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/defect+door+licht+ge%C3%AFnduceerd-NL definition" class="software">defect door licht geïnduceerd</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;dik_kristallijn_materiaal&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/dik+kristallijn+materiaal-NL&quot;,&quot;lang&quot;:&quot;nl&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/dik+kristallijn+materiaal-NL definition" class="software">dik kristallijn materiaal</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;doperen&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/doperen-NL&quot;,&quot;lang&quot;:&quot;nl&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/doperen-NL definition" class="software">doperen</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;doteren&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/doteren-NL&quot;,&quot;lang&quot;:&quot;nl&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/doteren-NL definition" class="software">doteren</a></li>  
+            <li><a href="termPage?term={&quot;term&quot;:&quot;dunne_film&quot;,&quot;iri&quot;:&quot;http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/dunne+film-NL&quot;,&quot;lang&quot;:&quot;nl&quot;}" url="http://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_solarenergy/data/solarenergy/dunne+film-NL definition" class="software">dunne film</a></li> 
+           </ul> 
+          </div> 
+          <div id="paging" class="wl-nav nav-top hideoverflow"> 
+           <div class="outer"> 
+            <ul class="paging_links inner_down"> 
+             <li class="activepageLower"> </li> 
+            </ul> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <div id="ox-footer" class=""> 
+    <div class="responsive_row flush-below top"> 
+     <div class="responsive_container responsive_display_on_smartphone"> 
+      <div class="menu_button"></div> 
+     </div> 
+     <div class="nav responsive_container main_nav"> 
+      <ul class="menu"> 
+       <li><a href="http://localhost:8080/status?view=status">status</a></li> 
+       <li><a href="http://localhost:8080/describe">browser</a></li> 
+       <li><a href="http://localhost:8080/status?view=sparql">sparql</a></li> 
+       <li><a href="http://localhost:8080/status?view=search">terms</a></li> 
+      </ul> 
+     </div> 
+    </div>         
+   </div>
+  </div>
+ </body>
+</html>

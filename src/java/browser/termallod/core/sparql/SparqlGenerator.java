@@ -5,7 +5,6 @@
  */
 package browser.termallod.core.sparql;
 
-import browser.termallod.constants.SparqlEndpoint;
 import browser.termallod.core.termbase.TermDetail;
 import java.util.List;
 

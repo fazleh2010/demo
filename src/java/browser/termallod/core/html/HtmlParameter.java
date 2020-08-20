@@ -5,25 +5,26 @@
  */
 package browser.termallod.core.html;
 
-import static browser.termallod.constants.HtmlPage.HTML_EXTENSION;
-import static browser.termallod.constants.HtmlPage.UNDERSCORE;
-import static browser.termallod.constants.HtmlPage.browser;
-import browser.termallod.core.AlphabetTermPage;
+
+import browser.termallod.core.LangPairManager;
 import java.io.File;
+import java.util.List;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import browser.termallod.constants.HtmlConts;
 
 /**
  *
  * @author elahi
  */
-public class HtmlParameter {
+public class HtmlParameter implements HtmlConts{
 
     private String language;
     private String ontologyFileName;
     private String categoryType;
-    private AlphabetTermPage alphabetTermPage;
+    private LangPairManager alphabetTermPage;
 
-    public HtmlParameter(String language, String categoryName, AlphabetTermPage alphabetTermPage) {
+    public HtmlParameter(String language, String categoryName, LangPairManager alphabetTermPage) {
         this.language = language;
         this.ontologyFileName = categoryName;
         this.categoryType =ontologyFileName;
@@ -43,7 +44,7 @@ public class HtmlParameter {
         return categoryType;
     }
 
-    public String createFileNameUnicode(Integer pageNumber,AlphabetTermPage alphabetTermPage) {
+    public String createFileNameUnicode(Integer pageNumber,LangPairManager alphabetTermPage) {
         String pair = getPairValue(alphabetTermPage);
         return browser + UNDERSCORE + this.language + UNDERSCORE + pair.toString() + UNDERSCORE + pageNumber + HTML_EXTENSION;
     }
@@ -55,11 +56,11 @@ public class HtmlParameter {
 
     }
 
-    public AlphabetTermPage getAlphabetTermPage() {
+    public LangPairManager getAlphabetTermPage() {
         return alphabetTermPage;
     }
 
-    public String getPairValue(AlphabetTermPage alphabetTermPage) {
+    public String getPairValue(LangPairManager alphabetTermPage) {
         String pair;
         if (this.language.equals("en")) {
             pair = alphabetTermPage.getAlpahbetPair();
@@ -86,7 +87,7 @@ public class HtmlParameter {
     /*public File makeHtmlFileName(String base_path, Integer currentPageNumber,AlphabetTermPage alphabetTermPage) {
         return new File(base_path + this.ontologyFileName + "/" + this.createFileNameUnicode(currentPageNumber,alphabetTermPage));
     }*/
-    public String creatHtmlFileName(Integer currentPageNumber,AlphabetTermPage alphabetTermPage) {
+    public String creatHtmlFileName(Integer currentPageNumber,LangPairManager alphabetTermPage) {
         return this.createFileNameUnicode(currentPageNumber,alphabetTermPage);
     }
 

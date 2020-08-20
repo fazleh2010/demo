@@ -5,8 +5,8 @@
  */
 package browser.termallod.utils;
 
-import browser.termallod.app.HtmlMain;
-import browser.termallod.core.AlphabetTermPage;
+import browser.termallod.app.BrowserMain;
+import browser.termallod.core.LangPairManager;
 import browser.termallod.core.termbase.TermDetail;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -264,7 +264,7 @@ public class FileRelatedUtils {
                 line = reader.readLine();
                 if (line != null) {
                     String[] info = line.split("=");
-                    String key = StringMatcherUtil2.encripted(info[0].toLowerCase().trim());
+                    String key = StringMatcher.encripted(info[0].toLowerCase().trim());
                     String value = info[1].trim();
                     hash.put(key, value);
                 }
@@ -318,7 +318,7 @@ public class FileRelatedUtils {
 
     }
 
-    public static Map<String, List<File>> getLanguageFiles(List<File> inputfiles, String model_extension) {
+    /*public static Map<String, List<File>> getLanguageFiles(List<File> inputfiles, String model_extension) {
         Map<String, List<File>> languageFiles = new HashMap<String, List<File>>();
         for (File file : inputfiles) {
             String langCode = NameExtraction.getLanCode(file, model_extension);
@@ -334,9 +334,9 @@ public class FileRelatedUtils {
 
         }
         return languageFiles;
-    }
+    }*/
 
-    public static Map<String, List<File>> getLanguageFiles(List<File> inputfiles, String model_extension, Boolean alternativeFlag) {
+    /*public static Map<String, List<File>> getLanguageFiles(List<File> inputfiles, String model_extension, Boolean alternativeFlag) {
         Map<String, List<File>> languageFiles = new HashMap<String, List<File>>();
         for (File file : inputfiles) {
             String langCode = NameExtraction.getLanCode(file, model_extension);
@@ -352,7 +352,7 @@ public class FileRelatedUtils {
 
         }
         return languageFiles;
-    }
+    }*/
 
     public static void deleteDirectory(String dir) throws IOException {
         FileUtils.deleteDirectory(new File(dir));
@@ -397,7 +397,7 @@ public class FileRelatedUtils {
             FileRelatedUtils.deleteDirectory(OUTPUT_PATH);
             FileRelatedUtils.createDirectory(OUTPUT_PATH);
         } catch (IOException ex) {
-            Logger.getLogger(HtmlMain.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BrowserMain.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -429,7 +429,7 @@ public class FileRelatedUtils {
             bufferFileWriter.newLine();
             bufferFileWriter.close();
         } catch (IOException ex) {
-            Logger.getLogger(HtmlMain.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BrowserMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

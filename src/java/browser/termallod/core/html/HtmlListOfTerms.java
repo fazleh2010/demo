@@ -5,28 +5,27 @@
  */
 package browser.termallod.core.html;
 
-import browser.termallod.api.HtmlStringConts;
 import java.util.ArrayList;
 import java.util.List;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import browser.termallod.constants.HtmlPage;
-import browser.termallod.constants.Languages;
-import browser.termallod.core.AlphabetTermPage;
-import browser.termallod.core.PageContentGenerator;
+import browser.termallod.core.LangPairManager;
 import browser.termallod.core.html.HtmlReaderWriter;
 import browser.termallod.core.html.HtmlParameter;
-import browser.termallod.utils.StringMatcherUtil;
+import browser.termallod.utils.StringMatcher;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import browser.termallod.constants.HtmlConts;
+import browser.termallod.constants.LanguageDetail;
 
 /**
  *
  * @author elahi //this is super dirty and horrible codes ever!!
  */
-public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
+public class HtmlListOfTerms implements  LanguageDetail, HtmlConts {
 
     public static Map<String, String> termAlterUrl = new TreeMap<String, String>();
     private Integer maximumNumberOfPages = 4;
@@ -41,8 +40,8 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         //this.termPage = new HtmlTermPage(info, htmlReaderWriter, termPageTemplate);
     }
 
-    public Document createAllElements(Document templateHtml, List<String> terms, PageContentGenerator pageContentGenerator, String htmlFileName, Integer currentPageNumber, String lang,Set<String> lanCodes) throws Exception {
-        AlphabetTermPage alphabetTermPage = info.getAlphabetTermPage();
+    public Document createAllElements(Document templateHtml, List<String> terms, HtmlPageContentGen pageContentGenerator, String htmlFileName, Integer currentPageNumber, String lang,Set<String> lanCodes) throws Exception {
+        LangPairManager alphabetTermPage = info.getAlphabetTermPage();
         Element body = templateHtml.body();
         String alphebetPair = alphabetTermPage.getAlpahbetPair();
         Integer numberofPages = alphabetTermPage.getNumberOfPages();
@@ -108,12 +107,12 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         divLanguage.append(form);
     }*/
 
-    private String createAlphabet(Element body, String alphebetPair, PageContentGenerator pageContentGenerator) throws Exception {
+    private String createAlphabet(Element body, String alphebetPair, HtmlPageContentGen pageContentGenerator) throws Exception {
         Element divAlphabet = body.getElementsByClass("currentpage").get(0);
         String span="<span>" + alphebetPair + "</span>";
         divAlphabet.append(span);
-        List<AlphabetTermPage> alphabetPairs = pageContentGenerator.getLangPages(info.getLanguage());
-        for (AlphabetTermPage alphabetTermPage : alphabetPairs) {
+        List<LangPairManager> alphabetPairs = pageContentGenerator.getLangPages(info.getLanguage());
+        for (LangPairManager alphabetTermPage : alphabetPairs) {
             if (!alphabetTermPage.getAlpahbetPair().contains(alphebetPair)) {
                 String li = getAlphebetLi(INITIAL_PAGE, alphabetTermPage);
                 divAlphabet.append(li);
@@ -154,7 +153,7 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
 
         //System.out.println("Term Original:"+term);
         String searchTerm=null;
-        String termPresent = StringMatcherUtil.decripted(term).toLowerCase().trim();
+        String termPresent = StringMatcher.decripted(term).toLowerCase().trim();
         //term = term.toLowerCase().trim();
         // /api?paramA=valueA&paramB=valueB
         //System.out.println("Term decripted:"+term);
@@ -166,7 +165,7 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         //System.out.println("original term:"+term);
         //System.out.println("termPresent:"+termPresent);
                 
-        searchTerm= "termPage?term="+"{\"term\":\""+StringMatcherUtil.encripted(term)+"\","
+        searchTerm= "termPage?term="+"{\"term\":\""+StringMatcher.encripted(term)+"\","
                                     + "\"iri\":\""+url+"\","
                                     + "\"lang\":\""+lang+"\"}";
         /*searchTerm="termPage?term="
@@ -190,7 +189,7 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         String li = "\n<li>" + a + "</li>\n";
         return li;
     }*/
-    private String getAlphebetLi(Integer pageNumber, AlphabetTermPage alphabetTermPage) {
+    private String getAlphebetLi(Integer pageNumber, LangPairManager alphabetTermPage) {
         String url = this.createUrlLink(pageNumber, alphabetTermPage);
         //String url = LOCALHOST_URL_LIST_OF_TERMS_PAGE + alphabetFileName;
         url = "listOfTerms?page=" + url;
@@ -204,7 +203,7 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         return li;
     }
 
-    private List<String> getPageLi(String pair, Integer pages, AlphabetTermPage alphabetTermPage, Integer currentPageNumber) {
+    private List<String> getPageLi(String pair, Integer pages, LangPairManager alphabetTermPage, Integer currentPageNumber) {
         //Elements divAlphabet = body.getElementsByClass("side-selector__left");
         //Element content = body.getElementById("entries-selector");
         List<String> liS = new ArrayList<String>();
@@ -251,11 +250,11 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         return liS;
     }
 
-    private String createUrlLink(Integer pageNumber, AlphabetTermPage alphabetTermPage) {
+    private String createUrlLink(Integer pageNumber, LangPairManager alphabetTermPage) {
         return LOCALHOST_URL_LIST_OF_TERMS_PAGE + info.createFileNameUnicode(pageNumber, alphabetTermPage);
     }
 
-    private String generateTermUrl(String term, AlphabetTermPage alphabetTermPage) {
+    private String generateTermUrl(String term, LangPairManager alphabetTermPage) {
         return alphabetTermPage.getProps().getProperty(term);
     }
 
@@ -273,5 +272,6 @@ public class HtmlListOfTerms implements HtmlPage, Languages, HtmlStringConts {
         return "\n<li>" + a + "</li>\n";
 
     }
+
 
 }

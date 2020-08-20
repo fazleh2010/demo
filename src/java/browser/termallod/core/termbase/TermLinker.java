@@ -5,7 +5,7 @@
  */
 package browser.termallod.core.termbase;
 
-import browser.termallod.utils.StringMatcherUtil;
+import browser.termallod.utils.StringMatcher;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -31,7 +31,7 @@ public class TermLinker {
         this.category = category;
         this.langCode = langCode;
         this.term = term;
-        this.termModified = StringMatcherUtil.decripted(term);
+        this.termModified = StringMatcher.decripted(term);
     }
 
     public TermLinker(String category, String langCode, String term, String url) {
@@ -116,7 +116,7 @@ public class TermLinker {
     }
 
     public String getAlternativeUrl(String otherTerminology) {
-        return StringMatcherUtil.getAlternativeUrl(this.termLinks.get(otherTerminology),true);
+        return StringMatcher.getAlternativeUrl(this.termLinks.get(otherTerminology),true);
     }
 
     public String termFilter(String text) {

@@ -5,10 +5,9 @@
  */
 package browser.termallod.core.html;
 
-import static browser.termallod.constants.Parameter.ListOfTerms;
-import browser.termallod.process.RetrieveAlphabetInfo;
-import browser.termallod.core.AlphabetTermPage;
-import browser.termallod.core.PageContentGenerator;
+import static browser.termallod.app.Parameter.ListOfTerms;
+import browser.termallod.core.AlphabetFilesReader;
+import browser.termallod.core.LangPairManager;
 import browser.termallod.utils.Partition;
 import browser.termallod.core.termbase.TermDetail;
 import java.io.File;
@@ -33,7 +32,7 @@ public class HtmlCreator {
     }
 
     public void createListOfTermHtmlPage(String INPUT_PATH, Set<String> languages, String categoryName, Boolean pairFlag, String pair, Integer pageNUmber) throws Exception {
-        TreeMap<String, RetrieveAlphabetInfo> langSortedTerms = new TreeMap<String, RetrieveAlphabetInfo>();
+        TreeMap<String, AlphabetFilesReader> langSortedTerms = new TreeMap<String, AlphabetFilesReader>();
         /*String langCode = null;
         if (languages.contains("en")) {
             langCode = "en";
@@ -42,7 +41,7 @@ public class HtmlCreator {
         }*/
 
         for (String langCode : languages) {
-            RetrieveAlphabetInfo retrieveAlphabetInfo = new RetrieveAlphabetInfo(INPUT_PATH, langCode, pairFlag);
+            AlphabetFilesReader retrieveAlphabetInfo = new AlphabetFilesReader(INPUT_PATH, langCode, pairFlag);
             langSortedTerms.put(langCode, retrieveAlphabetInfo);
         }
 
@@ -59,12 +58,12 @@ public class HtmlCreator {
         htmlReaderWriter.writeHtml(termPage, outputFileName);
     }
 
-    private void createHtmlForEachLanguage(TreeMap<String, RetrieveAlphabetInfo> langSortedTerms, String categoryName, Set<String> languages, String pair, Integer pageNUmber) throws Exception {
-        PageContentGenerator pageContentGenerator = new PageContentGenerator(langSortedTerms);
+    private void createHtmlForEachLanguage(TreeMap<String, AlphabetFilesReader> langSortedTerms, String categoryName, Set<String> languages, String pair, Integer pageNUmber) throws Exception {
+        HtmlPageContentGen pageContentGenerator = new HtmlPageContentGen(langSortedTerms);
         for (String language : pageContentGenerator.getLanguages()) {
             File LIST_OF_Terms = getTemplate(ListOfTerms, ".html");
-            List<AlphabetTermPage> alphabetTermPageList = pageContentGenerator.getLangPages(language);
-            for (AlphabetTermPage alphabetTermPage : alphabetTermPageList) {
+            List<LangPairManager> alphabetTermPageList = pageContentGenerator.getLangPages(language);
+            for (LangPairManager alphabetTermPage : alphabetTermPageList) {
                 if (pair.contains("all")) {
                     createHtmlForEachAlphabetPair(LIST_OF_Terms, language, alphabetTermPage, pageContentGenerator, categoryName, languages, pageNUmber);
                 } else if (alphabetTermPage.getAlpahbetPair().contains(pair)) {
@@ -79,7 +78,7 @@ public class HtmlCreator {
         }
     }
 
-    private void createHtmlForEachAlphabetPair(File templateFile, String language, AlphabetTermPage alphabetTermPage, PageContentGenerator pageContentGenerator, String categoryName, Set<String> languages, Integer pageNUmber) throws Exception {
+    private void createHtmlForEachAlphabetPair(File templateFile, String language, LangPairManager alphabetTermPage, HtmlPageContentGen pageContentGenerator, String categoryName, Set<String> languages, Integer pageNUmber) throws Exception {
         Partition partition = alphabetTermPage.getPartition();
 
         for (Integer page = 0; page < partition.size(); page++) {

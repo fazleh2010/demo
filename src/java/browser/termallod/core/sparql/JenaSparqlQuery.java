@@ -6,7 +6,7 @@
 package browser.termallod.core.sparql;
 
 import browser.termallod.core.termbase.TermDetail;
-import browser.termallod.core.termbase.Termbase;
+import browser.termallod.core.termbase.TermLists;
 /*
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
@@ -17,7 +17,7 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.RDFNode;*/
 import java.util.HashMap;
 import java.util.Map;
-import static browser.termallod.constants.SparqlEndpoint.query_writtenRep;
+import static browser.termallod.core.sparql.SparqlEndpoint.query_writtenRep;
 
 /**
  *
@@ -25,7 +25,7 @@ import static browser.termallod.constants.SparqlEndpoint.query_writtenRep;
  */
 public class JenaSparqlQuery {
 
-    private Termbase terminology;
+    private TermLists terminology;
 
     //for unknown reason jena is not working..therefore jena library is deleted...
     public JenaSparqlQuery(String myTermSparqlEndpoint, String myTermTableName) throws Exception {
@@ -54,7 +54,7 @@ public class JenaSparqlQuery {
         ResultSet results = qExe.execSelect();
         return results;
     }*/
-    public Termbase getTerminology() {
+    public TermLists getTerminology() {
         return terminology;
     }
 

@@ -1,6 +1,6 @@
 package tbx2rdf;
 
-import browser.termallod.app.HtmlMain;
+import browser.termallod.app.BrowserMain;
 import tbx2rdf.types.TBX_Terminology;
 import com.hp.hpl.jena.rdf.model.Model;
 import java.io.BufferedReader;
@@ -63,7 +63,7 @@ public class Main {
         String result="";
           String type = args[0];                                           
         if (type.contains("html")||type.contains("link")) {
-            HtmlMain HtmlMain = new HtmlMain(args);
+            BrowserMain HtmlMain = new BrowserMain(args);
             try {
                 result= HtmlMain.html();
             } catch (Exception ex) {

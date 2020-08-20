@@ -1,0 +1,22 @@
+<sparql xmlns="http://www.w3.org/2005/sparql-results#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2001/sw/DataAccess/rf1/result2.xsd">
+<head>
+<variable name="lang"/>
+<variable name="rep"/>
+<variable name="entity"/>
+ <variable name="code"/>
+<variable name="status"/>
+<variable name="ref"/>
+<variable name="subject"/>
+</head>
+<results distinct="false" ordered="true">
+<result>
+<binding name="lang"><uri>http://tbx2rdf.lider-project.eu/data/YourNameSpace/en</uri></binding>
+<binding name="rep"><literal xml:lang="en">Academic Project Team</literal></binding>
+<binding name="entity"><uri>http://tbx2rdf.lider-project.eu/data/YourNameSpace/Academic+Project+Team-en</uri></binding>
+<binding name="code"><literal datatype="http://www.w3.org/2001/XMLSchema#integer">3</literal></binding>
+<binding name="ref"><uri>http://tbx2rdf.lider-project.eu/data/YourNameSpace/IATE-3576516</uri></binding>
+<binding name="subject"><uri>unknown</uri></binding>
+</result>
+</results>
+</sparql>
+

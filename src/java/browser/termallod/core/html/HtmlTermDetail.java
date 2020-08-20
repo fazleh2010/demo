@@ -5,22 +5,22 @@
  */
 package browser.termallod.core.html;
 
-import static browser.termallod.api.HtmlStringConts.divClassEnd;
-import static browser.termallod.api.HtmlStringConts.divClassStr;
-import static browser.termallod.api.IATE.SUBJECT_FIELD;
-import static browser.termallod.constants.Languages.languageMapper;
+import static browser.termallod.constants.HtmlConts.divClassEnd;
+import static browser.termallod.constants.HtmlConts.divClassStr;
 import browser.termallod.core.termbase.TermDetail;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import browser.termallod.constants.HtmlConts;
+import browser.termallod.constants.LanguageDetail;
 
 /**
  *
  * @author elahi
  */
-public final class HtmlTermDetail {
+public final class HtmlTermDetail implements HtmlConts,LanguageDetail {
 
     private Document templateHtml;
     private TermDetail termDetail;
