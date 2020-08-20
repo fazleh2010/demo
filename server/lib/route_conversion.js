@@ -326,6 +326,14 @@ function getFile(req, fieldname) {
     return null;
 }
 
+app.get("/sparql", async (req, res, next) => {
+     res.redirect('http://localhost:8080/status?view=sparql');
+});
+
+app.get("/list", async (req, res, next) => {
+     res.redirect('http://localhost:8080/describe');
+});
+
 app.get("/initialize", async (req, res, next) => {
     res.status(401).send('invalid method, endpoint requires a POST request');
 });
