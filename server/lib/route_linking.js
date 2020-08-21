@@ -5,6 +5,7 @@
 const fsp = require('fs').promises;
 const streamExec = require("./streamexec");
 const mstatus = require("./mstatus");
+
 const sparql_utils = require("./sparql_utils")
 const inputDir = "/tmp/";
 const default_graph = "http://tbx2rdf.lider-project.eu/";
@@ -122,18 +123,27 @@ async function dolinking(req, res, next) {
            const execOptions = {cwd: "/tmp"}; //, stdout: process.stderr, stderr: process.stderr};
 
            try {
+            //res.redirect("/status.json");
+
+           mstatus.statusInformation['status'] = 'linking terminology';
+           mstatus.statusInformation['state'] = {};
+
             result = await streamExec("tbx2rdf", cmdExec, cmdArgs, execOptions);
-            console.log("result:",result); 
 	    await insert_match("localTerm", "remoteTerm");
+            mstatus.update("linking", {
+                "status": "complete"
+            });
+
 	    
-            console.log("!!!!!!!!!!!!!!!!!!!!!!!!insert done!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
               if (result.code != 0) {
                  throw Error("exit code != 0");
-                      return; 
+                res.status(500).json({error: "Internal server error"});
                    }
                 else
                    {
-                    console.log("linking works fine:",result);
+                    console.log("linking works fine:",
+                    res.status(200).json({status:"linking is successfully complete!!!!"}));
+
                    }
 
             if (result.stdcache.stdout) { data.stdout = result.stdcache.stdout; }
@@ -142,9 +152,7 @@ async function dolinking(req, res, next) {
              console.log("java -jar does not work!!"+errconv);
             
             }
-            mstatus.update("linking", {
-                "status": "complete"
-            });
+           
         }
     } catch (e) {
 	    console.log("error in status field!!!");
