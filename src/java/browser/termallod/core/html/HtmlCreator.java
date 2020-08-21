@@ -5,9 +5,9 @@
  */
 package browser.termallod.core.html;
 
-import static browser.termallod.app.Parameter.ListOfTerms;
-import browser.termallod.core.AlphabetFilesReader;
-import browser.termallod.core.LangPairManager;
+import static browser.termallod.core.Parameter.ListOfTerms;
+import browser.termallod.core.language.AlphabetFilesReader;
+import browser.termallod.core.language.LangPairManager;
 import browser.termallod.utils.Partition;
 import browser.termallod.core.termbase.TermDetail;
 import java.io.File;

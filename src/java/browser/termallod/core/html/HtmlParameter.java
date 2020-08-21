@@ -6,7 +6,7 @@
 package browser.termallod.core.html;
 
 
-import browser.termallod.core.LangPairManager;
+import browser.termallod.core.language.LangPairManager;
 import java.io.File;
 import java.util.List;
 import org.jsoup.nodes.Document;

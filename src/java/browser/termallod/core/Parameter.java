@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.app;
+package browser.termallod.core;
 
 import static browser.termallod.core.sparql.SparqlEndpoint.endpoint_atc;
 import static browser.termallod.core.sparql.SparqlEndpoint.endpoint_intaglio;
 import static browser.termallod.core.sparql.SparqlEndpoint.endpoint_solar;
-import browser.termallod.core.LanguageManager;
+import browser.termallod.core.language.LanguageManager;
 import browser.termallod.core.termbase.TermDetail;
 import browser.termallod.utils.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;

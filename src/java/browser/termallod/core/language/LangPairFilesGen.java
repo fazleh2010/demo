@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.core;
+package browser.termallod.core.language;
 
 import browser.termallod.utils.FileRelatedUtils;
 import browser.termallod.core.termbase.TermDetail;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-import browser.termallod.core.LanguageManager;
+import browser.termallod.core.language.LanguageManager;
 import browser.termallod.constants.LanguageDetail;
 
 /**

@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.app;
+package browser.termallod.core;
 
-import browser.termallod.core.LangPairFilesGen;
+import browser.termallod.core.language.LangPairFilesGen;
 import browser.termallod.core.html.HtmlCreator;
 import browser.termallod.core.termbase.TermListMatcher;
-import static browser.termallod.app.Parameter.Browser;
+import static browser.termallod.core.Parameter.Browser;
 import browser.termallod.utils.FileRelatedUtils;
 import browser.termallod.core.sparql.CurlSparqlQuery;
 import browser.termallod.core.sparql.SparqlEndpoint;

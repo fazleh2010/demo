@@ -3,7 +3,7 @@
  * To change this template alphabetFile, choose Tools | Templates
  * and open the template in the editor.
  */
-package browser.termallod.core;
+package browser.termallod.core.language;
 
 import browser.termallod.utils.Partition;
 import java.util.Properties;

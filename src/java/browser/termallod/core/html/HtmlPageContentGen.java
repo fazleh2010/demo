@@ -5,8 +5,8 @@
  */
 package browser.termallod.core.html;
 
-import browser.termallod.core.AlphabetFilesReader;
-import browser.termallod.core.LangPairManager;
+import browser.termallod.core.language.AlphabetFilesReader;
+import browser.termallod.core.language.LangPairManager;
 import browser.termallod.utils.FileRelatedUtils;
 import java.util.Collections;
 import java.util.HashMap;

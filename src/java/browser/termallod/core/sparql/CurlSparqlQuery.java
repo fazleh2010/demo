@@ -5,7 +5,7 @@
  */
 package browser.termallod.core.sparql;
 
-import browser.termallod.app.Parameter;
+import browser.termallod.core.Parameter;
 import browser.termallod.core.termbase.TermSubjectInfo;
 import browser.termallod.core.termbase.TermDetail;
 import browser.termallod.core.termbase.TermLists;

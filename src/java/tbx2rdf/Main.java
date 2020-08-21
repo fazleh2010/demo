@@ -1,6 +1,6 @@
 package tbx2rdf;
 
-import browser.termallod.app.BrowserMain;
+import browser.termallod.core.BrowserMain;
 import tbx2rdf.types.TBX_Terminology;
 import com.hp.hpl.jena.rdf.model.Model;
 import java.io.BufferedReader;

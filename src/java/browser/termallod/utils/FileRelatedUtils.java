@@ -5,8 +5,8 @@
  */
 package browser.termallod.utils;
 
-import browser.termallod.app.BrowserMain;
-import browser.termallod.core.LangPairManager;
+import browser.termallod.core.BrowserMain;
+import browser.termallod.core.language.LangPairManager;
 import browser.termallod.core.termbase.TermDetail;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

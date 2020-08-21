@@ -5,7 +5,7 @@
  */
 package browser.termallod.core.termbase;
 
-import browser.termallod.app.Parameter;
+import browser.termallod.core.Parameter;
 import static browser.termallod.core.sparql.SparqlEndpoint.query_writtenRep;
 import static browser.termallod.core.sparql.SparqlEndpoint.query_writtenRep_lang;
 import browser.termallod.core.sparql.CurlSparqlQuery;

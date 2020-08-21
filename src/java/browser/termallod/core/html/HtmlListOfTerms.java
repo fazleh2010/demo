@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import browser.termallod.core.LangPairManager;
+import browser.termallod.core.language.LangPairManager;
 import browser.termallod.core.html.HtmlReaderWriter;
 import browser.termallod.core.html.HtmlParameter;
 import browser.termallod.utils.StringMatcher;
