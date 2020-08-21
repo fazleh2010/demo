@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -32,6 +33,8 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
 
@@ -40,6 +43,17 @@ import org.apache.commons.io.filefilter.WildcardFileFilter;
  * @author elahi
  */
 public class FileRelatedUtils {
+    
+    public  static String BASE_PATH = "src/java/resources/data/";
+    public  static String OUTPUT_PATH = BASE_PATH + "/output/";
+    public  static String INPUT_PATH = BASE_PATH + "/input/";
+    public  static String CONFIG_PATH = BASE_PATH + "/conf/";
+    public  static String TEMPLATE_PATH = BASE_PATH + "/template/";
+
+    public static void main(String[] args) {
+        
+        zipFile("/Users/elahi/demo/src/java/resources/data/template/JsFormat.js");
+    }
 
     public static File[] getFiles(String fileDir, String ntriple) throws Exception {
         File dir = new File(fileDir);
@@ -336,7 +350,7 @@ public class FileRelatedUtils {
         return languageFiles;
     }*/
 
-    /*public static Map<String, List<File>> getLanguageFiles(List<File> inputfiles, String model_extension, Boolean alternativeFlag) {
+ /*public static Map<String, List<File>> getLanguageFiles(List<File> inputfiles, String model_extension, Boolean alternativeFlag) {
         Map<String, List<File>> languageFiles = new HashMap<String, List<File>>();
         for (File file : inputfiles) {
             String langCode = NameExtraction.getLanCode(file, model_extension);
@@ -353,7 +367,6 @@ public class FileRelatedUtils {
         }
         return languageFiles;
     }*/
-
     public static void deleteDirectory(String dir) throws IOException {
         FileUtils.deleteDirectory(new File(dir));
     }
@@ -419,8 +432,8 @@ public class FileRelatedUtils {
         }
 
     }
-    
-     public static void appendToFile(String file, String sparqlEnd) {
+
+    public static void appendToFile(String file, String sparqlEnd) {
         FileWriter fileWriter;
         try {
             fileWriter = new FileWriter(file, true);
@@ -430,6 +443,31 @@ public class FileRelatedUtils {
             bufferFileWriter.close();
         } catch (IOException ex) {
             Logger.getLogger(BrowserMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private static Boolean zipFile(String filePath) {
+        try {
+            File file = new File(filePath);
+            String zipFileName = file.getName().concat(".zip");
+
+            FileOutputStream fos = new FileOutputStream(zipFileName);
+            ZipOutputStream zos = new ZipOutputStream(fos);
+
+            zos.putNextEntry(new ZipEntry(file.getName()));
+
+            byte[] bytes = Files.readAllBytes(Paths.get(filePath));
+            zos.write(bytes, 0, bytes.length);
+            zos.closeEntry();
+            zos.close();
+            return true;
+
+        } catch (FileNotFoundException ex) {
+            System.err.format("The file %s does not exist", filePath);
+            return false;
+        } catch (IOException ex) {
+            System.err.println("I/O error: " + ex);
+            return false;
         }
     }
 
